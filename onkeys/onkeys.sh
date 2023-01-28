@@ -17,8 +17,8 @@ then
         echo 1 > /tmp/zi/dialogueflag
 
 
-        running1=`cat /etc/zi/timers/running1`
-	saldo1=`cat /etc/zi/timers/saldo1`
+        running1=`cat /etc/zi/timers/var/running1`
+	saldo1=`cat /etc/zi/timers/var/saldo1`
 
 	if [ $running1 == "1" ]
         then
@@ -59,8 +59,8 @@ then
         # set dialogue flag
         echo 1 > /tmp/zi/dialogueflag
 
-        running2=`cat /etc/zi/timers/running2`
-        saldo2=`cat /etc/zi/timers/saldo2`
+        running2=`cat /etc/zi/timers/var/running2`
+        saldo2=`cat /etc/zi/timers/var/saldo2`
 
         if [ $running2 == "1" ]
         then

@@ -1,21 +1,28 @@
 #/bin/sh
 
 #leemos todos los saldos a variables
-saldo1=`cat /etc/zi/timers/saldo1`
-saldo2=`cat /etc/zi/timers/saldo2`
-saldo3=`cat /etc/zi/timers/saldo3`
-saldo4=`cat /etc/zi/timers/saldo4`
-saldo5=`cat /etc/zi/timers/saldo5`
-saldo6=`cat /etc/zi/timers/saldo6`
+saldo1=`cat /etc/zi/timers/var/saldo1`
+saldo2=`cat /etc/zi/timers/var/saldo2`
+saldo3=`cat /etc/zi/timers/var/saldo3`
+saldo4=`cat /etc/zi/timers/var/saldo4`
+saldo5=`cat /etc/zi/timers/var/saldo5`
+saldo6=`cat /etc/zi/timers/var/saldo6`
 
+#guardamos los estados anteriores antes de calcular nuevos saldos
+saldo_old1=$saldo1
+saldo_old2=$saldo2
+saldo_old3=$saldo3
+saldo_old4=$saldo4
+saldo_old5=$saldo5
+saldo_old6=$saldo6
 
 #leemos todso los status running a variables
-running1=`cat /etc/zi/timers/running1`
-running2=`cat /etc/zi/timers/running2`
-running3=`cat /etc/zi/timers/running3`
-running4=`cat /etc/zi/timers/running4`
-running5=`cat /etc/zi/timers/running5`
-running6=`cat /etc/zi/timers/running6`
+running1=`cat /etc/zi/timers/var/running1`
+running2=`cat /etc/zi/timers/var/running2`
+running3=`cat /etc/zi/timers/var/running3`
+running4=`cat /etc/zi/timers/var/running4`
+running5=`cat /etc/zi/timers/var/running5`
+running6=`cat /etc/zi/timers/var/running6`
 
 #decrementamos
 if [ $running1 -eq "1" ]; then 	let saldo1--; fi 
@@ -44,20 +51,28 @@ if [ $saldo5 -eq "0" ] && [ $running5 -eq "1" ]; then running5=0; fi
 if [ $saldo6 -eq "0" ] && [ $running6 -eq "1" ]; then running6=0; fi
 
 #escribimos todos los saldos:
-echo $saldo1 > /etc/zi/timers/saldo1
-echo $saldo2 > /etc/zi/timers/saldo2
-echo $saldo3 > /etc/zi/timers/saldo3
-echo $saldo4 > /etc/zi/timers/saldo4
-echo $saldo5 > /etc/zi/timers/saldo5
-echo $saldo6 > /etc/zi/timers/saldo6
+echo $saldo1 > /etc/zi/timers/var/saldo1
+echo $saldo2 > /etc/zi/timers/var/saldo2
+echo $saldo3 > /etc/zi/timers/var/saldo3
+echo $saldo4 > /etc/zi/timers/var/saldo4
+echo $saldo5 > /etc/zi/timers/var/saldo5
+echo $saldo6 > /etc/zi/timers/var/saldo6
+
+#escribimos todos los saldos:
+echo $saldo_old1 > /etc/zi/timers/var/saldo_old1
+echo $saldo_old2 > /etc/zi/timers/var/saldo_old2
+echo $saldo_old3 > /etc/zi/timers/var/saldo_old3
+echo $saldo_old4 > /etc/zi/timers/var/saldo_old4
+echo $saldo_old5 > /etc/zi/timers/var/saldo_old5
+echo $saldo_old6 > /etc/zi/timers/var/saldo_old6
 
 #escribimos todos los running statuses: 
-echo $running1 > /etc/zi/timers/running1
-echo $running2 > /etc/zi/timers/running2
-echo $running3 > /etc/zi/timers/running3
-echo $running4 > /etc/zi/timers/running4
-echo $running5 > /etc/zi/timers/running5
-echo $running6 > /etc/zi/timers/running6
+echo $running1 > /etc/zi/timers/var/running1
+echo $running2 > /etc/zi/timers/var/running2
+echo $running3 > /etc/zi/timers/var/running3
+echo $running4 > /etc/zi/timers/var/running4
+echo $running5 > /etc/zi/timers/var/running5
+echo $running6 > /etc/zi/timers/var/running6
 
 
 #printout
