@@ -63,4 +63,3 @@ echo $running6 > /etc/zi/timers/running6
 #printout
 echo "running1: ${running1} || nuevo saldo1: ${saldo1}"
 
-
