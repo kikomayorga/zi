@@ -2,13 +2,13 @@
 # the system init finished. By default this file does nothing.
 
 #crea el archivo temporal para almacenar últimas cuatro teclas
-#cd /tmp/ && mkdir zi && cd zi && touch last4keys && echo "aaaa" > last4keys
+cd /tmp/ && mkdir zi && cd zi && touch last4keys && echo "aaaa" > last4keys
 
 #crea el archivo temporal para almacenar el flag de dialogo
-#cd /tmp/zi/ && touch dialogueflag && echo "0" > dialogueflag
+cd /tmp/zi/ && touch dialogueflag && echo "0" > dialogueflag
 
 # esta línea es para activar la tarjeta de sonido al arrancar
-#alsactl init            #to initialize your soundcard at boot up
+alsactl init            #to initialize your soundcard at boot up
 
 # esta linea es para activar el listener de desconexiones
 hostapd_cli -a '/etc/zi/disconnects/onhostapdchange.sh' &
