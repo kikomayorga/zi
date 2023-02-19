@@ -1,2 +1,2 @@
 */1 * * * *i sh /etc/zi/timers/eachminute.sh
-
+59 23 * * * sh /etc/zi/timers/reset.sh
