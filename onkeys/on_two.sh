@@ -27,6 +27,6 @@ then
 	lua ~/Documents/zi/zi.lua key 2 $lkchain
 
 	#when deploy on openwrt:
-	#lua /etc/zi/zi.lua 1 $lkchain
+	#lua /etc/zi/zi.lua 2 $lkchain
 
 fi
