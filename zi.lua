@@ -14,6 +14,9 @@ states_db = "states_table.db"
 -- on openwrt
 path = "/etc/"
 
+
+os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
+
 --[[
 if arg[1] == "setup"
 then
@@ -38,7 +41,7 @@ then
       running = get_running_status(users_db, logged_user)
       if running == 0 then
         os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para navegar, presiona 1." &')
-        os.execute("sleep 2")
+        os.execute("sleep 5")
         os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/menuusuario.wav")
       end
       if running == 1 then

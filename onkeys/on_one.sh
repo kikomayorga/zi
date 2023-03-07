@@ -1,7 +1,7 @@
 #!/bin/sh
 
 busyflag=`cat /tmp/zi/busyflag`
--- busyflag='cat /tmp/busyflag' 
+# busyflag='cat /tmp/busyflag' 
 
 
 if [ "$busyflag" = "0" ]
@@ -26,9 +26,9 @@ then
 	#forward to lua
 
 	#when running on ubuntu
-	lua ~/Documents/zi/zi.lua key 1 $lkchain
+	#lua ~/Documents/zi/zi.lua key 1 $lkchain
 
 	#when deploy on openwrt:
-	#lua /etc/zi/zi.lua 1 $lkchain
+	lua /etc/zi/zi.lua key 1 $lkchain
 
 fi
