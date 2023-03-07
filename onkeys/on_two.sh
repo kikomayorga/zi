@@ -1,14 +1,8 @@
 #!/bin/sh
-#
-# on_one
-#
-# - shift 4 keys buffer
-# - put "1" in latest buffer slot
-# 
 
-dialogueflag=`cat /tmp/zi/dialogueflag`
+busyflag=`cat /tmp/zi/busyflag`
 
-if [ "$dialogueflag" = "0" ]
+if [ "$busyflag" = "0" ]
 then
 	#read from temporary file
 	lkchain_old=`cat /tmp/zi/last4keys`
@@ -21,6 +15,18 @@ then
 	#save into temporary file
 	echo $lkchain > /tmp/zi/last4keys
 
-	#call script onke.sh
-	sh /etc/zi/onkeys/onkeys.sh
+	#call script onkeys.sh
+	#sh /etc/zi/onkeys/onkeys.sh
+	
+	#set busy flag
+	echo 1 > /tmp/zi/busyflag
+
+	#forward to lua
+
+	#when running on ubuntu
+	lua ~/Documents/zi/zi.lua key 2 $lkchain
+
+	#when deploy on openwrt:
+	#lua /etc/zi/zi.lua 1 $lkchain
+
 fi
