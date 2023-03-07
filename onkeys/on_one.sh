@@ -1,7 +1,7 @@
 #!/bin/sh
 
--- busyflag=`cat /tmp/zi/busyflag`
-busyflag='cat /tmp/busyflag' 
+busyflag=`cat /tmp/zi/busyflag`
+-- busyflag='cat /tmp/busyflag' 
 
 
 if [ "$busyflag" = "0" ]

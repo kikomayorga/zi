@@ -10,9 +10,9 @@ states_db = "states_table.db"
 
 
 -- on ubuntu
-path = "~/Documents/" -- (DEV
+--  path = "~/Documents/" -- (DEV
 -- on openwrt
--- path = "/etc/"
+path = "/etc/"
 
 --[[
 if arg[1] == "setup"
