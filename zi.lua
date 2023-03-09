@@ -16,13 +16,12 @@ states_db = "states_table.db"
 -- os.execute("sleep 2 && echo 0 > /tmp/zi/busyflag")          
 -- os.execute("echo 0 > /tmp/zi/busyflag")
 
+os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
 
 if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
 
 if arg[1] == "key"
 then
-  os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
-
   if get_state(states_db) == "iddle" then
     logged_user = 0
     lastkey = arg[2]
