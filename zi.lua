@@ -76,8 +76,8 @@ then
       set_running_status(users_db, logged_user, "1")
 
       os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "Navega!" ')
-      os.execute("sleep 5")
       os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/welcome.wav &" )
+      os.execute("sleep 5")
       os.execute("mpg123 "..path.."zi/sounds/ticktack.mp3")
     end
     if lastkey == "0" then
@@ -85,8 +85,8 @@ then
       set_running_status(users_db, logged_user, "0")
       
       os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "Pausa de internet! " ')
-      os.execute("sleep 5")
       os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/welcome.wav &" )
+      os.execute("sleep 5")
       os.execute("mpg123 "..path.."zi/sounds/aplausos.mp3")
     end
   os.exit()
