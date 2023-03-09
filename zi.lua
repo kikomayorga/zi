@@ -77,7 +77,7 @@ then
 
       os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "Navega!" ')
       os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/welcome.wav &" )
-      os.execute("sleep 5")
+      os.execute("sleep 3")
       os.execute("mpg123 "..path.."zi/sounds/ticktack.mp3")
     end
     if lastkey == "0" then
@@ -86,13 +86,12 @@ then
       
       os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "Pausa de internet! " ')
       os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/welcome.wav &" )
-      os.execute("sleep 5")
+      os.execute("sleep 3")
       os.execute("mpg123 "..path.."zi/sounds/aplausos.mp3")
     end
          
     -- sets statesmachine:
     set_state(states_db, "iddle")
-    set_logged_user(states_db, logged_user)
     -- enables triggerhappy
     os.execute("echo 0 > /tmp/zi/busyflag")
   os.exit()
