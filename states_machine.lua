@@ -1,7 +1,7 @@
 function states_reset(db_file)
   t = {}
   t = {
-    ["state"]="anonymous",    -- anonymous or logged
+    ["state"]="iddle",    -- anonymous or logged
     ["logged_user"]=0,        -- 0: no user selected
     -- ["menu"]="user_menu"      -- 
     }
