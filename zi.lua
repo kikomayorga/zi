@@ -1,4 +1,4 @@
-os.execute("echo 0 > /tmp/zi/busyflag")
+os.execute("echo 1 > /tmp/zi/busyflag")
 path = "/etc/"
 -- path = "~/Documents/" -- at my ubuntu
 os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
@@ -14,9 +14,6 @@ devices_db = "devices_table.db"
 states_db = "states_table.db"
 
 
-
-
---[[
 if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
 
 if arg[1] == "key"
@@ -102,5 +99,3 @@ then
   end
 
 end
-
-]]
