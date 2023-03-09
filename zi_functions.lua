@@ -58,6 +58,12 @@ function get_password(db_file, userID)
   return password
 end
 
+function get_admin_password(db_file, adminID)
+  t = table.load(db_file)
+  password = t[adminID]["password"]
+  return password
+end
+
 function set_password(db_file, userID, new_password)
   t = table.load(db_file)
   t[userID]["password"]=new_password

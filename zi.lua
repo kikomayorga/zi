@@ -24,18 +24,32 @@ states_db = "states_table.db"
 -- command calls
 if (arg[1] == "users" and arg[2] == "reset") then users_db_reset(users_db) end
 if (arg[1] == "admins" and arg[2] == "reset") then admins_db_reset(admins_db) end
-if (arg[1] == "devices" and arg[2] == "reset") then admins_db_reset(devices_db) end
+if (arg[1] == "devices" and arg[2] == "reset") then devices_db_reset(devices_db) end
 if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
 
--- key based calls
+-- keypad based calls
 if arg[1] == "key" then 
   os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
   if get_state(states_db) == "iddle" then
     logged_user = 0
+    logged_admin = 0
     lastkey = arg[2]
     last4keys = arg[3]
     
     -- test for admin passwords
+    for i=1, 6 do 
+      if last4keys == get_admin_password(admins_db, i)
+      then 
+        os.execute("echo 1 > /tmp/zi/busyflag")
+        logged_admin = i 
+        os.execute("mpg123 "..path.."zi/sounds/success.mp3")
+        os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "<volume level=\'70\'> Bienvenido Administrador'..logged_admin..' "')
+        os.execute("sleep 5")
+        os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav &" )
+        break
+      end
+      os.execute("echo 0 > /tmp/zi/busyflag")
+    end
 
     -- test for user passwords
     for i=1, 6 do 
@@ -52,11 +66,33 @@ if arg[1] == "key" then
       os.execute("echo 0 > /tmp/zi/busyflag")
     end
 
-    if logged_user == 0 then
+    if (logged_user == 0 and logged_admin == 0) then
       set_state(sates_db, "iddle")
       set_logged_user(sates_db, 0)
       -- enables triggerhappy
       os.execute("echo 0 > /tmp/zi/busyflag")
+    end
+
+    if logged_admin ~= 0 then
+      os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level=\'70\'>Bienvenido Administrador. Para asignar tiempo extra a un usuario, presiona 1. Para asignar tiempo extra a todos los usuarios marca 2."' )
+      os.execute("sleep 2")
+      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav")
+      os.execute("sleep 15")
+      os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level=\'70\'>Para bloquear a un usuario hasta el día siguiente marca 3. Para bloquear a todos los usuarios hasta el día siguiente marca 4. Para activar un equipo nuevo marca 5."') 
+      os.execute("sleep 2")
+      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav")
+      os.execute("sleep 15")
+      os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level=\'70\'>      os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level=\'70\'>Para bloquear a un usuario hasta el día siguiente marca 3. Para bloquear a todos los usuarios hasta el día siguiente marca 4. Para activar un equipo nuevo marca 5."') 
+      os.execute("sleep 2")
+      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav")
+      os.execute("sleep 15").') 
+      os.execute("sleep 2")
+      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav")
+      os.execute("sleep 15")
+
+      set_state(states_db, "admin_menu")                    -- sets statesmachine:
+      set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
+      os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
     end
 
     if logged_user ~= 0 then
