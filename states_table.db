@@ -2,6 +2,6 @@ return {
 -- Table: {1}
 {
    ["state"]="iddle",
-   ["logged_user"]=0,
+   ["logged_user"]=1,
 },
 }
