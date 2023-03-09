@@ -59,8 +59,8 @@ then
       end 
        
       -- sets statesmachine:
-      set_state(sates_db, "connect_or_disconnect")
-      set_logged_user(sates_db, logged_user)
+      set_state(states_db, "connect_or_disconnect")
+      set_logged_user(states_db, logged_user)
       -- enables triggerhappy
       os.execute("echo 0 > /tmp/zi/busyflag")
     end
