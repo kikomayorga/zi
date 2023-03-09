@@ -11,7 +11,7 @@ then
 	echo oldchain: $lkchain_old
 
 	#put new key before
-	lkchain="${lkchain_old:1:4}""2"
+	lkchain="${lkchain_old:1:4}""7"
 	echo newchain: $lkchain
 
 	#save into temporary file
@@ -29,6 +29,6 @@ then
 	#lua ~/Documents/zi/zi.lua key 1 $lkchain
 
 	#when deploy on openwrt:
-	lua /etc/zi/zi.lua key 2 $lkchain
+	lua /etc/zi/zi.lua key 7 $lkchain
 
 fi
