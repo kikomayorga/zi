@@ -73,7 +73,7 @@ then
     lastkey = arg[2]
     if lastkey == "1" then
       -- TODO: la jugada en safedns
-      set_running_status(users_db, logged_user, "1")
+      set_running_status(users_db, logged_user, 1)
 
       os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "Navega!" ')
       os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/welcome.wav &" )
@@ -82,7 +82,7 @@ then
     end
     if lastkey == "0" then
       -- TODO: la jugada en safedns
-      set_running_status(users_db, logged_user, "0")
+      set_running_status(users_db, logged_user, 0)
       
       os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "Pausa de internet! " ')
       os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/welcome.wav &" )
@@ -94,6 +94,7 @@ then
     set_state(states_db, "iddle")
     -- enables triggerhappy
     os.execute("echo 0 > /tmp/zi/busyflag")
+
   os.exit()
   end
 
