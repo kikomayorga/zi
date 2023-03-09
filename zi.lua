@@ -1,4 +1,4 @@
-os.execute("echo 1 > /tmp/zi/busyflag")
+os.execute("echo 0 > /tmp/zi/busyflag")
 path = "/etc/"
 -- path = "~/Documents/" -- at my ubuntu
 os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")

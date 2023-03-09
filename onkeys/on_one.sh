@@ -21,7 +21,7 @@ then
 	#sh /etc/zi/onkeys/onkeys.sh
 	
 	#set busy flag
-	echo 1 > /tmp/zi/busyflag
+	#echo 1 > /tmp/zi/busyflag
 
 	#forward to lua
 
