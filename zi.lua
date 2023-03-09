@@ -1,6 +1,4 @@
 path = "/etc/"
--- os.execute("echo 1 > /tmp/zi/busyflag")  --prevents doubled triggering 
--- os.execute("sleep 1 && echo 0 > /tmp/zi/busyflag")
 
 require "tablesaveload" -- for persistance
 require "zi_functions"  -- custom functions by zi
@@ -9,24 +7,37 @@ require "animals_table"  -- animals_table.lua
 require "vehicles_table"  -- vehicles_table.lua
 
 users_db = "users_table.db"
+admins_db = "admins_table.db"
 devices_db = "devices_table.db"
 states_db = "states_table.db"
 
+-- usage:
+-- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
+-- examples:
+-- lua zi.lua key 1 1234   <  reading keys
+-- lua zi.lua users reset
+-- lua zi.lua admins reset
+-- lua zi.lua devices reset
+-- lua zi.lua states reset
+-- lua zi.lua hostapd connect macaddresse
 
--- os.execute("sleep 2 && echo 0 > /tmp/zi/busyflag")          
--- os.execute("echo 0 > /tmp/zi/busyflag")
-
-
-
+-- command calls
+if (arg[1] == "users" and arg[2] == "reset") then users_db_reset(users_db) end
+if (arg[1] == "admins" and arg[2] == "reset") then admins_db_reset(admins_db) end
+if (arg[1] == "devices" and arg[2] == "reset") then admins_db_reset(devices_db) end
 if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
 
-if arg[1] == "key"
-then
+-- key based calls
+if arg[1] == "key" then 
   os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
   if get_state(states_db) == "iddle" then
     logged_user = 0
     lastkey = arg[2]
     last4keys = arg[3]
+    
+    -- test for admin passwords
+
+    -- test for user passwords
     for i=1, 6 do 
       if last4keys == get_password(users_db, i)
       then 
@@ -61,12 +72,10 @@ then
         os.execute("sleep 5")
         os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav &" )
       end 
-       
-      -- sets statesmachine:
-      set_state(states_db, "connect_or_disconnect")
-      set_logged_user(states_db, logged_user)
-      -- enables triggerhappy
-      os.execute("echo 0 > /tmp/zi/busyflag")
+      
+      set_state(states_db, "connect_or_disconnect")  -- sets statesmachine:
+      set_logged_user(states_db, logged_user)        -- TODO:  is this needed?
+      os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
     end
 
   os.exit()

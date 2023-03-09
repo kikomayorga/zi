@@ -16,6 +16,17 @@ function users_db_reset(db_file)
      }
   end
 
+  function admins_db_reset(db_file)
+    t = {}
+    for i = 1, 6 do
+      t[i] = {
+        ["password"]="7777", 
+        ["own_dev_1"]=0,
+        ["own_dev_2"]=0, 
+        ["own_dev_3"]=0, 
+       }
+    end
+
   for i=1, 6 do t[i].user_name ="usuario "..i end
   table.save(t, db_file)
 
