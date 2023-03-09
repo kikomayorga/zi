@@ -37,14 +37,14 @@ then
       end
     end
 
-    if logged_user == "0" then
+    if logged_user == 0 then
       set_state(sates_db, "iddle")
       set_logged_user(sates_db, 0)
       -- enables triggerhappy
       os.execute("echo 0 > /tmp/zi/busyflag")
     end
 
-    if logged_user ~= "0" then
+    if logged_user ~= 0 then
       -- menú de usuario:
       running = get_running_status(users_db, logged_user)
       if running == 0 then
