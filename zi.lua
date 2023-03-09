@@ -14,6 +14,8 @@ states_db = "states_table.db"
 -- on openwrt
 path = "/etc/"
 
+if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
+
 if arg[1] == "key"
 then
   os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
