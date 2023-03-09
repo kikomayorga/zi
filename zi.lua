@@ -1,7 +1,6 @@
-os.execute("echo 1 > /tmp/zi/busyflag")  --prevents doubled triggering 
 path = "/etc/"
--- path = "~/Documents/" -- at my ubuntu
-os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
+-- os.execute("echo 1 > /tmp/zi/busyflag")  --prevents doubled triggering 
+-- os.execute("sleep 1 && echo 0 > /tmp/zi/busyflag")
 
 require "tablesaveload" -- for persistance
 require "zi_functions"  -- custom functions by zi
@@ -14,10 +13,16 @@ devices_db = "devices_table.db"
 states_db = "states_table.db"
 
 
+-- os.execute("sleep 2 && echo 0 > /tmp/zi/busyflag")          
+-- os.execute("echo 0 > /tmp/zi/busyflag")
+
+
 if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
 
 if arg[1] == "key"
 then
+  os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
+
   if get_state(states_db) == "iddle" then
     logged_user = 0
     lastkey = arg[2]
@@ -25,6 +30,7 @@ then
     for i=1, 6 do 
       if last4keys == get_password(users_db, i)
       then 
+        os.execute("echo 1 > /tmp/zi/busyflag")
         logged_user = i 
         os.execute("mpg123 "..path.."zi/sounds/success.mp3")
         os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "Bienvenido Usuario'..logged_user..' "')
@@ -93,7 +99,6 @@ then
     -- enables triggerhappy
     os.execute("echo 0 > /tmp/zi/busyflag")
 
-  os.exit()
-  end
-
+  os.exit() 
+ end
 end
