@@ -23,6 +23,6 @@ then
 	#lua ~/Documents/zi/zi.lua key 1 $lkchain
 
 	#when deploy on openwrt:
-	lua /etc/zi/zi.lua key 5 $lkchain
+	cd /etc/zi && lua zi.lua key 5 $lkchain
 
 fi

@@ -13,7 +13,7 @@ then
 	#lua ~/Documents/zi/zi.lua key 1 $lkchain
 
 	#when deploy on openwrt:
-	lua /etc/zi/zi.lua key enter 11111
+	cd /etc/zi && lua zi.lua key enter 11111
 
 
 fi
