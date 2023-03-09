@@ -17,12 +17,6 @@ then
 	#save into temporary file
 	echo $lkchain > /tmp/zi/last4keys
 
-	#call script onkeys.sh
-	#sh /etc/zi/onkeys/onkeys.sh
-	
-	#set busy flag
-	echo 1 > /tmp/zi/busyflag
-
 	#forward to lua
 
 	#when running on ubuntu

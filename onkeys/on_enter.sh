@@ -13,10 +13,7 @@ then
 	#lua ~/Documents/zi/zi.lua key 1 $lkchain
 
 	#when deploy on openwrt:
-	lua /etc/zi/zi.lua key enter $lkchain
+	lua /etc/zi/zi.lua key enter 11111
 
-# KEY_ENTER 1 sh /etc/zi/onkeys/on_enter.sh
-# KEY_DOT 1 sh /etc/zi/onkeys/on_dot.sh
-# KEY_BACKSPACE 1 sh /etc/zi/onkeys/on_bckspc.sh
 
 fi
