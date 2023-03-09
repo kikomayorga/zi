@@ -33,7 +33,7 @@ then
         os.execute("echo 1 > /tmp/zi/busyflag")
         logged_user = i 
         os.execute("mpg123 "..path.."zi/sounds/success.mp3")
-        os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "<volume level='70'> Bienvenido Usuario'..logged_user..' "')
+        os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "<volume level=\'70\'> Bienvenido Usuario'..logged_user..' "')
         os.execute("sleep 5")
         os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/welcome.wav &" )
         break
@@ -52,12 +52,12 @@ then
       -- menú de usuario:
       running = get_running_status(users_db, logged_user)
       if running == 0 then
-        os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level='70'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para navegar, presiona 1. Para seguir en pausa, presiona 0." &')
+        os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level=\'70\'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para navegar, presiona 1. Para seguir en pausa, presiona 0." &')
         os.execute("sleep 5")
         os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/menuusuario.wav")
       end
       if running == 1 then
-        os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level='70'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para pausar, presiona 0. Para seguir navegando, presiona 1." &')
+        os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level=\'70\'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para pausar, presiona 0. Para seguir navegando, presiona 1." &')
         os.execute("sleep 5")
         os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/menuusuario.wav &" )
       end 
@@ -79,7 +79,7 @@ then
       -- TODO: la jugada en safedns
       set_running_status(users_db, logged_user, 1)
 
-      os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "<volume level='70'>Navega!" ')
+      os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "<volume level=\'70\'>Navega!" ')
       os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/welcome.wav &" )
       os.execute("sleep 3")
       os.execute("mpg123 "..path.."zi/sounds/ticktack.mp3")
@@ -88,7 +88,7 @@ then
       -- TODO: la jugada en safedns
       set_running_status(users_db, logged_user, 0)
       
-      os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "<volume level='70'>Pausa de internet! " ')
+      os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "<volume level=\'70\'>Pausa de internet! " ')
       os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/welcome.wav &" )
       os.execute("sleep 3")
       os.execute("mpg123 "..path.."zi/sounds/aplausos.mp3")
