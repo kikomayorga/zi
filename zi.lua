@@ -89,6 +89,12 @@ then
       os.execute("sleep 5")
       os.execute("mpg123 "..path.."zi/sounds/aplausos.mp3")
     end
+         
+    -- sets statesmachine:
+    set_state(states_db, "iddle")
+    set_logged_user(states_db, logged_user)
+    -- enables triggerhappy
+    os.execute("echo 0 > /tmp/zi/busyflag")
   os.exit()
   end
 
