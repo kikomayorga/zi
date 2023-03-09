@@ -1,3 +1,6 @@
+os.execute("echo 1 > /tmp/zi/busyflag")
+os.execute("mpg123 /etc/zi/sounds/keypress.mp3")
+
 require "tablesaveload" -- for persistance
 require "zi_functions"  -- custom functions by zi
 require "states_machine" -- states need some persistance 
@@ -7,8 +10,6 @@ require "vehicles_table"  -- vehicles_table.lua
 users_db = "users_table.db"
 devices_db = "devices_table.db"
 states_db = "states_table.db"
-
-os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
 
 -- on ubuntu
 -- path = "~/Documents/" -- (DEV
