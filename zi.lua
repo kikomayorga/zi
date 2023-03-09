@@ -10,65 +10,83 @@ states_db = "states_table.db"
 
 
 -- on ubuntu
---  path = "~/Documents/" -- (DEV
+-- path = "~/Documents/" -- (DEV
 -- on openwrt
 path = "/etc/"
 
-
-os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
-
---[[
-if arg[1] == "setup"
-then
-end
-]]
-
 if arg[1] == "key"
 then
-  logged_user = 0
-  lastkey = arg[2]
-  last4keys = arg[3]
-  for i=1, 6 do 
-    if last4keys == get_password(users_db, i) 
-    then logged_user = i
-      -- bienvenida 
-      os.execute("mpg123 "..path.."zi/sounds/success.mp3")
-      os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "Bienvenido Usuario'..i..' "')
-      -- os.execute("killall -9 aplay")
-      os.execute("sleep 5")
-      os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/welcome.wav &" )
+  os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
+  
+  if get_state(states_db) == "iddle" then
+    logged_user = 0
+    lastkey = arg[2]
+    last4keys = arg[3]
+    
+    for i=1, 6 do 
+      if last4keys == get_password(users_db, i)
+      then 
+        logged_user = i 
+        os.execute("mpg123 "..path.."zi/sounds/success.mp3")
+        os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "Bienvenido Usuario'..logged_user..' "')
+        os.execute("sleep 5")
+        os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/welcome.wav &" )
+        break
+      end
+    end
+
+    if logged_user == "0" then
+      set_state(sates_db, "iddle")
+      set_logged_user(sates_db, 0)
+      -- enables triggerhappy
+      os.execute("echo 0 > /tmp/zi/busyflag")
+    end
+
+    if logged_user ~= "0" then
       -- menú de usuario:
       running = get_running_status(users_db, logged_user)
       if running == 0 then
-        os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para navegar, presiona 1." &')
+        os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para navegar, presiona 1. Para seguir en pausa, presiona 0." &')
         os.execute("sleep 5")
         os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/menuusuario.wav")
       end
       if running == 1 then
-        os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para pausar, presiona 0. " &')
+        os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para pausar, presiona 0. Para seguir navegando, presiona 1." &')
         os.execute("sleep 5")
         os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/menuusuario.wav &" )
       end 
-      -- SETEA busyflag (?)
-      os.execute("echo 0 > /tmp/zi/busyflag")
-
+       
       -- sets statesmachine:
-      set_state(sates_db, "waiting_for_choice_0_1")
-
-      -- KILL OWN PROCESS
-      -- os.exit() 
-      
+      set_state(sates_db, "connect_or_disconnect")
+      set_logged_user(sates_db, logged_user)
+      -- enables triggerhappy
+      os.execute("echo 0 > /tmp/zi/busyflag")
     end
+  
+  os.exit()
   end
+
+  if get_state(states_db) == "connect_or_disconnect" then
+    logged_user = get_logged_user(states_db)
+    lastkey = arg[2]
+    if lastkey == "1" then
+      -- TODO: la jugada en safedns
+      set_running_status(users_db, logged_user, "1")
+    end
+    if lastkey == "0" then
+      -- TODO: la jugada en safedns
+      set_running_status(users_db, logged_user, "0")
+    end
+  os.exit()
+  end
+
 end
 
-os.exit()
-do return end 
 
--- KILL OWN PROCESS
--- 
 
--- Pausa de internet. Aun tienes'..get_time_left_today(i).. 'minutos."
+
+
+
 --[[
 if arg[1] == "hostapd"
 then
@@ -81,9 +99,6 @@ then
   print("zi.lua was called with no arguments.")
 end
 ]]
-
-
-
 
 -- print(string.format('Received argument "%s"',arg[1]))
 -- print(string.format(arg[1]))
