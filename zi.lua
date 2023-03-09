@@ -8,6 +8,7 @@ users_db = "users_table.db"
 devices_db = "devices_table.db"
 states_db = "states_table.db"
 
+os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
 
 -- on ubuntu
 -- path = "~/Documents/" -- (DEV
