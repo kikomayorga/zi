@@ -1,7 +1,7 @@
 return {
 -- Table: {1}
 {
-   ["state"]="iddle",
-   ["logged_user"]=0,
+   ["state"]="connect_or_disconnect",
+   ["logged_user"]=1,
 },
 }
