@@ -18,13 +18,10 @@ if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
 
 if arg[1] == "key"
 then
-  os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
-  
   if get_state(states_db) == "iddle" then
     logged_user = 0
     lastkey = arg[2]
     last4keys = arg[3]
-    
     for i=1, 6 do 
       if last4keys == get_password(users_db, i)
       then 
@@ -35,6 +32,7 @@ then
         os.execute("aplay -q -f S16_LE -D plughw:0,0 /tmp/welcome.wav &" )
         break
       end
+      os.execute("echo 0 > /tmp/zi/busyflag")
     end
 
     if logged_user == 0 then
