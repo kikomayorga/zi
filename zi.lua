@@ -28,11 +28,10 @@ if (arg[1] == "users" and arg[2] == "reset") then users_db_reset(users_db) end
 if (arg[1] == "admins" and arg[2] == "reset") then admins_db_reset(admins_db) end
 if (arg[1] == "devices" and arg[2] == "reset") then devices_db_reset(devices_db) end
 if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
+
 if (arg[1] == "test")
 then
-  -- os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..phrases[1]..'."')
-  -- os.execute("sleep 5")
-  -- os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/wav.wav" )
+  -- os.excecute("echo hello world")
 end
 
 -- keypad based calls

@@ -1,6 +1,20 @@
-Bienvenido Administrador. 
-Para asignar tiempo extra a un usuario, presiona 1. 
-Para asignar tiempo extra a todos los usuarios marca 2.
-Para bloquear a un usuario hasta el día siguiente marca 3. 
-Para bloquear a todos los usuarios hasta el día siguiente marca 4. 
-Para activar un equipo nuevo marca 5.
+Bienvenido Administrador
+Para asignar tiempo extra a un usuario, presiona 1
+Para asignar tiempo extra a todos los usuarios marca 2
+Para bloquear a un usuario hasta el día siguiente marca 3
+Para bloquear a todos los usuarios hasta el día siguiente marca 4
+Para activar un equipo nuevo marca 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+-q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav
