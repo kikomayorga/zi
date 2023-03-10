@@ -10,7 +10,9 @@ users_db = "users_table.db"
 admins_db = "admins_table.db"
 devices_db = "devices_table.db"
 states_db = "states_table.db"
+phrases_db = "phrases.db"
 
+phrases = lines_from(phrases_db)
 -- usage:
 -- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
 -- examples:
@@ -26,6 +28,12 @@ if (arg[1] == "users" and arg[2] == "reset") then users_db_reset(users_db) end
 if (arg[1] == "admins" and arg[2] == "reset") then admins_db_reset(admins_db) end
 if (arg[1] == "devices" and arg[2] == "reset") then devices_db_reset(devices_db) end
 if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
+if (arg[1] == "test")
+then
+  -- os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..phrases[1]..'."')
+  -- os.execute("sleep 5")
+  -- os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/wav.wav" )
+end
 
 -- keypad based calls
 if arg[1] == "key" then 
@@ -74,20 +82,21 @@ if arg[1] == "key" then
     end
 
     if logged_admin ~= 0 then
-      os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level=\'70\'>Bienvenido Administrador. Para asignar tiempo extra a un usuario, presiona 1. Para asignar tiempo extra a todos los usuarios marca 2.' )
+      os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..phrases[1]..'."')
       os.execute("sleep 2")
-      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav")
+      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav")
       os.execute("sleep 15")
-      os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level=\'70\'>Para bloquear a un usuario hasta el día siguiente marca 3. Para bloquear a todos los usuarios hasta el día siguiente marca 4. Para activar un equipo nuevo marca 5."') 
+      os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..phrases[2]..'."')
       os.execute("sleep 2")
-      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav")
+      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav")
       os.execute("sleep 15")
-      os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level=\'70\'> Para bloquear a un usuario hasta el día siguiente marca 3. Para bloquear a todos los usuarios hasta el día siguiente marca 4. Para activar un equipo nuevo marca 5."') 
+      os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..phrases[3]..'."') 
       os.execute("sleep 2")
-      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav")
+      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav")
       os.execute("sleep 15")
+      os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..phrases[4]..'."')
       os.execute("sleep 2")
-      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav")
+      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav")
       os.execute("sleep 15")
 
       set_state(states_db, "admin_menu")                    -- sets statesmachine:
@@ -99,14 +108,14 @@ if arg[1] == "key" then
       -- menú de usuario:
       running = get_running_status(users_db, logged_user)
       if running == 0 then
-        os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level=\'70\'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para navegar, presiona 1. Para seguir en pausa, presiona 0." &')
+        os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para navegar, presiona 1. Para seguir en pausa, presiona 0." &')
         os.execute("sleep 5")
-        os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav")
+        os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav")
       end
       if running == 1 then
-        os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level=\'70\'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para pausar, presiona 0. Para seguir navegando, presiona 1." &')
+        os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para pausar, presiona 0. Para seguir navegando, presiona 1." &')
         os.execute("sleep 5")
-        os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav &" )
+        os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav &" )
       end 
       
       set_state(states_db, "connect_or_disconnect")  -- sets statesmachine:

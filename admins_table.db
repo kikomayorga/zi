@@ -1,0 +1,53 @@
+return {
+-- Table: {1}
+{
+   {2},
+   {3},
+   {4},
+   {5},
+   {6},
+   {7},
+},
+-- Table: {2}
+{
+   ["password"]="7777",
+   ["own_dev_3"]=0,
+   ["own_dev_2"]=0,
+   ["own_dev_1"]=0,
+},
+-- Table: {3}
+{
+   ["password"]="7777",
+   ["own_dev_3"]=0,
+   ["own_dev_2"]=0,
+   ["own_dev_1"]=0,
+},
+-- Table: {4}
+{
+   ["password"]="7777",
+   ["own_dev_3"]=0,
+   ["own_dev_2"]=0,
+   ["own_dev_1"]=0,
+},
+-- Table: {5}
+{
+   ["password"]="7777",
+   ["own_dev_3"]=0,
+   ["own_dev_2"]=0,
+   ["own_dev_1"]=0,
+},
+-- Table: {6}
+{
+   ["password"]="7777",
+   ["own_dev_3"]=0,
+   ["own_dev_2"]=0,
+   ["own_dev_1"]=0,
+},
+-- Table: {7}
+{
+   ["password"]="7777",
+   ["own_dev_3"]=0,
+   ["own_dev_2"]=0,
+   ["own_dev_1"]=0,
+},
+}
