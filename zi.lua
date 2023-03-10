@@ -85,7 +85,7 @@ if arg[1] == "key" then
       os.execute('pico2wave -w /tmp/menuusuario.wav -l es-ES "<volume level=\'70\'> Para bloquear a un usuario hasta el día siguiente marca 3. Para bloquear a todos los usuarios hasta el día siguiente marca 4. Para activar un equipo nuevo marca 5."') 
       os.execute("sleep 2")
       os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav")
-      os.execute("sleep 15").') 
+      os.execute("sleep 15")
       os.execute("sleep 2")
       os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/menuusuario.wav")
       os.execute("sleep 15")

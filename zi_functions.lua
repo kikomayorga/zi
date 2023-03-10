@@ -157,6 +157,7 @@ function name_device(deviceNR)
 end
 
 function name_vehicle(db_file, insects_db_file)
+  -- asdfasdfasdf
 end
 
 -- just and example, unused!
@@ -170,5 +171,5 @@ function append_user(db_file)
   t = table.load(db_file)
   t[#t +1] = {"usuario_N", "1234", "user"}
   table.save(t, "usuarios.db")
-return 1
+  return 1
 end
