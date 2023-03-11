@@ -36,6 +36,10 @@ os.execute(
   '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
   ..phrases[2]..' "  && aplay '..phrases[20]..
   '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
+  ..phrases[3]..' "  && aplay '..phrases[20]..
+  '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
   ..phrases[4]..' "  && aplay '..phrases[20]..
   '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
-  ..phrases[5]..' "  && aplay '..phrases[20]..' ')
+  ..phrases[5]..' "  && aplay '..phrases[20]..
+  '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
+  ..phrases[6]..' "  && aplay '..phrases[20]..' ')
