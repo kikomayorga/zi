@@ -1,4 +1,4 @@
-path = "/etc/"
+-- path = "/etc/"
 
 require "tablesaveload" -- for persistance
 require "zi_functions"  -- custom functions by zi
@@ -35,11 +35,31 @@ os.execute(
   ..phrases[1]..' "  && aplay '..phrases[20]..
   '&& pico2wave -w /tmp/zi/admin_menu_wav2.wav -l es-ES "<volume level=\'70\'>'
   ..phrases[2]..' "  && aplay '..phrases[20]..
-  '&& pico2wave -w /tmp/zi/admin_menu_wave -l es-ES "<volume level=\'70\'>'
+  '&& pico2wave -w /tmp/zi/admin_menu_wav3.wav -l es-ES "<volume level=\'70\'>'
   ..phrases[3]..' "  && aplay '..phrases[20]..
-  '&& pico2wave -w /tmp/zi/admin_menu_wav4 -l es-ES "<volume level=\'70\'>'
+  '&& pico2wave -w /tmp/zi/admin_menu_wav4.wav -l es-ES "<volume level=\'70\'>'
   ..phrases[4]..' "  && aplay '..phrases[20]..
-  '&& pico2wave -w /tmp/zi/admin_menu_wav5 -l es-ES "<volume level=\'70\'>'
+  '&& pico2wave -w /tmp/zi/admin_menu_wav5.wav -l es-ES "<volume level=\'70\'>'
   ..phrases[5]..' "  && aplay '..phrases[20]..
-  '&& pico2wave -w /tmp/zi/admin_menu_wav14 -l es-ES "<volume level=\'70\'>'
-  ..phrases[6]..' "  && aplay '..phrases[20]..' ')
+  '&& pico2wave -w /tmp/zi/admin_menu_wav6.wav -l es-ES "<volume level=\'70\'>'
+  ..phrases[6]..' "  && aplay '..phrases[20]..
+  '&& pico2wave -w /tmp/zi/admin_menu_wav7.wav -l es-ES "<volume level=\'70\'>'
+  ..phrases[7]..' "  && aplay '..phrases[20]..
+  '&& pico2wave -w /tmp/zi/admin_menu_wav8.wav -l es-ES "<volume level=\'70\'>'
+  ..phrases[8]..' "  && aplay '..phrases[20]..
+  '&& pico2wave -w /tmp/zi/admin_menu_wav9.wav -l es-ES "<volume level=\'70\'>'
+  ..phrases[9]..' "  && aplay '..phrases[20]..
+  '&& pico2wave -w /tmp/zi/admin_menu_wav10.wav -l es-ES "<volume level=\'70\'>'
+  ..phrases[10]..' "  && aplay '..phrases[20]..
+  '&& pico2wave -w /tmp/zi/admin_menu_wav11.wav -l es-ES "<volume level=\'70\'>'
+  ..phrases[11]..' "  && aplay '..phrases[20]..
+  '&& pico2wave -w /tmp/zi/admin_menu_wav12.wav -l es-ES "<volume level=\'70\'>'
+  ..phrases[12]..' "  && aplay '..phrases[20]..
+  '&& pico2wave -w /tmp/zi/admin_menu_wav13.wav -l es-ES "<volume level=\'70\'>'
+  ..phrases[13]..' "  && aplay '..phrases[20]..
+  '&& pico2wave -w /tmp/zi/admin_menu_wav14.wav -l es-ES "<volume level=\'70\'>'
+  ..phrases[14]..' "  && aplay '..phrases[20]..
+  '&& pico2wave -w /tmp/zi/admin_menu_wav15.wav -l es-ES "<volume level=\'70\'>'
+  ..phrases[15]..' "  && aplay '..phrases[20]..
+  '&& pico2wave -w /tmp/zi/admin_menu_wav16 -l es-ES "<volume level=\'70\'>'
+  ..phrases[16]..' "  && aplay '..phrases[20]..' ')
