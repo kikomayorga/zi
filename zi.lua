@@ -81,25 +81,23 @@ if arg[1] == "key" then
     end
 
     if logged_admin ~= 0 then
-      os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..phrases[1]..'."')
-      os.execute("sleep 2")
-      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav")
-      os.execute("sleep 15")
-      os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..phrases[2]..'."')
-      os.execute("sleep 2")
-      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav")
-      os.execute("sleep 15")
-      os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..phrases[3]..'."') 
-      os.execute("sleep 2")
-      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav")
-      os.execute("sleep 15")
-      os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..phrases[4]..'."')
-      os.execute("sleep 2")
-      os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav")
-      os.execute("sleep 15")
-
-      set_state(states_db, "admin_menu")                    -- sets statesmachine:
+      set_state(states_db, "admin_menu")              -- sets statesmachine:
       set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
+      os.execute("echo 1 > /tmp/zi/skippableflag")
+      os.execute(
+     'pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
+      ..phrases[2]..' "  && aplay '..phrases[20]..
+      '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
+      ..phrases[3]..' "  && aplay '..phrases[20]..
+      '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
+      ..phrases[4]..' "  && aplay '..phrases[20]..
+      '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
+      ..phrases[5]..' "  && aplay '..phrases[20]..
+      '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
+      ..phrases[6]..' "  && aplay '..phrases[20]..
+      '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
+      ..phrases[7]..' "  && aplay '..phrases[20]..
+      ' ')
       os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
     end
 
