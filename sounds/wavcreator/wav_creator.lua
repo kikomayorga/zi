@@ -14,22 +14,6 @@ phrases_db = "phrases.db"
 
 phrases = lines_from(phrases_db)
 
---[[
-os.execute(                                  'pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..
-phrases[1]..'."  && aplay'..phrases[20]..' && pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..
-phrases[2]..'."  && aplay'..phrases[20]..' && pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..
-phrases[3]..'."  && aplay'..phrases[20]..' && pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'..
-phrases[4]..'."  && aplay'..phrases[20]..' && echo 1' ')
-]] 
-
---[[
-os.execute(                                   "pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='70'>"..
-phrases[1]..".\"  && aplay"..phrases[20].." && pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='70'>"..
-phrases[2]..".\"  && aplay"..phrases[20].." && pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='70'>"..
-phrases[3]..".\"  && aplay"..phrases[20].." && pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='70'>"..
-phrases[4]..".\"  && aplay"..phrases[20].." && echo 1.")
-]]
-
 os.execute(
                       'pico2wave -w /tmp/zi/admin_menu_wav1.wav -l es-ES "<volume level=\'70\'>'
   ..phrases[1]..' " && pico2wave -w /tmp/zi/admin_menu_wav2.wav -l es-ES "<volume level=\'70\'>'
