@@ -7,6 +7,9 @@ cd /tmp/ && mkdir zi && cd zi && touch last4keys && echo "aaaa" > last4keys
 #crea el archivo temporal para almacenar el flag de dialogo
 cd /tmp/zi/ && touch busyflag && echo "0" > busyflag
 
+#crea el archivo temporal para almacenar el flag de skippableflag
+cd /tmp/zi/ && touch skipabpleflag && echo "0" > skippableflag
+
 # esta línea es para activar la tarjeta de sonido al arrancar
 alsactl init            #to initialize your soundcard at boot up
 
