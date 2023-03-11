@@ -26,3 +26,12 @@ then
 	cd /etc/zi && lua zi.lua key 1 $lkchain
 
 fi
+
+if [ "$busyflag" = "1" ] && [ "$skippableflag" = "1" ]
+then 
+	#kill current audio and process
+	killall aplay
+	killall sh
+ 	killall lua
+fi
+
