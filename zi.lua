@@ -82,7 +82,7 @@ if arg[1] == "key" then
 
     -- if admin passord
     if logged_admin ~= 0 then
-      set_state(states_db, "admin_menu")              -- sets statesmachine:
+      set_state(states_db, "admin_choice")              -- sets statesmachine:
       set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
       os.execute("echo 1 > /tmp/zi/busyflag")
       os.execute("echo 1 > /tmp/zi/skippableflag")
@@ -153,7 +153,7 @@ if arg[1] == "key" then
 
   os.exit() 
 
-  if get_state(states_db) == "admin_menu"
+  if get_state(states_db) == "admin_choice"
     os.execute("echo 1 > /tmp/zi/busyflag")
     os.execute("echo 1 > /tmp/zi/skippableflag")
     lastkey = arg[2]
