@@ -13,6 +13,7 @@ states_db = "states_table.db"
 phrases_db = "phrases.db"
 
 phrases = lines_from(phrases_db)
+link =" && "
 -- usage:
 -- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
 -- examples:
@@ -49,10 +50,7 @@ if arg[1] == "key" then
       then 
         os.execute("echo 1 > /tmp/zi/busyflag")
         logged_admin = i 
-        os.execute("mpg123 "..path.."zi/sounds/success.mp3")
-        os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "<volume level=\'70\'> Bienvenido Administrador'..logged_admin..' "')
-        os.execute("sleep 5")
-        os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav &" )
+        os.execute("mpg123 "..path.."zi/sounds/success.mp3 && aplay /tmp/zi/admin_menu_wav1.wav")
         break
       end
       os.execute("echo 0 > /tmp/zi/busyflag")
@@ -85,19 +83,16 @@ if arg[1] == "key" then
       set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
       os.execute("echo 1 > /tmp/zi/skippableflag")
       os.execute(
-     'pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
-      ..phrases[2]..' "  && aplay '..phrases[20]..
-      '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
-      ..phrases[3]..' "  && aplay '..phrases[20]..
-      '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
-      ..phrases[4]..' "  && aplay '..phrases[20]..
-      '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
-      ..phrases[5]..' "  && aplay '..phrases[20]..
-      '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
-      ..phrases[6]..' "  && aplay '..phrases[20]..
-      '&& pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>'
-      ..phrases[7]..' "  && aplay '..phrases[20]..
-      ' ')
+      'aplay admin_menu_wav1.wav'..link..
+      'aplay admin_menu_wav2.wav'..link..
+      'aplay admin_menu_wav3.wav'..link..
+      'aplay admin_menu_wav4.wav'..link..
+      'aplay admin_menu_wav5.wav'..link..
+      'aplay admin_menu_wav6.wav'..link..
+      'aplay admin_menu_wav7.wav'..link..
+      'aplay admin_menu_wav8.wav'..link..
+      'aplay admin_menu_wav9.wav'..link..
+      'aplay admin_menu_wav10.wav')
       os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
     end
 
