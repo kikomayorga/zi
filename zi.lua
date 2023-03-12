@@ -101,12 +101,12 @@ if arg[1] == "key" then
       -- menú de usuario:
       running = get_running_status(users_db, logged_user)
       if running == 0 then
-        os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para navegar, presiona 1. Para seguir en pausa, presiona 0." &')
+        os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'50\'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para navegar, presiona 1. Para seguir en pausa, presiona 0." &')
         os.execute("sleep 5")
         os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav")
       end
       if running == 1 then
-        os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'70\'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para pausar, presiona 0. Para seguir navegando, presiona 1." &')
+        os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'50\'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para pausar, presiona 0. Para seguir navegando, presiona 1." &')
         os.execute("sleep 5")
         os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav &" )
       end 
