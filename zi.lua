@@ -104,15 +104,13 @@ if arg[1] == "key" then
       -- menú de usuario:
       running = get_running_status(users_db, logged_user)
       if running == 0 then
-        os.execute(
-          "aplay /tmp/zi/menu_11.wav"..link..
+        os.execute("aplay /tmp/zi/menu_11.wav"..link..
           "pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='50'><pitch level=\'130\'>"..get_time_left_today(users_db, logged_user).." "..link..
           "aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav"..link..
           "aplay /tmp/zi/menu_12.wav")
       end
       if running == 1 then
-        os.execute(
-          "aplay /tmp/zi/menu_13.wav"..link..
+        os.execute("aplay /tmp/zi/menu_13.wav"..link..
           "pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='50'><pitch level=\'130\'>"..get_time_left_today(users_db, logged_user).." "..link..
           "aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav"..link..
           "aplay /tmp/zi/menu_13.wav")
