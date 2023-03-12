@@ -54,6 +54,7 @@ if arg[1] == "key" then
         os.execute("aplay /tmp/zi/admin_menu_wav1.wav")  -- "Bienvenido Administrador"
         break
       end
+      os.execute("echo 0 > /tmp/zi/busyflag")
     end
 
     -- test for user passwords
@@ -68,6 +69,7 @@ if arg[1] == "key" then
         os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav &" )
         break
       end
+      os.execute("echo 0 > /tmp/zi/busyflag")
     end
 
     -- if no found password
