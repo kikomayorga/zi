@@ -86,15 +86,15 @@ if arg[1] == "key" then
       set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
       os.execute("echo 1 > /tmp/zi/skippableflag")
       os.execute(
-      'aplay menu_2.wav'..link..
-      'aplay menu_3.wav'..link..
-      'aplay menu_4.wav'..link..
-      'aplay menu_5.wav'..link..
-      'aplay menu_6.wav'..link..
-      'aplay menu_7.wav'..link..
-      'aplay menu_8.wav'..link..
-      'aplay menu_9.wav'..link..
-      'aplay menu_10.wav')
+      'aplay /tmp/zi/menu_2.wav'..link..
+      'aplay /tmp/zi/menu_3.wav'..link..
+      'aplay /tmp/zi/menu_4.wav'..link..
+      'aplay /tmp/zi/menu_5.wav'..link..
+      'aplay /tmp/zi/menu_6.wav'..link..
+      'aplay /tmp/zi/menu_7.wav'..link..
+      'aplay /tmp/zi/menu_8.wav'..link..
+      'aplay /tmp/zi/menu_9.wav'..link..
+      'aplay /tmp/zi/menu_10.wav')
       os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
       os.execute("echo 0 > /tmp/zi/skippableflag")   -- no need to skipanymore
     end
