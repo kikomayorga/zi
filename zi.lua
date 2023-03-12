@@ -153,7 +153,7 @@ if arg[1] == "key" then
 
   os.exit() 
 
-  if get_state(states_db) == "admin_choice"
+  if get_state(states_db) == "admin_choice" then
     os.execute("echo 1 > /tmp/zi/busyflag")
     os.execute("echo 1 > /tmp/zi/skippableflag")
     lastkey = arg[2]
