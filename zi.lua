@@ -215,6 +215,7 @@ if arg[1] == "key" then
     os.execute("echo 0 > /tmp/zi/skippableflag")
     os.execute("sleep 1")
     set_state(states_db, "iddle")
+    set_logged_user(states_db, logged_user)
   end
 
 end
