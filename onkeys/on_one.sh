@@ -7,12 +7,12 @@ skippableflag=`cat /tmp/zi/skippableflag`
 lkchain_old=`cat /tmp/zi/last4keys`
 echo oldchain: $lkchain_old
 
+#put new key before
+lkchain="${lkchain_old:1:4}""1"
+echo newchain: $lkchain
 
 if [ "$busyflag" = "0" ]
 then
-	#put new key before
-	lkchain="${lkchain_old:1:4}""1"
-	echo newchain: $lkchain
 
 	#save into temporary file
 	echo $lkchain > /tmp/zi/last4keys
