@@ -17,6 +17,6 @@ alsactl init            #to initialize your soundcard at boot up
 hostapd_cli -a '/etc/zi/disconnects/onhostapdchange.sh' &
 
 # genera los audios desde el archivo phrases.db en la carpeta /tmp/zi
-cd /etc/zi/lua wav_creator.lua
+cd /etc/zi/ && lua wav_creator.lua
 
 exit 0
