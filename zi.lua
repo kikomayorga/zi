@@ -83,6 +83,7 @@ if arg[1] == "key" then
       set_state(states_db, "admin_menu")              -- sets statesmachine:
       set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
       os.execute("echo 1 > /tmp/zi/skippableflag")
+      os.execute("echo aaaa > /tmp/zi/last4keys")
       os.execute(
       'aplay /tmp/zi/menu_2.wav'..link..
       'aplay /tmp/zi/menu_3.wav'..link..
@@ -100,6 +101,7 @@ if arg[1] == "key" then
     if logged_user ~= 0 then
       -- menú de usuario:
       running = get_running_status(users_db, logged_user)
+      os.execute("echo aaaa > /tmp/zi/last4keys")
       if running == 0 then
         os.execute("aplay /tmp/zi/menu_11.wav"..link..
           "pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='50'><pitch level=\'130\'>"..get_time_left_today(users_db, logged_user).." "..link..
@@ -111,11 +113,9 @@ if arg[1] == "key" then
           "pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='50'><pitch level=\'130\'>"..get_time_left_today(users_db, logged_user).." "..link..
           "aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav"..link..
           "aplay /tmp/zi/menu_13.wav")
-      end 
-      
+      end  
       set_state(states_db, "connect_or_disconnect")  -- sets statesmachine:
       set_logged_user(states_db, logged_user)        -- TODO:  is this needed?
-      os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
     end
   os.execute("echo 0 > /tmp/zi/busyflag")
   os.exit()
