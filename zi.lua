@@ -36,7 +36,8 @@ then
 end
 
 -- keypad based calls
-if arg[1] == "key" then 
+if arg[1] == "key" then
+  os.execute("echo 1 > /tmp/zi/busyflag")
   os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
   if get_state(states_db) == "iddle" then
     logged_user = 0
@@ -48,13 +49,11 @@ if arg[1] == "key" then
     for i=1, 6 do 
       if last4keys == get_admin_password(admins_db, i)
       then 
-        os.execute("echo 1 > /tmp/zi/busyflag")
         logged_admin = i 
         os.execute("mpg123 "..path.."zi/sounds/success.mp3")
         os.execute("aplay /tmp/zi/admin_menu_wav1.wav")  -- "Bienvenido Administrador"
         break
       end
-      os.execute("echo 0 > /tmp/zi/busyflag")
     end
 
     -- test for user passwords
@@ -69,7 +68,6 @@ if arg[1] == "key" then
         os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav &" )
         break
       end
-      os.execute("echo 0 > /tmp/zi/busyflag")
     end
 
     -- if no found password
@@ -119,7 +117,7 @@ if arg[1] == "key" then
       set_logged_user(states_db, logged_user)        -- TODO:  is this needed?
       os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
     end
-
+  os.execute("echo 0 > /tmp/zi/busyflag")
   os.exit()
   end
 
