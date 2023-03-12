@@ -152,5 +152,69 @@ if arg[1] == "key" then
     os.execute("echo 0 > /tmp/zi/busyflag")
 
   os.exit() 
- end
+
+  if get_state(states_db) == "admin_menu"
+    os.execute("echo 1 > /tmp/zi/busyflag")
+    os.execute("echo 1 > /tmp/zi/skippableflag")
+    lastkey = arg[2]
+    logged_user = get_logged_user(states_db)
+      --[[opciones
+        1 - Para asignar tiempo extra a un usuario, presiona 1
+        2 - Para asignar tiempo extra a todos los usuarios marca 2
+        3 - Para bloquear a un usuario hasta el día siguiente marca 3
+        4 - Para bloquear a todos los usuarios hasta el día siguiente marca 4
+        5 - Para activar un equipo nuevo marca 5
+        6 - Frase vacía número 7
+        7 - Frase vacía número 8
+        8 - Frase vacía número 9]]
+    if lastkey == "1" then
+      saldo = get_time_left_today(users_db. logged_user)
+      set_time_left_today(users_db, logged_user, saldo + 60)
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>Falta revisar. Imaginemos que se aplicó." '..
+      link..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+    end
+
+    if lastkey == "2" then
+      --[[ falta implementar]]
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 2: Falta implementar. Imaginemos que se aplicó." '..
+      link..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+    end
+
+    if lastkey == "3" then
+      --[[ falta implementar]]
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 3: Falta implementar. Imaginemos que se aplicó." '..
+      link..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+    end
+
+    if lastkey == "4" then
+      --[[ falta implementar]]
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 4: Falta implementar. Imaginemos que se aplicó." '..
+      link..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+    end
+
+    if lastkey == "5" then
+      --[[ falta implementar]]
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 5: Falta implementar. Imaginemos que se aplicó." '..
+      link..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+    end
+
+    if lastkey == "6" then
+      --[[ falta implementar]]
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 6: Falta implementar. Imaginemos que se aplicó." '..
+      link..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+    end
+
+    if lastkey == "7" then
+      --[[ falta implementar]]
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 7: Falta implementar. Imaginemos que se aplicó." '..
+      link..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+    end
+
+    os.execute("echo 0 > /tmp/zi/busyflag")
+    os.execute("echo 0 > /tmp/zi/skippableflag")
+    sleep 1
+    set_state(states_db, "iddle")
+  end
+
 end
+
