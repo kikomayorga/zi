@@ -50,7 +50,8 @@ if arg[1] == "key" then
       then 
         os.execute("echo 1 > /tmp/zi/busyflag")
         logged_admin = i 
-        os.execute("mpg123 "..path.."zi/sounds/success.mp3 && aplay /tmp/zi/admin_menu_wav1.wav")
+        os.execute("mpg123 "..path.."zi/sounds/success.mp3")
+        os.execute("aplay /tmp/zi/admin_menu_wav1.wav")  -- "Bienvenido Administrador"
         break
       end
       os.execute("echo 0 > /tmp/zi/busyflag")
@@ -71,6 +72,7 @@ if arg[1] == "key" then
       os.execute("echo 0 > /tmp/zi/busyflag")
     end
 
+    -- if no found password
     if (logged_user == 0 and logged_admin == 0) then
       set_state(sates_db, "iddle")
       set_logged_user(sates_db, 0)
@@ -78,37 +80,42 @@ if arg[1] == "key" then
       os.execute("echo 0 > /tmp/zi/busyflag")
     end
 
+    -- if admin passord
     if logged_admin ~= 0 then
       set_state(states_db, "admin_menu")              -- sets statesmachine:
       set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
       os.execute("echo 1 > /tmp/zi/skippableflag")
       os.execute(
-      'aplay admin_menu_wav1.wav'..link..
-      'aplay admin_menu_wav2.wav'..link..
-      'aplay admin_menu_wav3.wav'..link..
-      'aplay admin_menu_wav4.wav'..link..
-      'aplay admin_menu_wav5.wav'..link..
-      'aplay admin_menu_wav6.wav'..link..
-      'aplay admin_menu_wav7.wav'..link..
-      'aplay admin_menu_wav8.wav'..link..
-      'aplay admin_menu_wav9.wav'..link..
-      'aplay admin_menu_wav10.wav')
+      'aplay menu_2.wav'..link..
+      'aplay menu_3.wav'..link..
+      'aplay menu_4.wav'..link..
+      'aplay menu_5.wav'..link..
+      'aplay menu_6.wav'..link..
+      'aplay menu_7.wav'..link..
+      'aplay menu_8.wav'..link..
+      'aplay menu_9.wav'..link..
+      'aplay menu_10.wav')
       os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
       os.execute("echo 0 > /tmp/zi/skippableflag")   -- no need to skipanymore
     end
 
+    -- if user passord
     if logged_user ~= 0 then
       -- menú de usuario:
       running = get_running_status(users_db, logged_user)
       if running == 0 then
-        os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'50\'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para navegar, presiona 1. Para seguir en pausa, presiona 0." &')
-        os.execute("sleep 5")
-        os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav")
+        os.execute(
+          "aplay /tmp/zi/menu_11.wav"..link..
+          "pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='50'><pitch level=\'130\'>"..get_time_left_today(users_db, logged_user).." "..link..
+          "aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav"..link..
+          "aplay /tmp/zi/menu_12.wav")
       end
       if running == 1 then
-        os.execute('pico2wave -w /tmp/zi/wav.wav -l es-ES "<volume level=\'50\'>Estás en pausa. Te quedan '..get_time_left_today(users_db, logged_user)..' minutos hoy. Para pausar, presiona 0. Para seguir navegando, presiona 1." &')
-        os.execute("sleep 5")
-        os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav &" )
+        os.execute(
+          "aplay /tmp/zi/menu_13.wav"..link..
+          "pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='50'><pitch level=\'130\'>"..get_time_left_today(users_db, logged_user).." "..link..
+          "aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav"..link..
+          "aplay /tmp/zi/menu_13.wav")
       end 
       
       set_state(states_db, "connect_or_disconnect")  -- sets statesmachine:
