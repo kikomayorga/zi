@@ -169,7 +169,7 @@ if arg[1] == "key" then
         7 - Frase vacía número 8
         8 - Frase vacía número 9]]
     if lastkey == "1" then
-      saldo = get_time_left_today(users_db. logged_user)
+      saldo = get_time_left_today(users_db, logged_user)
       set_time_left_today(users_db, logged_user, saldo + 60)
       os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>Falta revisar. Imaginemos que se aplicó." '..
       link..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
