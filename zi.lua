@@ -212,7 +212,7 @@ if arg[1] == "key" then
 
     os.execute("echo 0 > /tmp/zi/busyflag")
     os.execute("echo 0 > /tmp/zi/skippableflag")
-    sleep 1
+    os.execute("sleep 1")
     set_state(states_db, "iddle")
   end
 
