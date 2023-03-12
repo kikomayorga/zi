@@ -31,9 +31,9 @@ if [ "$busyflag" = "1" ] && [ "$skippableflag" = "1" ]
 then 
 	mpg123 /etc/zi/sounds/keypress.mp3
 	#kill current audio and process
-	killall aplay
-	killall sh
- 	killall lua
+	killall aplay -q
+	killall sh -q
+ 	killall lua -q
 	echo aaaa > /tmp/zi/last4keys
 	echo 0 > /tmp/zi/busyflag
 	sleep 1
