@@ -35,7 +35,6 @@ then
 	killall sh
  	killall lua
 	echo aaaa > /tmp/zi/last4keys
-	echo aaaa > /tmp/zi/last4keys
 	sleep 2
 	cd /etc/zi && lua zi.lua key 1 $lkchain
 fi
