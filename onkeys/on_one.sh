@@ -29,11 +29,12 @@ fi
 
 if [ "$busyflag" = "1" ] && [ "$skippableflag" = "1" ]
 then 
-	mpg123 /tmp/zi/keypress.mp3
+	mpg123 /etc/zi/sounds/keypress.mp3
 	#kill current audio and process
 	killall aplay
 	killall sh
  	killall lua
+	echo aaaa > /tmp/zi/last4keys
 	echo aaaa > /tmp/zi/last4keys
 	sleep 2
 	cd /etc/zi && lua zi.lua key 1 $lkchain
