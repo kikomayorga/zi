@@ -152,6 +152,7 @@ if arg[1] == "key" then
     os.execute("echo 0 > /tmp/zi/busyflag")
 
   os.exit() 
+  end
 
   if get_state(states_db) == "admin_choice" then
     os.execute("echo 1 > /tmp/zi/busyflag")
