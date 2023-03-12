@@ -3,13 +3,13 @@
 busyflag=`cat /tmp/zi/busyflag`
 skippableflag=`cat /tmp/zi/skippableflag`
 
+#read from temporary file
+lkchain_old=`cat /tmp/zi/last4keys`
+echo oldchain: $lkchain_old
+
 
 if [ "$busyflag" = "0" ]
 then
-	#read from temporary file
-	lkchain_old=`cat /tmp/zi/last4keys`
-	echo oldchain: $lkchain_old
-
 	#put new key before
 	lkchain="${lkchain_old:1:4}""1"
 	echo newchain: $lkchain
@@ -35,5 +35,7 @@ then
 	killall sh
  	killall lua
 	echo aaaa > /tmp/zi/last4keys
+	sleep 2
+	cd /etc/zi && lua zi.lua key 1 $lkchain
 fi
 
