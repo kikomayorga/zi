@@ -34,7 +34,7 @@ then
 	killall -q aplay 
 	killall -q sh 
  	killall -q lua 
-	echo aaaa > /tmp/zi/last4keys
+	echo 0000 > /tmp/zi/last4keys
 	echo 0 > /tmp/zi/busyflag
 	sleep 1
 	mpg123 /etc/zi/sounds/keypress.mp3
