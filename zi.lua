@@ -94,7 +94,7 @@ if arg[1] == "key" then
       'aplay admin_menu_wav9.wav'..link..
       'aplay admin_menu_wav10.wav')
       os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
-      os.execute("echo 0 > /tmp/zi/skippableflag")   -- no need to skip
+      os.execute("echo 0 > /tmp/zi/skippableflag")   -- no need to skipanymore
     end
 
     if logged_user ~= 0 then
