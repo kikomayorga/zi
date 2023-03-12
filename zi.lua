@@ -93,13 +93,12 @@ if arg[1] == "key" then
       'aplay /tmp/zi/menu_6.wav'..link..
       'aplay /tmp/zi/menu_7.wav'..link..
       'aplay /tmp/zi/menu_8.wav'..link..
-      'aplay /tmp/zi/menu_9.wav'..link..
-      'aplay /tmp/zi/menu_10.wav')
+      'aplay /tmp/zi/menu_9.wav')
       os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
       os.execute("echo 0 > /tmp/zi/skippableflag")   -- no need to skipanymore
     end
 
-    -- if user passord
+    -- if user password
     if logged_user ~= 0 then
       -- menú de usuario:
       running = get_running_status(users_db, logged_user)
