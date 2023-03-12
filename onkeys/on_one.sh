@@ -1,6 +1,7 @@
 #!/bin/sh
 
 busyflag=`cat /tmp/zi/busyflag`
+skippableflag=`cat /tmp/zi/skippableflag`
 # busyflag='cat /tmp/busyflag' 
 
 
