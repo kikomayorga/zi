@@ -38,6 +38,6 @@ then
 	echo 0 > /tmp/zi/busyflag
 	sleep 1
 	mpg123 /etc/zi/sounds/keypress.mp3
-	cd /etc/zi && lua zi.lua key 1 $lkchain
+	cd /etc/zi && lua zi.lua key 1 0000
 fi
 
