@@ -2,7 +2,7 @@
 # the system init finished. By default this file does nothing.
 
 #crea el archivo temporal para almacenar últimas cuatro teclas
-cd /tmp/ && mkdir zi && cd zi && touch last4keys && echo "aaaa" > last4keys
+cd /tmp/ && mkdir zi && cd zi && touch last4keys && echo "0000" > last4keys
 
 #crea el archivo temporal para almacenar el flag de dialogo
 cd /tmp/zi/ && touch busyflag && echo "0" > busyflag
