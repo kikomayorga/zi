@@ -51,7 +51,7 @@ if arg[1] == "key" then
       then 
         logged_admin = i 
         os.execute("mpg123 "..path.."zi/sounds/success.mp3")
-        os.execute("aplay /tmp/zi/admin_menu_wav1.wav")  -- "Bienvenido Administrador"
+        os.execute("aplay /tmp/zi/menu_1.wav")  -- "Bienvenido Administrador"
         break
       end
       os.execute("echo 0 > /tmp/zi/busyflag")
