@@ -86,7 +86,7 @@ if arg[1] == "key" then
       set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
       os.execute("echo 1 > /tmp/zi/busyflag")
       os.execute("echo 1 > /tmp/zi/skippableflag")
-      os.execute("echo aaaa > /tmp/zi/last4keys")
+      os.execute("echo 0000 > /tmp/zi/last4keys")
       os.execute(
       'aplay /tmp/zi/menu_2.wav'..link..
       'aplay /tmp/zi/menu_3.wav'..link..
@@ -104,7 +104,7 @@ if arg[1] == "key" then
     if logged_user ~= 0 then
       -- menú de usuario:
       running = get_running_status(users_db, logged_user)
-      os.execute("echo aaaa > /tmp/zi/last4keys")
+      os.execute("echo 0000 > /tmp/zi/last4keys")
       if running == 0 then
         os.execute("aplay /tmp/zi/menu_11.wav"..link..
           "pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='50'><pitch level=\'130\'>"..get_time_left_today(users_db, logged_user).." "..link..
