@@ -21,7 +21,6 @@ then
 
 	#when running on ubuntu
 	#lua ~/Documents/zi/zi.lua key 1 $lkchain
-
 	#when deploy on openwrt:
 	cd /etc/zi && lua zi.lua key 1 $lkchain
 
@@ -31,7 +30,7 @@ if [ "$busyflag" = "1" ] && [ "$skippableflag" = "1" ]
 then 
 	mpg123 /etc/zi/sounds/click.mp3
 	#kill current audio and process
-	killall -q aplay && killall -q sh && killall -q lua 
+	killall -q aplay && killall -q lua 
 	echo 0000 > /tmp/zi/last4keys
 	echo 0 > /tmp/zi/busyflag
 	sleep 5 && cd /etc/zi && lua zi.lua key 1 0000
