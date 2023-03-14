@@ -11,8 +11,11 @@ admins_db = "admins_table.db"
 devices_db = "devices_table.db"
 states_db = "states_table.db"
 phrases_db = "phrases.db"
+phrases2_db = "phrases2.db"
 
 phrases = lines_from(phrases_db)
+phrases2 = lines_from(phrases2_db)
+
 continue =" && "
 -- usage:
 -- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
@@ -169,10 +172,18 @@ if arg[1] == "key" then
         7 - Frase vacía número 8
         8 - Frase vacía número 9]]
     if lastkey == "1" then
-      saldo = get_time_left_today(users_db, logged_user)
-      set_time_left_today(users_db, logged_user, saldo + 60)
-      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>Falta revisar. Imaginemos que se aplicó." '..continue..
-      ' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+      set_state(states_db, "admin_choice_2")              -- sets statesmachine:
+      os.execute("echo 1 > /tmp/zi/busyflag")
+      os.execute("echo 1 > /tmp/zi/skippableflag")
+      os.execute("echo 0000 > /tmp/zi/last4keys")
+      os.execute(
+      'aplay /tmp/zi/menu2_1.wav'..continue..
+      'aplay /tmp/zi/menu2_2.wav'..continue..
+      'aplay /tmp/zi/menu2_4.wav'..continue..
+      'aplay /tmp/zi/menu2_4.wav'..continue..
+      'aplay /tmp/zi/menu2_5.wav'..continue..
+      'aplay /tmp/zi/menu2_6.wav'..continue..
+      'aplay /tmp/zi/menu2_7.wav')
     end
 
     if lastkey == "2" then

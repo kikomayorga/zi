@@ -1,0 +1,20 @@
+Para agreagr 60 minutos a usuario 1, marque 1.
+Para agreagr 60 minutos a usuario 2, marque 2.
+Para agregar 60 minutos a usuario 3, marque 3.
+Para agreagr 60 minutos a usuario 4, marque 4.
+Para agreagr 60 minutos a usuario 5, marque 5.
+Para agregar 60 minutos a usuario 6, marque 6.
+Línea número 7, vacía.
+Línea número 8, vacía.
+Línea número 9, vacía.
+Línea número 10, vacía.
+Línea número 11, vacía.
+Línea número 12, vacía.
+Línea número 13, vacía.
+Línea número 14, vacía.
+Línea número 15, vacía.
+Línea número 16, vacía.
+
+
+
+-q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav
