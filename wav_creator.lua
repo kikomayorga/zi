@@ -1,4 +1,7 @@
 -- path = "/etc/"
+
+require "zi_functions"  -- custom functions by zi
+
 phrases_db = "phrases.db"
 
 phrases = lines_from(phrases_db)
