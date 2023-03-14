@@ -37,6 +37,6 @@ then
 	echo 0000 > /tmp/zi/last4keys
 	echo 0 > /tmp/zi/busyflag
 	sleep 5 && cd /etc/zi && lua zi.lua key 1 0000
-	echo yesithappened /tmp/zi/window
+	echo yesithappened > /tmp/zi/window
 fi
 
