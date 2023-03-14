@@ -13,7 +13,7 @@ states_db = "states_table.db"
 phrases_db = "phrases.db"
 
 phrases = lines_from(phrases_db)
-cnt =" && "
+continue =" && "
 -- usage:
 -- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
 -- examples:
@@ -22,7 +22,7 @@ cnt =" && "
 -- lua zi.lua admins reset
 -- lua zi.lua devices reset
 -- lua zi.lua states reset
--- lua zi.lua hostapd cntnect macaddresse
+-- lua zi.lua hostapd connect macaddresse
 
 -- command calls
 if (arg[1] == "users" and arg[2] == "reset") then users_db_reset(users_db) end
@@ -88,13 +88,13 @@ if arg[1] == "key" then
       os.execute("echo 1 > /tmp/zi/skippableflag")
       os.execute("echo 0000 > /tmp/zi/last4keys")
       os.execute(
-      'aplay /tmp/zi/menu_2.wav'..cnt..
-      'aplay /tmp/zi/menu_3.wav'..cnt..
-      'aplay /tmp/zi/menu_4.wav'..cnt..
-      'aplay /tmp/zi/menu_5.wav'..cnt..
-      'aplay /tmp/zi/menu_6.wav'..cnt..
-      'aplay /tmp/zi/menu_7.wav'..cnt..
-      'aplay /tmp/zi/menu_8.wav'..cnt..
+      'aplay /tmp/zi/menu_2.wav'..continue..
+      'aplay /tmp/zi/menu_3.wav'..continue..
+      'aplay /tmp/zi/menu_4.wav'..continue..
+      'aplay /tmp/zi/menu_5.wav'..continue..
+      'aplay /tmp/zi/menu_6.wav'..continue..
+      'aplay /tmp/zi/menu_7.wav'..continue..
+      'aplay /tmp/zi/menu_8.wav'..continue..
       'aplay /tmp/zi/menu_9.wav')
       os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
       os.execute("echo 0 > /tmp/zi/skippableflag")   -- no need to skipanymore
@@ -106,15 +106,15 @@ if arg[1] == "key" then
       running = get_running_status(users_db, logged_user)
       os.execute("echo 0000 > /tmp/zi/last4keys")
       if running == 0 then
-        os.execute("aplay /tmp/zi/menu_11.wav"..cnt..
-          "pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='50'><pitch level=\'130\'>"..get_time_left_today(users_db, logged_user).." "..cnt..
-          "aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav"..cnt..
+        os.execute("aplay /tmp/zi/menu_11.wav"..continue..
+          "pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='50'><pitch level=\'130\'>"..get_time_left_today(users_db, logged_user).." "..continue..
+          "aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav"..continue..
           "aplay /tmp/zi/menu_12.wav")
       end
       if running == 1 then
-        os.execute("aplay /tmp/zi/menu_13.wav"..cnt..
-          "pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='50'><pitch level=\'130\'>"..get_time_left_today(users_db, logged_user).." "..cnt..
-          "aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav"..cnt..
+        os.execute("aplay /tmp/zi/menu_13.wav"..continue..
+          "pico2wave -w /tmp/zi/wav.wav -l es-ES \"<volume level='50'><pitch level=\'130\'>"..get_time_left_today(users_db, logged_user).." "..continue..
+          "aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav"..continue..
           "aplay /tmp/zi/menu_13.wav")
       end  
       set_state(states_db, "connect_or_discotnnect")  -- sets statesmachine:
@@ -171,38 +171,38 @@ if arg[1] == "key" then
     if lastkey == "1" then
       saldo = get_time_left_today(users_db, logged_user)
       set_time_left_today(users_db, logged_user, saldo + 60)
-      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>Falta revisar. Imaginemos que se aplicó." '..cnt..
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>Falta revisar. Imaginemos que se aplicó." '..continue..
       ' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
     end
 
     if lastkey == "2" then
       --[[ falta implementar]]
-      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 2: Falta implementar. Imaginemos que se aplicó." '..cnt..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 2: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
     end
 
     if lastkey == "3" then
       --[[ falta implementar]]
-      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 3: Falta implementar. Imaginemos que se aplicó." '..cnt..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 3: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
     end
 
     if lastkey == "4" then
       --[[ falta implementar]]
-      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 4: Falta implementar. Imaginemos que se aplicó." '..cnt..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 4: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
     end
 
     if lastkey == "5" then
       --[[ falta implementar]]
-      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 5: Falta implementar. Imaginemos que se aplicó." '..cnt..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 5: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
     end
 
     if lastkey == "6" then
       --[[ falta implementar]]
-      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 6: Falta implementar. Imaginemos que se aplicó." '..cnt..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 6: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
     end
 
     if lastkey == "7" then
       --[[ falta implementar]]
-      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 7: Falta implementar. Imaginemos que se aplicó." '..cnt..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+      os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'>opcion 7: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
     end
 
     os.execute("echo 0 > /tmp/zi/busyflag")
