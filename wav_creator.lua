@@ -27,7 +27,7 @@ os.execute(
   ..phrases[15]..' " && pico2wave -w /tmp/zi/menu_16.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
   ..phrases[16]..' "')
 
-os.excecute('sleep 15')
+os.execute('sleep 15')
 
 os.execute(
                        'pico2wave -w /tmp/zi/menu2_1.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
