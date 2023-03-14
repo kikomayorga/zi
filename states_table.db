@@ -1,7 +1,7 @@
 return {
 -- Table: {1}
 {
-   ["state"]="admin_menu",
-   ["logged_user"]=1,
+   ["state"]="iddle",
+   ["logged_user"]=0,
 },
 }
