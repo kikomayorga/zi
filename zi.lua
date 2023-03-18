@@ -161,16 +161,7 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
 os.exit() 
 end
 
-    --[[opciones
-      1 - Para asignar tiempo extra a un usuario, presiona 1
-      2 - Para asignar tiempo extra a todos los usuarios marca 2
-      3 - Para bloquear a un usuario hasta el día siguiente marca 3
-      4 - Para bloquear a todos los usuarios hasta el día siguiente marca 4
-      5 - Para activar un equipo nuevo marca 5
-      6 - Frase vacía número 7
-      7 - Frase vacía número 8
-      8 - Frase vacía número 9]]
-
+-- admin menu
 if (get_state(states_db) == "admin_menu" and 
 arg[1] == "key" and arg[2] == "1") then
   os.execute("echo 1 > /tmp/zi/busyflag")
