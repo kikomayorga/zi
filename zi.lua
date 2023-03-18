@@ -190,6 +190,12 @@ arg[1] == "key" and arg[2] == "1") then
   'aplay /tmp/zi/a2_5.wav'..continue..
   'aplay /tmp/zi/a2_6.wav'..continue..
   'aplay /tmp/zi/a2_7.wav')
+  os.execute('sleep 20')
+  os.execute("echo 0 > /tmp/zi/busyflag")
+  os.execute("echo 0 > /tmp/zi/skippableflag")
+  os.execute("sleep 1")
+  set_state(states_db, "iddle")
+  set_logged_user(states_db, 0)
 end
 
 if (get_state(states_db) == "admin_menu" and 
@@ -211,6 +217,12 @@ arg[1] == "key" and arg[2] == "2") then
   'aplay /tmp/zi/a2_5.wav'..continue..
   'aplay /tmp/zi/a2_6.wav'..continue..
   'aplay /tmp/zi/a2_7.wav')
+  os.execute('sleep 20')
+  os.execute("echo 0 > /tmp/zi/busyflag")
+  os.execute("echo 0 > /tmp/zi/skippableflag")
+  os.execute("sleep 1")
+  set_state(states_db, "iddle")
+  set_logged_user(states_db, 0)
 end
 
 if lastkey == "3" then
