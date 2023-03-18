@@ -2,11 +2,11 @@
 
 require "zi_functions"  -- custom functions by zi
 
-phrases_db = "phrases.db"
-phrases2_db = "phrases2.db"
+phrases = lines_from("phrases.db")      -- iddle
+phrases_a = lines_from("phrases_a.db")  -- administrador
+phrases_u = lines_from("phrases_u.db")  -- usuario
+phrases_i = lines_from("phrases_i.db")  -- inicialización
 
-phrases = lines_from(phrases_db)
-phrases2 = lines_from(phrases2_db)
 
 os.execute(
                       'pico2wave -w /tmp/zi/menu_1.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
@@ -30,7 +30,7 @@ os.execute(
 os.execute('sleep 15')
 
 os.execute(
-                       'pico2wave -w /tmp/zi/menu2_1.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
+                       'pico2wave -w /tmp/zi/admin_menu1_1.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
   ..phrases2[1]..' " && pico2wave -w /tmp/zi/menu2_2.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
   ..phrases2[2]..' " && pico2wave -w /tmp/zi/menu2_3.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
   ..phrases2[3]..' " && pico2wave -w /tmp/zi/menu2_4.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'

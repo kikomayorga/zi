@@ -1,6 +1,9 @@
+-- NOT IN USE LATELY
+
+
 -- path = "/etc/"
 
-phrases_db = "phrases.db"
+phrases_db = "phrases.db
 
 phrases = lines_from(phrases_db)
 link =" && "

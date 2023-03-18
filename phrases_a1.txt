@@ -1,0 +1,9 @@
+Para agreagr 60 minutos a usuario 1, marque 1.
+Para agregar 60 minutos a usuario 2, marque 2.
+Para agregar 60 minutos a usuario 3, marque 3.
+Para agregar 60 minutos a usuario 4, marque 4.
+Para agregar 60 minutos a usuario 5, marque 5.
+Para agregar 60 minutos a usuario 6, marque 6.
+
+
+
