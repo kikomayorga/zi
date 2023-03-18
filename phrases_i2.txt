@@ -1,0 +1,9 @@
+Para liberar este dispositivo permanentemente, marca punto.
+Para marcar este dispositivo como compartido, marca barra diagonal.
+Para asignar este dispositivo permanentemente a usuario 1, marca 1. 
+Para asignar este dispositivo permanentemente a usuario 2, marca 2. 
+Para asignar este dispositivo permanentemente a usuario 3, marca 3. 
+Para asignar este dispositivo permanentemente a usuario 4, marca 4. 
+Para asignar este dispositivo permanentemente a usuario 5, marca 5. 
+Para asignar este dispositivo permanentemente a usuario 6, marca 6.  
+Para repetir las opciones, marca cero.

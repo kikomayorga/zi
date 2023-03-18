@@ -54,7 +54,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     then 
       logged_admin = i 
       os.execute("mpg123 "..path.."zi/sounds/success.mp3")
-      os.execute("aplay /tmp/zi/menu_1.wav")  -- "Bienvenido Administrador"
+      os.execute("aplay /tmp/zi/a1.wav")  -- "Bienvenido Administrador"
       break
     end
     os.execute("echo 0 > /tmp/zi/busyflag")
@@ -179,13 +179,13 @@ arg[1] == "key" and arg[2] == "1") then
   os.execute("echo 1 > /tmp/zi/skippableflag")
   os.execute("echo 0000 > /tmp/zi/last4keys")
   os.execute(
-  'aplay /tmp/zi/menu2_1.wav'..continue..
-  'aplay /tmp/zi/menu2_2.wav'..continue..
-  'aplay /tmp/zi/menu2_4.wav'..continue..
-  'aplay /tmp/zi/menu2_4.wav'..continue..
-  'aplay /tmp/zi/menu2_5.wav'..continue..
-  'aplay /tmp/zi/menu2_6.wav'..continue..
-  'aplay /tmp/zi/menu2_7.wav')
+  'aplay /tmp/zi/a2_1.wav'..continue..
+  'aplay /tmp/zi/a2_2.wav'..continue..
+  'aplay /tmp/zi/a2_3.wav'..continue..
+  'aplay /tmp/zi/a2_4.wav'..continue..
+  'aplay /tmp/zi/a2_5.wav'..continue..
+  'aplay /tmp/zi/a2_6.wav'..continue..
+  'aplay /tmp/zi/a2_7.wav')
 end
 
 if (get_state(states_db) == "admin_menu" and 
@@ -200,16 +200,16 @@ arg[1] == "key" and arg[2] == "2") then
   os.execute("echo 1 > /tmp/zi/skippableflag")
   os.execute("echo 0000 > /tmp/zi/last4keys")
   os.execute(
-  'aplay /tmp/zi/menu2_1.wav'..continue..
-  'aplay /tmp/zi/menu2_2.wav'..continue..
-  'aplay /tmp/zi/menu2_4.wav'..continue..
-  'aplay /tmp/zi/menu2_4.wav'..continue..
-  'aplay /tmp/zi/menu2_5.wav'..continue..
-  'aplay /tmp/zi/menu2_6.wav'..continue..
-  'aplay /tmp/zi/menu2_7.wav')
+  'aplay /tmp/zi/a2_1.wav'..continue..
+  'aplay /tmp/zi/a2_2.wav'..continue..
+  'aplay /tmp/zi/a2_4.wav'..continue..
+  'aplay /tmp/zi/a2_4.wav'..continue..
+  'aplay /tmp/zi/a2_5.wav'..continue..
+  'aplay /tmp/zi/a2_6.wav'..continue..
+  'aplay /tmp/zi/a2_7.wav')
 end
 
-  if lastkey == "2" then
+  if lastkey == "3" then
     --[[ falta implementar]]
     os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 2: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
   end
