@@ -13,8 +13,12 @@ states_db = "states_table.db"
 
 phrases = lines_from("phrases.txt")      -- iddle
 phrases_a = lines_from("phrases_a.txt")  -- administrador
+phrases_a1 = lines_from("phrases_a1.txt")  -- administrador
+phrases_a2 = lines_from("phrases_a2.txt")  -- administrador
 phrases_u = lines_from("phrases_u.txt")  -- usuario
+phrases_u1 = lines_from("phrases_u1.txt")  -- usuario
 phrases_i = lines_from("phrases_i.txt")  -- inicialización
+phrases_i1 = lines_from("phrases_i1.txt")  -- inicialización
 
 continue =" && "  -- variable para conectar lineas entre saltos
 
@@ -209,36 +213,38 @@ arg[1] == "key" and arg[2] == "2") then
   'aplay /tmp/zi/a2_7.wav')
 end
 
-  if lastkey == "3" then
-    --[[ falta implementar]]
-    os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 2: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
-  end
+if lastkey == "3" then
+  --[[ falta implementar]]
+  os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 2: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+end
 
-  if lastkey == "3" then
-    --[[ falta implementar]]
-    os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 3: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
-  end
+if lastkey == "3" then
+  --[[ falta implementar]]
+  os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 3: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+end
 
-  if lastkey == "4" then
-    --[[ falta implementar]]
-    os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 4: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
-  end
+if lastkey == "4" then
+  --[[ falta implementar]]
+  os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 4: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+end
 
-  if lastkey == "5" then
-    --[[ falta implementar]]
-    os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 5: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
-  end
+if lastkey == "5" then
+  --[[ falta implementar]]
+  os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 5: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+end
 
-  if lastkey == "6" then
-    --[[ falta implementar]]
-    os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 6: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
-  end
+if lastkey == "6" then
+  --[[ falta implementar]]
+  os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 6: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+end
 
-  if lastkey == "7" then
-    --[[ falta implementar]]
-    os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 7: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
-  end
+if lastkey == "7" then
+  --[[ falta implementar]]
+  os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 7: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+end
 
+
+--[[
   os.execute("echo 0 > /tmp/zi/busyflag")
   os.execute("echo 0 > /tmp/zi/skippableflag")
   os.execute("sleep 1")
@@ -247,5 +253,5 @@ end
 end
 
 end
-
+]]
 
