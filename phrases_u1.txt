@@ -1,0 +1,4 @@
+Bienvenido 
+Tu nombre actual es:
+Para cambiar de nombre, marca 9
+Para conocer tu saldo marca 1

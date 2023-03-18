@@ -4,46 +4,81 @@ require "zi_functions"  -- custom functions by zi
 
 phrases = lines_from("phrases.txt")      -- iddle
 phrases_a = lines_from("phrases_a.txt")  -- administrador
+phrases_a1 = lines_from("phrases_a1.txt")-- administrador / extender tiempo a un usuario
 phrases_u = lines_from("phrases_u.txt")  -- usuario
+phrases_u1 = lines_from("phrases_u.txt")  -- usuario
 phrases_i = lines_from("phrases_i.txt")  -- inicialización
+phrases_i2 = lines_from("phrases_i2.txt")  -- inicialización
 
+vol_pitch = "<volume level=\'70\'><pitch level=\'140\'>"
+continue = " && " 
+
+-- phrases to talk to initial user while setup
+os.execute(
+  'pico2wave -w /tmp/zi/u_1.wav -l es-ES "'..vol_pitch..' '..phrases_u[1]..'" '..continue..
+  'pico2wave -w /tmp/zi/u_2.wav -l es-ES "'..vol_pitch..' '..phrases_u[2]..'" '..continue.. 
+  'pico2wave -w /tmp/zi/u_3.wav -l es-ES "'..vol_pitch..' '..phrases_u[3]..'" '..continue..
+  'pico2wave -w /tmp/zi/u_4.wav -l es-ES "'..vol_pitch..' '..phrases_u[4]..'" '..continue..
+  'pico2wave -w /tmp/zi/u_5.wav -l es-ES "'..vol_pitch..' '..phrases_u[5]..'." ')
+
+os.execute('sleep 10')
 
 os.execute(
-                      'pico2wave -w /tmp/zi/a1.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[1]..' " && pico2wave -w /tmp/zi/a2.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[2]..' " && pico2wave -w /tmp/zi/a3.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[3]..' " && pico2wave -w /tmp/zi/a4.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[4]..' " && pico2wave -w /tmp/zi/a5.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[5]..' " && pico2wave -w /tmp/zi/a6.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[6]..' " && pico2wave -w /tmp/zi/a7.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[7]..' " && pico2wave -w /tmp/zi/a8.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[8]..' " && pico2wave -w /tmp/zi/a9.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[9]..' " && pico2wave -w /tmp/zi/a10.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[10]..' " && pico2wave -w /tmp/zi/a11.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[11]..' " && pico2wave -w /tmp/zi/a12.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[12]..' " && pico2wave -w /tmp/zi/a13.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[13]..' " && pico2wave -w /tmp/zi/a14.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[14]..' " && pico2wave -w /tmp/zi/a15.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[15]..' " && pico2wave -w /tmp/zi/a16.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases[16]..' "')
+  'pico2wave -w /tmp/zi/u1_1.wav -l es-ES "'..vol_pitch..' '..phrases_u[1]..'" '..continue..
+  'pico2wave -w /tmp/zi/u1_2.wav -l es-ES "'..vol_pitch..' '..phrases_u[2]..'" '..continue.. 
+  'pico2wave -w /tmp/zi/u1_3.wav -l es-ES "'..vol_pitch..' '..phrases_u[3]..'" '..continue..
+  'pico2wave -w /tmp/zi/u1_4.wav -l es-ES "'..vol_pitch..' '..phrases_u[4]..'" '..continue..
+  'pico2wave -w /tmp/zi/u1_5.wav -l es-ES "'..vol_pitch..' '..phrases_u[5]..'." ')
 
-os.execute('sleep 15')
+os.execute('sleep 10')
+-- voices to talk to admins
+os.execute(
+  'pico2wave -w /tmp/zi/a_1.wav -l es-ES "'..vol_pitch..' '..phrases_a[1]..'" '..continue..
+  'pico2wave -w /tmp/zi/a_2.wav -l es-ES "'..vol_pitch..' '..phrases_a[2]..'" '..continue.. 
+  'pico2wave -w /tmp/zi/a_3.wav -l es-ES "'..vol_pitch..' '..phrases_a[3]..'" '..continue..
+  'pico2wave -w /tmp/zi/a_4.wav -l es-ES "'..vol_pitch..' '..phrases_a[4]..'" '..continue..
+  'pico2wave -w /tmp/zi/a_5.wav -l es-ES "'..vol_pitch..' '..phrases_a[5]..'" '..continue..
+  'pico2wave -w /tmp/zi/a_6.wav -l es-ES "'..vol_pitch..' '..phrases_a[6]..'." ')
+
+os.execute('sleep 10')
 
 os.execute(
-                       'pico2wave -w /tmp/zi/admin_menu1_1.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[1]..' " && pico2wave -w /tmp/zi/menu2_2.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[2]..' " && pico2wave -w /tmp/zi/menu2_3.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[3]..' " && pico2wave -w /tmp/zi/menu2_4.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[4]..' " && pico2wave -w /tmp/zi/menu2_5.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[5]..' " && pico2wave -w /tmp/zi/menu2_6.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[6]..' " && pico2wave -w /tmp/zi/menu2_7.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[7]..' " && pico2wave -w /tmp/zi/menu2_8.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[8]..' " && pico2wave -w /tmp/zi/menu2_9.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[9]..' " && pico2wave -w /tmp/zi/menu2_10.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[10]..' " && pico2wave -w /tmp/zi/menu2_11.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[11]..' " && pico2wave -w /tmp/zi/menu2_12.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[12]..' " && pico2wave -w /tmp/zi/menu2_13.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[13]..' " && pico2wave -w /tmp/zi/menu2_14.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[14]..' " && pico2wave -w /tmp/zi/menu2_15.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[15]..' " && pico2wave -w /tmp/zi/menu2_16.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>'
-  ..phrases_a[16]..' "')
+  'pico2wave -w /tmp/zi/a1_1.wav -l es-ES "'..vol_pitch..' '..phrases_a1[1]..'" '..continue..
+  'pico2wave -w /tmp/zi/a1_2.wav -l es-ES "'..vol_pitch..' '..phrases_a1[2]..'" '..continue.. 
+  'pico2wave -w /tmp/zi/a1_3.wav -l es-ES "'..vol_pitch..' '..phrases_a1[3]..'" '..continue..
+  'pico2wave -w /tmp/zi/a1_4.wav -l es-ES "'..vol_pitch..' '..phrases_a1[4]..'" '..continue..
+  'pico2wave -w /tmp/zi/a1_5.wav -l es-ES "'..vol_pitch..' '..phrases_a1[5]..'" '..continue..
+  'pico2wave -w /tmp/zi/a1_6.wav -l es-ES "'..vol_pitch..' '..phrases_a1[6]..'." ')
+
+os.execute('sleep 10')
+
+--[[
+os.execute(
+  'pico2wave -w /tmp/zi/a2_1.wav -l es-ES "'..vol_pitch..' '..phrases_a2[1]..'" '..continue..
+  'pico2wave -w /tmp/zi/a2_2.wav -l es-ES "'..vol_pitch..' '..phrases_a2[2]..'" '..continue.. 
+  'pico2wave -w /tmp/zi/a2_3.wav -l es-ES "'..vol_pitch..' '..phrases_a2[3]..'" '..continue..
+  'pico2wave -w /tmp/zi/a2_4.wav -l es-ES "'..vol_pitch..' '..phrases_a2[4]..'" '..continue..
+  'pico2wave -w /tmp/zi/a2_5.wav -l es-ES "'..vol_pitch..' '..phrases_a2[5]..'" '..continue..
+  'pico2wave -w /tmp/zi/a2_6.wav -l es-ES "'..vol_pitch..' '..phrases_a2[6]..'." ')
+os.execute('sleep 10')
+]]
+
+-- phrases to talk to users
+os.execute(
+  'pico2wave -w /tmp/zi/u_1.wav -l es-ES "'..vol_pitch..' '..phrases_u[1]..'" '..continue..
+  'pico2wave -w /tmp/zi/u_2.wav -l es-ES "'..vol_pitch..' '..phrases_u[2]..'" '..continue.. 
+  'pico2wave -w /tmp/zi/u_3.wav -l es-ES "'..vol_pitch..' '..phrases_u[3]..'" '..continue..
+  'pico2wave -w /tmp/zi/u_4.wav -l es-ES "'..vol_pitch..' '..phrases_u[4]..'" '..continue..
+  'pico2wave -w /tmp/zi/u_5.wav -l es-ES "'..vol_pitch..' '..phrases_u[5]..'." ')
+
+os.execute('sleep 10')
+
+os.execute(
+  'pico2wave -w /tmp/zi/u1_1.wav -l es-ES "'..vol_pitch..' '..phrases_u[1]..'" '..continue..
+  'pico2wave -w /tmp/zi/u1_2.wav -l es-ES "'..vol_pitch..' '..phrases_u[2]..'" '..continue.. 
+  'pico2wave -w /tmp/zi/u1_3.wav -l es-ES "'..vol_pitch..' '..phrases_u[3]..'" '..continue..
+  'pico2wave -w /tmp/zi/u1_4.wav -l es-ES "'..vol_pitch..' '..phrases_u[4]..'" '..continue..
+  'pico2wave -w /tmp/zi/u1_5.wav -l es-ES "'..vol_pitch..' '..phrases_u[5]..'." ')
+
+os.execute('sleep 10')
+

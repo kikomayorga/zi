@@ -1,0 +1,9 @@
+Bienvenido a la configuración inicial.
+Lo primero es que crees tu clave de administrador de cuatro números.
+Éxito. Tu clave de administrador ha sido guardada.
+Clave inválida. No está permitido repetir un dígito cuatro veces.
+Clave inválida. No es posible asignarte esa clave. Por favor intenta nuevamente. 
+Ahora, podemos agregagr dispositivos que deben tener acceso libre permanente a internet.
+Conecta el dispositivo a la red zen internet. 
+Dispositivo detectado. Qué debe pasar con este dispositivo?
+
