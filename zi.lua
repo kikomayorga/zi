@@ -91,14 +91,14 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     os.execute("echo 1 > /tmp/zi/skippableflag")
     os.execute("echo 0000 > /tmp/zi/last4keys")
     os.execute(
-    'aplay /tmp/zi/menu_2.wav'..continue..
-    'aplay /tmp/zi/menu_3.wav'..continue..
-    'aplay /tmp/zi/menu_4.wav'..continue..
-    'aplay /tmp/zi/menu_5.wav'..continue..
-    'aplay /tmp/zi/menu_6.wav'..continue..
-    'aplay /tmp/zi/menu_7.wav'..continue..
-    'aplay /tmp/zi/menu_8.wav'..continue..
-    'aplay /tmp/zi/menu_9.wav')
+    'aplay /tmp/zi/a2.wav'..continue..
+    'aplay /tmp/zi/a3.wav'..continue..
+    'aplay /tmp/zi/a4.wav'..continue..
+    'aplay /tmp/zi/a5.wav'..continue..
+    'aplay /tmp/zi/a6.wav'..continue..
+    'aplay /tmp/zi/a7.wav'..continue..
+    'aplay /tmp/zi/a8.wav'..continue..
+    'aplay /tmp/zi/a9.wav')
     os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
     os.execute("echo 0 > /tmp/zi/skippableflag")   -- no need to skipanymore
   end
