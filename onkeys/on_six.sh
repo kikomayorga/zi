@@ -1,18 +1,18 @@
 #!/bin/sh
 
 busyflag=`cat /tmp/zi/busyflag`
-# busyflag='cat /tmp/busyflag' 
+skippableflag=`cat /tmp/zi/skippableflag`
 
+#read from temporary file
+lkchain_old=`cat /tmp/zi/last4keys`
+echo oldchain: $lkchain_old
+
+#put new key before
+lkchain="${lkchain_old:1:4}""6"
+echo newchain: $lkchain
 
 if [ "$busyflag" = "0" ]
 then
-	#read from temporary file
-	lkchain_old=`cat /tmp/zi/last4keys`
-	echo oldchain: $lkchain_old
-
-	#put new key before
-	lkchain="${lkchain_old:1:4}""6"
-	echo newchain: $lkchain
 
 	#save into temporary file
 	echo $lkchain > /tmp/zi/last4keys
@@ -21,8 +21,19 @@ then
 
 	#when running on ubuntu
 	#lua ~/Documents/zi/zi.lua key 1 $lkchain
-
 	#when deploy on openwrt:
 	cd /etc/zi && lua zi.lua key 6 $lkchain
 
 fi
+
+if [ "$busyflag" = "1" ] && [ "$skippableflag" = "1" ]
+then 
+	mpg123 /etc/zi/sounds/click.mp3
+	#kill current audio and process
+	killall -q aplay &
+	killall -q lua
+	echo 0000 > /tmp/zi/last4keys
+	echo 0 > /tmp/zi/busyflag
+	cd /etc/zi && lua zi.lua key 6 0000
+fi
+
