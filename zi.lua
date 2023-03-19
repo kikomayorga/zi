@@ -162,6 +162,7 @@ os.exit()
 end
 
 -- admin menu
+
 if (get_state(states_db) == "admin_menu" and 
 arg[1] == "key" and arg[2] == "1") then
   os.execute("echo 1 > /tmp/zi/busyflag")
@@ -169,7 +170,7 @@ arg[1] == "key" and arg[2] == "1") then
   lastkey = arg[2]
   logged_user = get_logged_user(states_db)
 
-  set_state(states_db, "admin_menu_2")              -- sets statesmachine:
+  set_state(states_db, "admin_menu_1")              -- sets statesmachine:
   os.execute("echo 1 > /tmp/zi/busyflag")
   os.execute("echo 1 > /tmp/zi/skippableflag")
   os.execute("echo 0000 > /tmp/zi/last4keys")
@@ -189,14 +190,14 @@ arg[1] == "key" and arg[2] == "1") then
   set_logged_user(states_db, 0)
 end
 
-if (get_state(states_db) == "admin_menu" and 
+if (get_state(states_db) == "admin_menu_2" and 
 arg[1] == "key" and arg[2] == "2") then
   os.execute("echo 1 > /tmp/zi/busyflag")
   os.execute("echo 1 > /tmp/zi/skippableflag")
   lastkey = arg[2]
   logged_user = get_logged_user(states_db)
 
-  set_state(states_db, "admin_menu_2")              -- sets statesmachine:
+  set_state(states_db, "admin_menu_3")              -- sets statesmachine:
   os.execute("echo 1 > /tmp/zi/busyflag")
   os.execute("echo 1 > /tmp/zi/skippableflag")
   os.execute("echo 0000 > /tmp/zi/last4keys")
