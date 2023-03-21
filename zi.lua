@@ -89,22 +89,15 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
 
   -- if admin passord
   if logged_admin ~= 0 then
-    set_state(states_db, "admin_menu")              -- sets statesmachine:
+    set_state(states_db, "a")              -- sets statesmachine:
     set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
-    os.execute("echo 1 > /tmp/zi/busyflag")
-    os.execute("echo 1 > /tmp/zi/skippableflag")
-    os.execute("echo 0000 > /tmp/zi/last4keys")
+    os.execute("echo 1 > /tmp/zi/busyflag  &&  echo 1 > /tmp/zi/skippableflag  &&  echo 0000 > /tmp/zi/last4keys  ")
     os.execute(
-    'aplay /tmp/zi/a_2.wav'..continue..
-    'aplay /tmp/zi/a_3.wav'..continue..
-    'aplay /tmp/zi/a_4.wav'..continue..
-    'aplay /tmp/zi/a_5.wav'..continue..
-    'aplay /tmp/zi/a_6.wav'..continue..
-    'aplay /tmp/zi/a_7.wav'..continue..
-    'aplay /tmp/zi/a_8.wav'..continue..
-    'aplay /tmp/zi/a_9.wav')
-    os.execute("echo 0 > /tmp/zi/busyflag")        -- enables triggerhappy
-    os.execute("echo 0 > /tmp/zi/skippableflag")   -- no need to skipanymore
+    'aplay /tmp/zi/a_2.wav'..continue..'aplay /tmp/zi/a_3.wav'..continue..
+    'aplay /tmp/zi/a_4.wav'..continue..'aplay /tmp/zi/a_5.wav'..continue..
+    'aplay /tmp/zi/a_6.wav'..continue..'aplay /tmp/zi/a_7.wav'..continue..
+    'aplay /tmp/zi/a_8.wav'..continue..'aplay /tmp/zi/a_9.wav')
+    os.execute("echo 0 > /tmp/zi/busyflag && echo 0 > /tmp/zi/skippableflag")
   end
 
   -- if user password
@@ -161,92 +154,73 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
 os.exit() 
 end
 
--- admin menu
-
-if (get_state(states_db) == "admin_menu" and 
+-- admin menu "a1"
+if (get_state(states_db) == "a" and 
 arg[1] == "key" and arg[2] == "1") then
-  os.execute("echo 1 > /tmp/zi/busyflag")
-  os.execute("echo 1 > /tmp/zi/skippableflag")
+  os.execute("echo 1 > /tmp/zi/busyflag && echo 1 > /tmp/zi/skippableflag")
   lastkey = arg[2]
   logged_user = get_logged_user(states_db)
-
-  set_state(states_db, "admin_menu_1")              -- sets statesmachine:
-  os.execute("echo 1 > /tmp/zi/busyflag")
-  os.execute("echo 1 > /tmp/zi/skippableflag")
-  os.execute("echo 0000 > /tmp/zi/last4keys")
+  set_state(states_db, "a1")              -- sets statesmachine:
+  os.execute("  echo 1 > /tmp/zi/busyflag   &&   echo 1 > /tmp/zi/skippableflag   &&   echo 0000 > /tmp/zi/last4keys  ")
   os.execute(
-  'aplay /tmp/zi/a1_1.wav'..continue..
-  'aplay /tmp/zi/a1_2.wav'..continue..
-  'aplay /tmp/zi/a1_3.wav'..continue..
-  'aplay /tmp/zi/a1_4.wav'..continue..
-  'aplay /tmp/zi/a1_5.wav'..continue..
-  'aplay /tmp/zi/a1_6.wav'..continue..
+  'aplay /tmp/zi/a1_1.wav'..continue..'aplay /tmp/zi/a1_2.wav'..continue..
+  'aplay /tmp/zi/a1_3.wav'..continue..'aplay /tmp/zi/a1_4.wav'..continue..
+  'aplay /tmp/zi/a1_5.wav'..continue..'aplay /tmp/zi/a1_6.wav'..continue..
   'aplay /tmp/zi/a1_7.wav')
-  os.execute('sleep 20')
-  os.execute("echo 0 > /tmp/zi/busyflag")
-  os.execute("echo 0 > /tmp/zi/skippableflag")
-  os.execute("sleep 1")
+  os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
   set_state(states_db, "iddle")
   set_logged_user(states_db, 0)
 end
 
-if (get_state(states_db) == "admin_menu_2" and 
-arg[1] == "key" and arg[2] == "2") then
-  os.execute("echo 1 > /tmp/zi/busyflag")
-  os.execute("echo 1 > /tmp/zi/skippableflag")
+-- 
+if (get_state(states_db) == "a" and 
+arg[1] == "key" and arg[2] == "7") then
+  os.execute("echo 1 > /tmp/zi/busyflag && echo 1 > /tmp/zi/skippableflag")
   lastkey = arg[2]
   logged_user = get_logged_user(states_db)
 
-  set_state(states_db, "admin_menu_3")              -- sets statesmachine:
-  os.execute("echo 1 > /tmp/zi/busyflag")
-  os.execute("echo 1 > /tmp/zi/skippableflag")
-  os.execute("echo 0000 > /tmp/zi/last4keys")
+  set_state(states_db, "a2")              -- sets statesmachine:
+  os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
   os.execute(
-  'aplay /tmp/zi/a2_1.wav'..continue..
-  'aplay /tmp/zi/a2_2.wav'..continue..
-  'aplay /tmp/zi/a2_4.wav'..continue..
-  'aplay /tmp/zi/a2_4.wav'..continue..
-  'aplay /tmp/zi/a2_5.wav'..continue..
-  'aplay /tmp/zi/a2_6.wav'..continue..
+  'aplay /tmp/zi/a2_1.wav'..continue..'aplay /tmp/zi/a2_2.wav'..continue..
+  'aplay /tmp/zi/a2_4.wav'..continue..'aplay /tmp/zi/a2_4.wav'..continue..
+  'aplay /tmp/zi/a2_5.wav'..continue..'aplay /tmp/zi/a2_6.wav'..continue..
   'aplay /tmp/zi/a2_7.wav')
-  os.execute('sleep 20')
-  os.execute("echo 0 > /tmp/zi/busyflag")
-  os.execute("echo 0 > /tmp/zi/skippableflag")
-  os.execute("sleep 1")
+  os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
   set_state(states_db, "iddle")
   set_logged_user(states_db, 0)
 end
 
-if lastkey == "3" then
-  --[[ falta implementar]]
-  os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 2: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+-- menu a >> opción 
+if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
+  -- lastkey = arg[2]
+  -- logged_user = get_logged_user(states_db)
+  set_state(states_db, "a3")              -- sets statesmachine:
+  os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
+  os.execute(
+  'aplay /tmp/zi/a2_1.wav'..continue..'aplay /tmp/zi/a2_2.wav'..continue..
+  'aplay /tmp/zi/a2_4.wav'..continue..'aplay /tmp/zi/a2_4.wav'..continue..
+  'aplay /tmp/zi/a2_5.wav'..continue..'aplay /tmp/zi/a2_6.wav'..continue..
+  'aplay /tmp/zi/a2_7.wav')
+  os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
+  set_state(states_db, "iddle")
+  set_logged_user(states_db, 0)
 end
 
-if lastkey == "3" then
-  --[[ falta implementar]]
-  os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 3: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
+-- a+4: bloquear a todos los usuarios 
+if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "4") then
+  
+  set_state(states_db, "a3")              -- sets statesmachine:
+  os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
+  os.execute(
+  'aplay /tmp/zi/a2_1.wav'..continue..'aplay /tmp/zi/a2_2.wav'..continue..
+  'aplay /tmp/zi/a2_4.wav'..continue..'aplay /tmp/zi/a2_4.wav'..continue..
+  'aplay /tmp/zi/a2_5.wav'..continue..'aplay /tmp/zi/a2_6.wav'..continue..
+  'aplay /tmp/zi/a2_7.wav')
+  os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
+  set_state(states_db, "iddle")
+  set_logged_user(states_db, 0)
 end
-
-if lastkey == "4" then
-  --[[ falta implementar]]
-  os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 4: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
-end
-
-if lastkey == "5" then
-  --[[ falta implementar]]
-  os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 5: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
-end
-
-if lastkey == "6" then
-  --[[ falta implementar]]
-  os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 6: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
-end
-
-if lastkey == "7" then
-  --[[ falta implementar]]
-  os.execute('pico2wave -w /tmp/buffer.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>opcion 7: Falta implementar. Imaginemos que se aplicó." '..continue..' aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/buffer.wav ')
-end
-
 
 --[[
   os.execute("echo 0 > /tmp/zi/busyflag")
