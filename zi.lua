@@ -228,8 +228,5 @@ end
   os.execute("sleep 1")
   set_state(states_db, "iddle")
   set_logged_user(states_db, 0)
-end
-
-end
 ]]
 
