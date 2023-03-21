@@ -1,8 +1,6 @@
-Frase a 6 vacía nro 1
-Frase a 6 vacía nro 2
-Frase a 6 vacía nro 3
-Frase a 6 vacía nro 4
-Frase a 6 vacía nro 5
-Frase a 6 vacía nro 6
-Frase a 6 vacía nro 7
-Frase a 6 vacía nro 8
+Para bloquear a usuario 1, marca 1.
+Para bloquear a usuario 2, marca 2.
+Para bloquear a usuario 3, marca 3.
+Para bloquear a usuario 4, marca 4.
+Para bloquear a usuario 5, marca 5.
+Para bloquear a usuario 6, marca 6.
