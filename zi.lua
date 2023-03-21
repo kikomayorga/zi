@@ -14,7 +14,14 @@ states_db = "states_table.db"
 phrases = lines_from("phrases.txt")      -- iddle
 phrases_a = lines_from("phrases_a.txt")  -- administrador
 phrases_a1 = lines_from("phrases_a1.txt")  -- administrador
-phrases_a2 = lines_from("phrases_a2.txt")  -- administrador
+phrases_a7 = lines_from("phrases_a7.txt")  -- administrador
+phrases_a6 = lines_from("phrases_a6.txt")  -- administrador
+phrases_a4 = lines_from("phrases_a4.txt")  -- administrador
+
+
+
+
+
 phrases_u = lines_from("phrases_u.txt")  -- usuario
 phrases_u1 = lines_from("phrases_u1.txt")  -- usuario
 phrases_i = lines_from("phrases_i.txt")  -- inicialización
@@ -191,17 +198,17 @@ arg[1] == "key" and arg[2] == "7") then
   set_logged_user(states_db, 0)
 end
 
--- menu a >> opción 
+-- menu a6
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
   -- lastkey = arg[2]
   -- logged_user = get_logged_user(states_db)
-  set_state(states_db, "a3")              -- sets statesmachine:
+  set_state(states_db, "a6")              -- sets statesmachine:
   os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
   os.execute(
-  'aplay /tmp/zi/a2_1.wav'..continue..'aplay /tmp/zi/a2_2.wav'..continue..
-  'aplay /tmp/zi/a2_4.wav'..continue..'aplay /tmp/zi/a2_4.wav'..continue..
-  'aplay /tmp/zi/a2_5.wav'..continue..'aplay /tmp/zi/a2_6.wav'..continue..
-  'aplay /tmp/zi/a2_7.wav')
+  'aplay /tmp/zi/a6_1.wav'..continue..'aplay /tmp/zi/a6_2.wav'..continue..
+  'aplay /tmp/zi/a6_4.wav'..continue..'aplay /tmp/zi/a6_4.wav'..continue..
+  'aplay /tmp/zi/a6_5.wav'..continue..'aplay /tmp/zi/a6_6.wav'..continue..
+  'aplay /tmp/zi/a6_7.wav')
   os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
   set_state(states_db, "iddle")
   set_logged_user(states_db, 0)
