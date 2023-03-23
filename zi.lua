@@ -11,16 +11,12 @@ admins_db = "admins_table.db"
 devices_db = "devices_table.db"
 states_db = "states_table.db"
 
-phrases = lines_from("phrases.txt")      -- iddle
-phrases_a = lines_from("phrases_a.txt")  -- administrador
-phrases_a1 = lines_from("phrases_a1.txt")  -- administrador
-phrases_a7 = lines_from("phrases_a7.txt")  -- administrador
-phrases_a6 = lines_from("phrases_a6.txt")  -- administrador
-phrases_a4 = lines_from("phrases_a4.txt")  -- administrador
-
-
-
-
+phrases = lines_from("phrases.txt")      -- admin main menu
+phrases_a = lines_from("phrases_a.txt")  -- admin phrases
+phrases_a1 = lines_from("phrases_a1.txt")  -- admin phrases
+phrases_a7 = lines_from("phrases_a7.txt")  -- admin phrases
+phrases_a6 = lines_from("phrases_a6.txt")  -- admin phrases
+phrases_a4 = lines_from("phrases_a4.txt")  -- admin phrases
 
 phrases_u = lines_from("phrases_u.txt")  -- usuario
 phrases_u1 = lines_from("phrases_u1.txt")  -- usuario
