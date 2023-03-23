@@ -2,11 +2,12 @@
 
 require "zi_functions"  -- custom functions by zi
 
-phrases = lines_from("phrases.txt")      -- iddle
-phrases_a = lines_from("phrases_a.txt")  -- main admin menu
-phrases_a1 = lines_from("phrases_a1.txt")-- admin prases
-phrases_a7 = lines_from("phrases_a1.txt")-- admin prases
-phrases_a6 = lines_from("phrases_a1.txt")-- 
+phrases = lines_from("phrases.txt")      -- main menu
+phrases_a = lines_from("phrases_a.txt")  -- admin phrases
+phrases_a1 = lines_from("phrases_a1.txt")  -- admin phrases
+phrases_a7 = lines_from("phrases_a7.txt")  -- admin phrases
+phrases_a6 = lines_from("phrases_a6.txt")  -- admin phrases
+phrases_a4 = lines_from("phrases_a4.txt")  -- admin phrases
 
 phrases_u = lines_from("phrases_u.txt")  -- usuario
 phrases_u1 = lines_from("phrases_u.txt")  -- usuario

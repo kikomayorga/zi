@@ -4,4 +4,3 @@ minutos hoy. Para navegar, presiona 1. Para seguir en pausa, presiona 0.
 Estás navegando. Te quedan 
 minutos hoy. Para pausar, presiona 0. Para seguir navegando, presiona 1.
 Para configurar tus opciones, marca 9.
-Para conectar con una faja caminadora marca 3. Aunque falta implementar.
