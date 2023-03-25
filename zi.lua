@@ -190,13 +190,8 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
   -- logged_user = get_logged_user(states_db)
   set_state(states_db, "a6")              -- sets statesmachine:
   os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
-  os.execute(
-  'aplay /tmp/zi/a6_1.wav'..continue..'aplay /tmp/zi/a6_2.wav'..continue..
-  'aplay /tmp/zi/a6_3.wav'..continue..'aplay /tmp/zi/a6_4.wav'..continue..
-  'aplay /tmp/zi/a6_5.wav'..continue..'aplay /tmp/zi/a6_6.wav'..continue..
-  'aplay /tmp/zi/a6_7.wav')
-  os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
-  set_state(states_db, "iddle")
+  os.execute('aplay /tmp/zi/a6_1.wav')
+  os.execute('sleep 5   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
   set_logged_user(states_db, 0)
 end
 
@@ -229,6 +224,26 @@ if (get_state(states_db) == "a1" and arg[1] == "key") then
   os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
   os.execute('echo 0 > /tmp/zi/busyflag ' )
   set_state(states_db, "iddle")
+end
+
+-- a1 > # > iddle
+-- "bloquear un usuario"
+if (get_state(states_db) == "a6" and arg[1] == "key") then
+  local usuario_nro = arg[2]
+  if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6")  
+    os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
+    os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..continue..
+    '"<volume level=\'70\'><pitch level=\'130\'>'..continue..
+    'Se puso a cero los minutos de hoy para '..usuario_nro..' ." ')
+    -- TODO: BLOQUEAR AL USUARIO EFECTIVAMENTE
+    os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav &" )
+    os.execute("sleep 3")
+    os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
+    os.execute('echo 0 > /tmp/zi/busyflag ' )
+    set_state(states_db, "iddle")
+  else
+    os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
+  end  
 end
 
 --[[
