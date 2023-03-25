@@ -230,7 +230,7 @@ end
 -- "bloquear un usuario"
 if (get_state(states_db) == "a6" and arg[1] == "key") then
   local usuario_nro = arg[2]
-  if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6")  
+  if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6") then
     os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
     os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..continue..
     '"<volume level=\'70\'><pitch level=\'130\'>'..continue..
