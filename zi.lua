@@ -46,7 +46,7 @@ then
   -- os.excecute("echo hello world")
 end
 
--- keypad based calls
+-- any key
 if (get_state(states_db) == "iddle" and arg[1] == "key") then
   os.execute("echo 1 > /tmp/zi/busyflag")
   os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
@@ -91,6 +91,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   end
 
   -- if admin passord
+  -- states: iddle > a
   if logged_admin ~= 0 then
     set_state(states_db, "a")              -- sets statesmachine:
     set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
@@ -104,8 +105,9 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   end
 
   -- if user password
+  -- states: iddle > u
+  -- TODO: CHECK flags
   if logged_user ~= 0 then
-    -- menú de usuario:
     running = get_running_status(users_db, logged_user)
     os.execute("echo 0000 > /tmp/zi/last4keys")
     if running == 0 then
@@ -157,27 +159,9 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
 os.exit() 
 end
 
--- admin menu "a1"
-if (get_state(states_db) == "a" and 
-arg[1] == "key" and arg[2] == "1") then
-  os.execute("echo 1 > /tmp/zi/busyflag && echo 1 > /tmp/zi/skippableflag")
-  lastkey = arg[2]
-  logged_user = get_logged_user(states_db)
-  set_state(states_db, "a1")              -- sets statesmachine:
-  os.execute("  echo 1 > /tmp/zi/busyflag   &&   echo 1 > /tmp/zi/skippableflag   &&   echo 0000 > /tmp/zi/last4keys  ")
-  os.execute(
-  'aplay /tmp/zi/a1_1.wav'..continue..'aplay /tmp/zi/a1_2.wav'..continue..
-  'aplay /tmp/zi/a1_3.wav'..continue..'aplay /tmp/zi/a1_4.wav'..continue..
-  'aplay /tmp/zi/a1_5.wav'..continue..'aplay /tmp/zi/a1_6.wav'..continue..
-  'aplay /tmp/zi/a1_7.wav')
-  os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
-  set_state(states_db, "iddle")
-  set_logged_user(states_db, 0)
-end
-
--- 
-if (get_state(states_db) == "a" and 
-arg[1] == "key" and arg[2] == "7") then
+-- admin menus
+-- a > a7
+if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   os.execute("echo 1 > /tmp/zi/busyflag && echo 1 > /tmp/zi/skippableflag")
   lastkey = arg[2]
   logged_user = get_logged_user(states_db)
@@ -194,7 +178,25 @@ arg[1] == "key" and arg[2] == "7") then
   set_logged_user(states_db, 0)
 end
 
--- menu a6
+
+-- a > a1
+if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
+  os.execute("echo 1 > /tmp/zi/busyflag && echo 1 > /tmp/zi/skippableflag")
+  lastkey = arg[2]
+  logged_user = get_logged_user(states_db)
+  set_state(states_db, "a1")              -- sets statesmachine:
+  os.execute("  echo 1 > /tmp/zi/busyflag   &&   echo 1 > /tmp/zi/skippableflag   &&   echo 0000 > /tmp/zi/last4keys  ")
+  os.execute(
+  'aplay /tmp/zi/a1_1.wav'..continue..'aplay /tmp/zi/a1_2.wav'..continue..
+  'aplay /tmp/zi/a1_3.wav'..continue..'aplay /tmp/zi/a1_4.wav'..continue..
+  'aplay /tmp/zi/a1_5.wav'..continue..'aplay /tmp/zi/a1_6.wav'..continue..
+  'aplay /tmp/zi/a1_7.wav')
+  os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
+  set_state(states_db, "iddle")
+  set_logged_user(states_db, 0)
+end
+
+-- a > a6
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
   -- lastkey = arg[2]
   -- logged_user = get_logged_user(states_db)
@@ -210,8 +212,8 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
   set_logged_user(states_db, 0)
 end
 
--- a+4: bloquear a todos los usuarios 
-if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "4") then
+-- a > a2
+if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "2") then
   
   set_state(states_db, "a3")              -- sets statesmachine:
   os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
@@ -223,6 +225,21 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "4") then
   os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
   set_state(states_db, "iddle")
   set_logged_user(states_db, 0)
+end
+
+-- a1 > iddle
+-- "agregar un minuto a un usuario"
+if (get_state(states_db) == "a1" and arg[1] == "key") then
+  local usuario_nro = arg[2]
+  os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
+  os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..continue..
+  '"<volume level=\'70\'><pitch level=\'130\'>'..continue..
+  'Se agegó 60 minutos a usuario '..usuario_nro..' ." ')
+  os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav &" )
+  os.execute("sleep 3")
+  os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
+  os.execute('echo 0 > /tmp/zi/busyflag ' )
+  set_state(states_db, "iddle")
 end
 
 --[[

@@ -1,8 +1,8 @@
 Bienvenido Administrador
-Para asignar una hora extra a un usuario, presiona 1
 Para asignar tiempo extra a todos los usuarios marca 7
-Para bloquear a un usuario hasta el día siguiente marca 6
-Para bloquear a todos los usuarios hasta el día siguiente marca 0
+Para asignar una hora extra a un usuario, marca 1
+Para bloquear a un usuario por hoy marca 6
+Para bloquear a todos marca 0
 Para activar un equipo nuevo marca punto
 
 
