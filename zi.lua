@@ -100,8 +100,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     os.execute(
     'aplay /tmp/zi/a_2.wav'..continue..'aplay /tmp/zi/a_3.wav'..continue..
     'aplay /tmp/zi/a_4.wav'..continue..'aplay /tmp/zi/a_5.wav'..continue..
-    'aplay /tmp/zi/a_6.wav'..continue..'aplay /tmp/zi/a_7.wav'..continue..
-    'aplay /tmp/zi/a_8.wav'..continue..'aplay /tmp/zi/a_9.wav')
+    'aplay /tmp/zi/a_6.wav')
     os.execute("echo 0 > /tmp/zi/busyflag && echo 0 > /tmp/zi/skippableflag")
   end
 
