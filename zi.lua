@@ -217,7 +217,7 @@ end
 -- "agregar 60 minutos a un usuario"
 if (get_state(states_db) == "a1" and arg[1] == "key") then
   os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
-  local usuario_nro = arg[2]
+  usuario_nro = arg[2]
   os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
   os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..continue..
   '"'..vol_pitch..'Se agegó 60 minutos a usuario '..usuario_nro..' ." ')
