@@ -7,7 +7,7 @@ phrases_a = lines_from("phrases_a.txt")  -- admin phrases
 phrases_a1 = lines_from("phrases_a1.txt")  -- admin phrases
 phrases_a7 = lines_from("phrases_a7.txt")  -- admin phrases
 phrases_a6 = lines_from("phrases_a6.txt")  -- admin phrases
-phrases_a4 = lines_from("phrases_a4.txt")  -- admin phrases
+phrases_a0 = lines_from("phrases_a0.txt")  -- admin phrases
 
 phrases_u = lines_from("phrases_u.txt")  -- usuario
 phrases_u1 = lines_from("phrases_u.txt")  -- usuario
@@ -72,9 +72,9 @@ os.execute(
 
 os.execute('sleep 10')
 
--- a4
+-- a0
 os.execute(
-  'pico2wave -w /tmp/zi/a4_1.wav -l es-ES "'..vol_pitch..' '..phrases_a4[1]..'" ')
+  'pico2wave -w /tmp/zi/a4_1.wav -l es-ES "'..vol_pitch..' '..phrases_a0[1]..'" ')
 os.execute('sleep 10')
 
 

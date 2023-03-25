@@ -16,7 +16,7 @@ phrases_a = lines_from("phrases_a.txt")  -- admin phrases
 phrases_a1 = lines_from("phrases_a1.txt")  -- admin phrases
 phrases_a7 = lines_from("phrases_a7.txt")  -- admin phrases
 phrases_a6 = lines_from("phrases_a6.txt")  -- admin phrases
-phrases_a4 = lines_from("phrases_a4.txt")  -- admin phrases
+phrases_a0 = lines_from("phrases_a0.txt")  -- admin phrases
 
 phrases_u = lines_from("phrases_u.txt")  -- usuario
 phrases_u1 = lines_from("phrases_u1.txt")  -- usuario
@@ -165,35 +165,23 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   os.execute("echo 1 > /tmp/zi/busyflag && echo 1 > /tmp/zi/skippableflag")
   lastkey = arg[2]
   logged_user = get_logged_user(states_db)
-
-  set_state(states_db, "a2")              -- sets statesmachine:
-  os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
-  os.execute(
-  'aplay /tmp/zi/a2_1.wav'..continue..'aplay /tmp/zi/a2_2.wav'..continue..
-  'aplay /tmp/zi/a2_3.wav'..continue..'aplay /tmp/zi/a2_4.wav'..continue..
-  'aplay /tmp/zi/a2_5.wav'..continue..'aplay /tmp/zi/a2_6.wav'..continue..
-  'aplay /tmp/zi/a2_7.wav')
-  os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
+  set_state(states_db, "a7")              -- sets statesmachine:
+  os.execute("echo 1 > /tmp/zi/busyflag   &&   echo 0000 > /tmp/zi/last4keys")
+  os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..continue..
+  '"<volume level=\'70\'><pitch level=\'130\'>'..continue..
+  'Se agegó 60 minutos a cada usuario.')
+  os.execute('sleep 5   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
   set_state(states_db, "iddle")
   set_logged_user(states_db, 0)
 end
 
-
 -- a > a1
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
-  os.execute("echo 1 > /tmp/zi/busyflag && echo 1 > /tmp/zi/skippableflag")
-  lastkey = arg[2]
-  logged_user = get_logged_user(states_db)
   set_state(states_db, "a1")              -- sets statesmachine:
+  os.execute("echo 1 > /tmp/zi/busyflag && echo 1 > /tmp/zi/skippableflag")
   os.execute("  echo 1 > /tmp/zi/busyflag   &&   echo 1 > /tmp/zi/skippableflag   &&   echo 0000 > /tmp/zi/last4keys  ")
-  os.execute(
-  'aplay /tmp/zi/a1_1.wav'..continue..'aplay /tmp/zi/a1_2.wav'..continue..
-  'aplay /tmp/zi/a1_3.wav'..continue..'aplay /tmp/zi/a1_4.wav'..continue..
-  'aplay /tmp/zi/a1_5.wav'..continue..'aplay /tmp/zi/a1_6.wav'..continue..
-  'aplay /tmp/zi/a1_7.wav')
-  os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
-  set_state(states_db, "iddle")
-  set_logged_user(states_db, 0)
+  os.execute('aplay /tmp/zi/a1_1.wav')
+  os.execute('sleep 5   &&   echo 0 > /tmp/zi/busyflag  &&   sleep 1' )
 end
 
 -- a > a6
@@ -227,14 +215,15 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "2") then
   set_logged_user(states_db, 0)
 end
 
--- a1 > iddle
--- "agregar un minuto a un usuario"
+-- a1 > # > iddle
+-- "agregar 60 minutos a un usuario"
 if (get_state(states_db) == "a1" and arg[1] == "key") then
   local usuario_nro = arg[2]
   os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
   os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..continue..
   '"<volume level=\'70\'><pitch level=\'130\'>'..continue..
   'Se agegó 60 minutos a usuario '..usuario_nro..' ." ')
+  -- TODO: AGREGAR EFECTIVAMENTE LOS MINUTOS
   os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav &" )
   os.execute("sleep 3")
   os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
