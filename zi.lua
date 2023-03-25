@@ -181,9 +181,9 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
   os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
   set_state(states_db, "a1")              -- sets statesmachine:
   os.execute("echo 1 > /tmp/zi/busyflag && echo 1 > /tmp/zi/skippableflag")
-  os.execute("  echo 1 > /tmp/zi/busyflag   &&   echo 1 > /tmp/zi/skippableflag   &&   echo 0000 > /tmp/zi/last4keys  ")
+  os.execute("  echo 1 > /tmp/zi/busyflag   &&   echo 0000 > /tmp/zi/last4keys  ")
   os.execute('aplay /tmp/zi/a1_1.wav')
-  os.execute('sleep 5   &&   echo 0 > /tmp/zi/busyflag  &&   sleep 1' )
+  os.execute('sleep 3  &&   echo 0 > /tmp/zi/busyflag  &&   sleep 1' )
 end
 
 -- a > a6
@@ -219,17 +219,16 @@ if (get_state(states_db) == "a1" and arg[1] == "key") then
   os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
   usuario_nro = arg[2]
   os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
-  os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..continue..
-  '"'..vol_pitch..'Se agegó 60 minutos al usuario seleccionado.')
-  -- ..usuario_nro..' ." ')
-  -- TODO: AGREGAR EFECTIVAMENTE LOS MINUTOS
-  os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav &" )
+  os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
+  '"'..vol_pitch..'Se agegó 60 minutos al usuario seleccionado." && '..
+  'aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav &" )
   -- os.execute("sleep 3")
   -- os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
   os.execute('echo 0 > /tmp/zi/busyflag ' )
   set_state(states_db, "iddle")
 end
 
+--[[
 -- a1 > # > iddle
 -- "bloquear un usuario"
 if (get_state(states_db) == "a6" and arg[1] == "key") then
@@ -248,6 +247,7 @@ if (get_state(states_db) == "a6" and arg[1] == "key") then
     os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
   end  
 end
+]]
 
 --[[
   os.execute("echo 0 > /tmp/zi/busyflag")
