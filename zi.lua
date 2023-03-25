@@ -24,6 +24,7 @@ phrases_i = lines_from("phrases_i.txt")  -- inicialización
 phrases_i1 = lines_from("phrases_i1.txt")  -- inicialización
 
 continue =" && "  -- connects lines of voice
+vol_pitch = "<volume level=\'70\'><pitch level=\'140\'>"
 
 -- usage:
 -- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
@@ -46,7 +47,7 @@ then
   -- os.excecute("echo hello world")
 end
 
--- any key
+-- iddle and any key
 if (get_state(states_db) == "iddle" and arg[1] == "key") then
   os.execute("echo 1 > /tmp/zi/busyflag")
   os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
@@ -74,7 +75,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       os.execute("echo 1 > /tmp/zi/busyflag")
       logged_user = i 
       os.execute("mpg123 "..path.."zi/sounds/success.mp3")
-      os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'> Bienvenido Usuario'..logged_user..' "')
+      os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..vol_pitch..'"Bienvenido Usuario'..logged_user..' "')
       os.execute("sleep 5")
       os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav &" )
       break
@@ -136,7 +137,7 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
     -- TODO: la jugada en safedns
     set_running_status(users_db, logged_user, 1)
 
-    os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>Navega!" ')
+    os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..vol_pitch..'Navega!" ')
     os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav &" )
     os.execute("sleep 3")
     os.execute("mpg123 "..path.."zi/sounds/ticktack.mp3")
@@ -145,7 +146,7 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
     -- TODO: la jugada en safedns
     set_running_status(users_db, logged_user, 0)
     
-    os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "<volume level=\'70\'><pitch level=\'130\'>Pausa de internet! " ')
+    os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..vol_pitch..'Pausa de internet! " ')
     os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav &" )
     os.execute("sleep 3")
     os.execute("mpg123 "..path.."zi/sounds/aplausos.mp3")
@@ -162,13 +163,13 @@ end
 -- admin menus
 -- a > a7
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
-  os.execute("echo 1 > /tmp/zi/busyflag && echo 1 > /tmp/zi/skippableflag")
   lastkey = arg[2]
-  logged_user = get_logged_user(states_db)
   set_state(states_db, "a7")              -- sets statesmachine:
-  os.execute("echo 1 > /tmp/zi/busyflag   &&   echo 0000 > /tmp/zi/last4keys")
-  os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..continue..
-  '"<volume level=\'70\'><pitch level=\'130\'>'..continue..
+  os.execute("echo 1 > /tmp/zi/busyflag"..continue..
+  "echo 1 > /tmp/zi/skippableflag      "..continue..
+  "echo 0000 > /tmp/zi/last4keys")
+  os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
+  '" '..vol_pitch..' '..
   'Se agegó 60 minutos a cada usuario.')
   os.execute('sleep 5   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
   set_state(states_db, "iddle")
@@ -216,8 +217,7 @@ if (get_state(states_db) == "a1" and arg[1] == "key") then
   local usuario_nro = arg[2]
   os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
   os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..continue..
-  '"<volume level=\'70\'><pitch level=\'130\'>'..continue..
-  'Se agegó 60 minutos a usuario '..usuario_nro..' ." ')
+  '"'..vol_pitch..'Se agegó 60 minutos a usuario '..usuario_nro..' ." ')
   -- TODO: AGREGAR EFECTIVAMENTE LOS MINUTOS
   os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav &" )
   os.execute("sleep 3")
@@ -233,8 +233,7 @@ if (get_state(states_db) == "a6" and arg[1] == "key") then
   if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6") then
     os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
     os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..continue..
-    '"<volume level=\'70\'><pitch level=\'130\'>'..continue..
-    'Se puso a cero los minutos de hoy para '..usuario_nro..' ." ')
+    '"'..vol_pitch..'Se puso a cero los minutos de hoy para '..usuario_nro..' ." ')
     -- TODO: BLOQUEAR AL USUARIO EFECTIVAMENTE
     os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav &" )
     os.execute("sleep 3")
