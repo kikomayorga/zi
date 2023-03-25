@@ -63,12 +63,7 @@ os.execute('sleep 10')
 
 -- a6
 os.execute(
-  'pico2wave -w /tmp/zi/a6_1.wav -l es-ES "'..vol_pitch..' '..phrases_a6[1]..'" '..continue..
-  'pico2wave -w /tmp/zi/a6_2.wav -l es-ES "'..vol_pitch..' '..phrases_a6[2]..'" '..continue.. 
-  'pico2wave -w /tmp/zi/a6_3.wav -l es-ES "'..vol_pitch..' '..phrases_a6[3]..'" '..continue..
-  'pico2wave -w /tmp/zi/a6_4.wav -l es-ES "'..vol_pitch..' '..phrases_a6[4]..'" '..continue..
-  'pico2wave -w /tmp/zi/a6_5.wav -l es-ES "'..vol_pitch..' '..phrases_a6[5]..'" '..continue..
-  'pico2wave -w /tmp/zi/a6_6.wav -l es-ES "'..vol_pitch..' '..phrases_a6[6]..'." ')
+  'pico2wave -w /tmp/zi/a6_1.wav -l es-ES "'..vol_pitch..' '..phrases_a6[1]..'" ')
 
 os.execute('sleep 10')
 
