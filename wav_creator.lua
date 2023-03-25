@@ -15,7 +15,7 @@ phrases_u1 = lines_from("phrases_u.txt")  -- usuario
 phrases_i = lines_from("phrases_i.txt")  -- inicialización
 phrases_i2 = lines_from("phrases_i2.txt")  -- inicialización
 
-vol_pitch = "<volume level=\'70\'><pitch level=\'140\'>"
+vol_pitch = "<volume level=\'70\'><pitch level=\'80\'>"
 continue = " && " 
 
 -- u
