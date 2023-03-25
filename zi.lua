@@ -23,7 +23,7 @@ phrases_u1 = lines_from("phrases_u1.txt")  -- usuario
 phrases_i = lines_from("phrases_i.txt")  -- inicialización
 phrases_i1 = lines_from("phrases_i1.txt")  -- inicialización
 
-continue =" && "  -- variable para conectar lineas entre saltos
+continue =" && "  -- connects lines of voice
 
 -- usage:
 -- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
@@ -186,7 +186,7 @@ arg[1] == "key" and arg[2] == "7") then
   os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
   os.execute(
   'aplay /tmp/zi/a2_1.wav'..continue..'aplay /tmp/zi/a2_2.wav'..continue..
-  'aplay /tmp/zi/a2_4.wav'..continue..'aplay /tmp/zi/a2_4.wav'..continue..
+  'aplay /tmp/zi/a2_3.wav'..continue..'aplay /tmp/zi/a2_4.wav'..continue..
   'aplay /tmp/zi/a2_5.wav'..continue..'aplay /tmp/zi/a2_6.wav'..continue..
   'aplay /tmp/zi/a2_7.wav')
   os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
@@ -202,7 +202,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
   os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
   os.execute(
   'aplay /tmp/zi/a6_1.wav'..continue..'aplay /tmp/zi/a6_2.wav'..continue..
-  'aplay /tmp/zi/a6_4.wav'..continue..'aplay /tmp/zi/a6_4.wav'..continue..
+  'aplay /tmp/zi/a6_3.wav'..continue..'aplay /tmp/zi/a6_4.wav'..continue..
   'aplay /tmp/zi/a6_5.wav'..continue..'aplay /tmp/zi/a6_6.wav'..continue..
   'aplay /tmp/zi/a6_7.wav')
   os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
@@ -217,7 +217,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "4") then
   os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
   os.execute(
   'aplay /tmp/zi/a2_1.wav'..continue..'aplay /tmp/zi/a2_2.wav'..continue..
-  'aplay /tmp/zi/a2_4.wav'..continue..'aplay /tmp/zi/a2_4.wav'..continue..
+  'aplay /tmp/zi/a2_3.wav'..continue..'aplay /tmp/zi/a2_4.wav'..continue..
   'aplay /tmp/zi/a2_5.wav'..continue..'aplay /tmp/zi/a2_6.wav'..continue..
   'aplay /tmp/zi/a2_7.wav')
   os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
