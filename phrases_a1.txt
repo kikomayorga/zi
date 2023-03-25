@@ -1,1 +1,1 @@
-Marque el número de usuario para agregar una hora adicional.
+Elija un usuario para agregar una hora adicional.
