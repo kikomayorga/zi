@@ -35,6 +35,7 @@ then
 	sleep 1
 	echo 0000 > /tmp/zi/last4keys
 	echo 0 > /tmp/zi/busyflag
+	echo 0 > /tmp/zi/skippableflag
 	cd /etc/zi && lua zi.lua key 1 0000
 fi
 
