@@ -220,7 +220,7 @@ if (get_state(states_db) == "a1" and arg[1] == "key") then
   usuario_nro = arg[2]
   os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
   os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
-  '"'..vol_pitch..'Se agegó 60 minutos al usuario '..usuario_nro..'." && '..
+  '"'..vol_pitch..'Se agregó 60 minutos al usuario '..usuario_nro..'." && '..
   'aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav ')
   -- os.execute("sleep 3")
   -- os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")

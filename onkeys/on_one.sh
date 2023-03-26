@@ -16,12 +16,6 @@ then
 
 	#save into temporary file
 	echo $lkchain > /tmp/zi/last4keys
-
-	#forward to lua
-
-	#when running on ubuntu
-	#lua ~/Documents/zi/zi.lua key 1 $lkchain
-	#when deploy on openwrt:
 	cd /etc/zi && lua zi.lua key 1 $lkchain
 
 fi
@@ -33,9 +27,6 @@ then
 	killall -q aplay &
 	killall -q lua
 	sleep 1
-	echo 0000 > /tmp/zi/last4keys
-	echo 0 > /tmp/zi/busyflag
-	echo 0 > /tmp/zi/skippableflag
-	cd /etc/zi && lua zi.lua key 1 0000
+	echo 0000 > /tmp/zi/last4keys && echo 0 > /tmp/zi/busyflag && echo 0 > /tmp/zi/skippableflag && cd /etc/zi && lua zi.lua key 1 0000
 fi
 
