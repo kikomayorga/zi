@@ -67,9 +67,9 @@ os.execute(
 
 os.execute('sleep 10')
 
--- a0
+-- a4
 os.execute(
-  'pico2wave -w /tmp/zi/a4_1.wav -l es-ES "'..vol_pitch..' '..phrases_a0[1]..'" ')
+  'pico2wave -w /tmp/zi/a0_1.wav -l es-ES "'..vol_pitch..' '..phrases_a0[1]..'" ')
 os.execute('sleep 10')
 
 

@@ -200,17 +200,18 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
   os.execute('killall -q lua')
 end
 
--- a > a2
-if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "2") then
+-- a > a0
+-- bloquear a todos hasta mañana
+if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "0") then
   os.execute("mpg123 "..path.."zi/sounds/click.mp3")
-  set_state(states_db, "a3")              -- sets statesmachine:
-  os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
-  os.execute(
-  'aplay /tmp/zi/a2_1.wav'..continue..'aplay /tmp/zi/a2_2.wav'..continue..
-  'aplay /tmp/zi/a2_3.wav'..continue..'aplay /tmp/zi/a2_4.wav'..continue..
-  'aplay /tmp/zi/a2_5.wav'..continue..'aplay /tmp/zi/a2_6.wav'..continue..
-  'aplay /tmp/zi/a2_7.wav')
-  os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
+  set_state(states_db, "a0")              -- sets statesmachine:
+  os.execute("echo 1 > /tmp/zi/busyflag  && "..
+  "echo 1 > /tmp/zi/skippableflag && "..
+  "echo 0000 > /tmp/zi/last4keys")
+  os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
+  '" '..vol_pitch..' '..'Se eliminó el saldo de todos los usuarios por hoy." '..
+  '&& aplay /tmp/zi/buffer.wav &&  echo 0 > /tmp/zi/busyflag   '..
+  '&&   echo 0 > /tmp/zi/skippableflag' )
   set_state(states_db, "iddle")
   set_logged_user(states_db, 0)
   os.execute('killall -q lua')
