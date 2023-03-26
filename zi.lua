@@ -50,7 +50,7 @@ end
 -- iddle and any key
 if (get_state(states_db) == "iddle" and arg[1] == "key") then
   os.execute("echo 1 > /tmp/zi/busyflag")
-  os.execute("mpg123 "..path.."zi/sounds/keypress.mp3 &")
+  os.execute("mpg123 "..path.."zi/sounds/click.mp3 &")
   logged_user = 0
   logged_admin = 0
   lastkey = arg[2]
@@ -162,7 +162,7 @@ end
 -- admin menus
 -- a > a7
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
-  os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
+  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   lastkey = arg[2]
   set_state(states_db, "a7")              -- sets statesmachine:
   os.execute("echo 1 > /tmp/zi/busyflag"..continue..
@@ -178,7 +178,7 @@ end
 
 -- a > a1
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
-  os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
+  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   set_state(states_db, "a1")              -- sets statesmachine:
   os.execute("echo 1 > /tmp/zi/busyflag && echo 1 > /tmp/zi/skippableflag")
   os.execute("  echo 1 > /tmp/zi/busyflag   &&   echo 0000 > /tmp/zi/last4keys  ")
@@ -188,7 +188,7 @@ end
 
 -- a > a6
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
-  os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
+  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   -- lastkey = arg[2]
   -- logged_user = get_logged_user(states_db)
   set_state(states_db, "a6")              -- sets statesmachine:
@@ -200,7 +200,7 @@ end
 
 -- a > a2
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "2") then
-  os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
+  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   set_state(states_db, "a3")              -- sets statesmachine:
   os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
   os.execute(
@@ -216,7 +216,7 @@ end
 -- a1 > # > iddle
 -- "agregar 60 minutos a un usuario"
 if (get_state(states_db) == "a1" and arg[1] == "key") then
-  os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
+  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   usuario_nro = arg[2]
   os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
   os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
