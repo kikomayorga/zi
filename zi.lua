@@ -256,6 +256,7 @@ if (get_state(states_db) == "a6" and arg[1] == "key") then
   os.execute('killall -q lua')
 end
 
+-- usage: (for closing)
 --[[
   os.execute("echo 0 > /tmp/zi/busyflag")
   os.execute("echo 0 > /tmp/zi/skippableflag")
