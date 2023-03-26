@@ -50,7 +50,7 @@ end
 -- iddle and any key
 if (get_state(states_db) == "iddle" and arg[1] == "key") then
   os.execute("echo 1 > /tmp/zi/busyflag")
-  os.execute("mpg123 "..path.."zi/sounds/keypress.mp3")
+  os.execute("mpg123 "..path.."zi/sounds/keypress.mp3 &")
   logged_user = 0
   logged_admin = 0
   lastkey = arg[2]
