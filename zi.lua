@@ -168,8 +168,9 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   "echo 1 > /tmp/zi/skippableflag && "..
   "echo 0000 > /tmp/zi/last4keys")
   os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
-  '" '..vol_pitch..' '..'Se agegó 60 minutos a cada usuario.')
-  os.execute('sleep 2 && aplay /tmp/zi/buffer.wav &&  echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
+  '" '..vol_pitch..' '..'Se agregó 60 minutos a cada usuario." '..
+  '&& aplay /tmp/zi/buffer.wav &&  echo 0 > /tmp/zi/busyflag   '..
+  '&&   echo 0 > /tmp/zi/skippableflag' )
   set_state(states_db, "iddle")
   set_logged_user(states_db, 0)
 end
