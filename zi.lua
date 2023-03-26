@@ -172,7 +172,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
   '" '..vol_pitch..' '..'Se agregó 60 minutos a cada usuario." '..
   '&& aplay /tmp/zi/buffer.wav &&  echo 0 > /tmp/zi/busyflag   '..
-  '&&   echo 0 > /tmp/zi/skippableflag  &&  mpg123 /etc/zi/success.mp3)
+  '&&   echo 0 > /tmp/zi/skippableflag  &&  mpg123 /etc/zi/success.mp3')
   set_logged_user(states_db, 0)
 end
 
