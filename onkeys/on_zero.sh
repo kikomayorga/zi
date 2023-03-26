@@ -16,12 +16,6 @@ then
 
 	#save into temporary file
 	echo $lkchain > /tmp/zi/last4keys
-
-	#forward to lua
-
-	#when running on ubuntu
-	#lua ~/Documents/zi/zi.lua key 1 $lkchain
-	#when deploy on openwrt:
 	cd /etc/zi && lua zi.lua key 0 $lkchain
 
 fi
@@ -30,10 +24,6 @@ if [ "$busyflag" = "1" ] && [ "$skippableflag" = "1" ]
 then 
 	mpg123 /etc/zi/sounds/click.mp3
 	#kill current audio and process
-	killall -q aplay &
-	killall -q lua
-	echo 0000 > /tmp/zi/last4keys
-	echo 0 > /tmp/zi/busyflag
-	cd /etc/zi && lua zi.lua key 0 0000
+	killall -q aplay && killall -q lua && echo 0000 > /tmp/zi/last4keys && echo 0 > /tmp/zi/busyflag && echo 0 > /tmp/zi/skippableflag && cd /etc/zi && lua zi.lua key 0 0000
 fi
 
