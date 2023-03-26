@@ -24,7 +24,7 @@ phrases_i = lines_from("phrases_i.txt")  -- inicialización
 phrases_i1 = lines_from("phrases_i1.txt")  -- inicialización
 
 continue =" && "  -- connects lines of voice
-vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'100\'>"
+vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
 
 -- usage:
 -- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
@@ -167,13 +167,15 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   set_state(states_db, "iddle")              -- sets statesmachine:
   os.execute("echo 1 > /tmp/zi/busyflag  && "..
-  "echo 1 > /tmp/zi/skippableflag && "..
+  "echo 0 > /tmp/zi/skippableflag && "..
   "echo 0000 > /tmp/zi/last4keys")
   os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
-  '" '..vol_pitch..' '..'Se agregó 60 minutos a cada usuario." '..
+  '" '..vol_pitch..' '..'Se agregó 60 minutos a cada usuario. Un Exito." '..
   '&& aplay /tmp/zi/buffer.wav &&  echo 0 > /tmp/zi/busyflag   '..
-  '&&   echo 0 > /tmp/zi/skippableflag  &&  mpg123 /etc/zi/sounds/success.mp3')
+  '&&   echo 0 > /tmp/zi/skippableflag') 
+  --sonido zen?  &&  mpg123 /etc/zi/sounds/success.mp3')
   set_logged_user(states_db, 0)
+  os.execute('killall -q lua')
 end
 
 -- a > a1
