@@ -163,15 +163,13 @@ end
 -- a > a7
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   os.execute("mpg123 "..path.."zi/sounds/click.mp3")
-  lastkey = arg[2]
   set_state(states_db, "a7")              -- sets statesmachine:
-  os.execute("echo 1 > /tmp/zi/busyflag"..continue..
-  "echo 1 > /tmp/zi/skippableflag      "..continue..
+  os.execute("echo 1 > /tmp/zi/busyflag  && "..
+  "echo 1 > /tmp/zi/skippableflag && "..
   "echo 0000 > /tmp/zi/last4keys")
   os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
-  '" '..vol_pitch..' '..
-  'Se agegó 60 minutos a cada usuario.')
-  os.execute('sleep 5   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
+  '" '..vol_pitch..' '..'Se agegó 60 minutos a cada usuario.')
+  os.execute('sleep 2 && aplay /tmp/zi/buffer.wav &&  echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
   set_state(states_db, "iddle")
   set_logged_user(states_db, 0)
 end
