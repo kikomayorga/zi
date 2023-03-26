@@ -194,7 +194,6 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
   os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
   os.execute('aplay /tmp/zi/a6_1.wav')
   os.execute('echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag' )
-  set_logged_user(states_db, 0)
 end
 
 -- a > a2
@@ -233,6 +232,7 @@ end
 -- "bloquear un usuario"
 if (get_state(states_db) == "a6" and arg[1] == "key") then
   usuario_nro = arg[2]
+  os.execute("mpg123 /etc/zi/sounds/success.mp3")
   if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6") then
     os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
     os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
