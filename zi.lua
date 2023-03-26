@@ -231,12 +231,12 @@ end
 -- a6 > # > iddle
 -- "bloquear un usuario"
 if (get_state(states_db) == "a6" and arg[1] == "key") then
+  os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
   usuario_nro = arg[2]
-  os.execute("mpg123 /etc/zi/sounds/success.mp3")
+  -- os.execute("mpg123 /etc/zi/sounds/success.mp3")
   if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6") then
-    os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
     os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
-    '"'..vol_pitch..'Se puso a cero los minutos de hoy para usuario número: '..usuario_nro..' ." '..
+    '"'..vol_pitch..'Se puso a cero los minutos de hoy para usuario número '..usuario_nro..' ." '..
     '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav'..
     '&& mpg123 "..path.."zi/sounds/success.mp3")
     os.execute('echo 0 > /tmp/zi/busyflag ' )
