@@ -24,7 +24,7 @@ phrases_i = lines_from("phrases_i.txt")  -- inicialización
 phrases_i1 = lines_from("phrases_i1.txt")  -- inicialización
 
 continue =" && "  -- connects lines of voice
-vol_pitch = "<volume level=\'30\'><pitch level=\'60\'><speed level=\'60\'>"
+vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'80\'>"
 
 -- usage:
 -- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
