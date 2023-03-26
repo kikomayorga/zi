@@ -228,26 +228,24 @@ if (get_state(states_db) == "a1" and arg[1] == "key") then
   set_state(states_db, "iddle")
 end
 
---[[
--- a1 > # > iddle
+
+-- a6 > # > iddle
 -- "bloquear un usuario"
 if (get_state(states_db) == "a6" and arg[1] == "key") then
-  local usuario_nro = arg[2]
+  usuario_nro = arg[2]
   if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6") then
     os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
     os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..continue..
-    '"'..vol_pitch..'Se puso a cero los minutos de hoy para '..usuario_nro..' ." ')
-    -- TODO: BLOQUEAR AL USUARIO EFECTIVAMENTE
-    os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav &" )
+    '"'..vol_pitch..'Se puso a cero los minutos de hoy para usuario número: '..usuario_nro..' ." '..
+    '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav' )
     os.execute("sleep 3")
-    os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
+    os.execute("mpg123 "..path.."zi/sounds/success.mp3")
     os.execute('echo 0 > /tmp/zi/busyflag ' )
     set_state(states_db, "iddle")
   else
     os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
   end  
 end
-]]
 
 --[[
   os.execute("echo 0 > /tmp/zi/busyflag")

@@ -1,1 +1,1 @@
-Elige nro de usuario a ser bloqueado.
+Elige el número de usuario a ser bloqueado.
