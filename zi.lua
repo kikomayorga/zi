@@ -24,7 +24,7 @@ phrases_i = lines_from("phrases_i.txt")  -- inicialización
 phrases_i1 = lines_from("phrases_i1.txt")  -- inicialización
 
 continue =" && "  -- connects lines of voice
-vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'120\'>"
+vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'100\'>"
 
 -- usage:
 -- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
@@ -138,8 +138,8 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
     -- TODO: la jugada en safedns
     set_running_status(users_db, logged_user, 1)
 
-    os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..vol_pitch..'Navega!" ')
-    os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav &" )
+    os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..vol_pitch..'Navega!" '..
+    '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav')
     os.execute("sleep 3")
     os.execute("mpg123 "..path.."zi/sounds/ticktack.mp3")
   end
@@ -147,8 +147,8 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
     -- TODO: la jugada en safedns
     set_running_status(users_db, logged_user, 0)
     
-    os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..vol_pitch..'Pausa de internet! " ')
-    os.execute("aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav &" )
+    os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..vol_pitch..'Pausa de internet! " '..
+    '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav')
     os.execute("sleep 3")
     os.execute("mpg123 "..path.."zi/sounds/aplausos.mp3")
   end
