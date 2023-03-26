@@ -24,6 +24,8 @@ if [ "$busyflag" = "1" ] && [ "$skippableflag" = "1" ]
 then 
 	mpg123 /etc/zi/sounds/click.mp3
 	#kill current audio and process
-	killall -q aplay && killall -q lua && echo 0000 > /tmp/zi/last4keys && echo 0 > /tmp/zi/busyflag && echo 0 > /tmp/zi/skippableflag && cd /etc/zi && lua zi.lua key 6 0000
+	killall -q aplay && killall -q lua
+	sleep 1 
+	echo 0000 > /tmp/zi/last4keys && echo 0 > /tmp/zi/busyflag && echo 0 > /tmp/zi/skippableflag && cd /etc/zi && lua zi.lua key 6 0000
 fi
 
