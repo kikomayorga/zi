@@ -11,7 +11,7 @@ admins_db = "admins_table.db"
 devices_db = "devices_table.db"
 states_db = "states_table.db"
 
-phrases = lines_from("phrases.txt")      -- admin main menu
+-- se puede borrar esto? no hay ese file:  phrases = lines_from("phrases.txt")      -- admin main menu
 phrases_a = lines_from("phrases_a.txt")  -- admin phrases
 phrases_a1 = lines_from("phrases_a1.txt")  -- admin phrases
 phrases_a7 = lines_from("phrases_a7.txt")  -- admin phrases
@@ -24,7 +24,7 @@ phrases_i = lines_from("phrases_i.txt")  -- inicialización
 phrases_i1 = lines_from("phrases_i1.txt")  -- inicialización
 
 continue =" && "  -- connects lines of voice
-vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'80\'>"
+vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'120\'>"
 
 -- usage:
 -- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
