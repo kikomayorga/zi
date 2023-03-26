@@ -183,6 +183,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
   os.execute("  echo 1 > /tmp/zi/busyflag   &&   echo 0000 > /tmp/zi/last4keys  ")
   os.execute('aplay /tmp/zi/a1_1.wav')
   os.execute('sleep 3  &&   echo 0 > /tmp/zi/busyflag  &&   sleep 1' )
+  os.execute('killall -q lua')
 end
 
 -- a > a6
@@ -194,6 +195,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
   os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
   os.execute('aplay /tmp/zi/a6_1.wav')
   os.execute('echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag' )
+  os.execute('killall -q lua')
 end
 
 -- a > a2
@@ -209,6 +211,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "2") then
   os.execute('sleep 20   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
   set_state(states_db, "iddle")
   set_logged_user(states_db, 0)
+  os.execute('killall -q lua')
 end
 
 -- a1 > # > iddle
@@ -225,6 +228,7 @@ if (get_state(states_db) == "a1" and arg[1] == "key") then
   -- os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
   os.execute('echo 0 > /tmp/zi/busyflag ' )
   set_state(states_db, "iddle")
+  os.execute('killall -q lua')
 end
 
 
@@ -244,6 +248,7 @@ if (get_state(states_db) == "a6" and arg[1] == "key") then
   else
     os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
   end  
+  os.execute('killall -q lua')
 end
 
 --[[
