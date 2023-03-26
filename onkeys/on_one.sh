@@ -22,7 +22,7 @@ fi
 
 if [ "$busyflag" = "1" ] && [ "$skippableflag" = "1" ]
 then 
-	mpg123 /etc/zi/sounds/click.mp3
+	mpg123 /etc/zi/sounds/keypress.mp3
 	#kill current audio and process
 	killall -q aplay &
 	killall -q lua
