@@ -193,7 +193,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
   set_state(states_db, "a6")              -- sets statesmachine:
   os.execute("echo 1 > /tmp/zi/busyflag     &&     echo 1 > /tmp/zi/skippableflag    &&   echo 0000 > /tmp/zi/last4keys")
   os.execute('aplay /tmp/zi/a6_1.wav')
-  os.execute('sleep 5   &&   echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag    &&   sleep 1' )
+  os.execute('echo 0 > /tmp/zi/busyflag   &&   echo 0 > /tmp/zi/skippableflag' )
   set_logged_user(states_db, 0)
 end
 
