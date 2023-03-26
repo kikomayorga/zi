@@ -235,6 +235,7 @@ end
 -- a6 > # > iddle
 -- "bloquear un usuario"
 if (get_state(states_db) == "a6" and arg[1] == "key") then
+  os.execute("mpg123 /etc/zi/sounds/click.mp3")
   os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
   usuario_nro = arg[2]
   -- os.execute("mpg123 /etc/zi/sounds/success.mp3")
