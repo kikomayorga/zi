@@ -169,7 +169,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   os.execute("echo 1 > /tmp/zi/busyflag  && "..
   "echo 0 > /tmp/zi/skippableflag && "..
   "echo 0000 > /tmp/zi/last4keys" )
-  os.execute('killall -q aplay  && pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
+  os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
   '" '..vol_pitch..'Se agregó 60 minutos a cada usuario. Un Exito." '..
   '&& aplay /tmp/zi/buffer.wav &&  echo 0 > /tmp/zi/busyflag   '..
   '&&   echo 0 > /tmp/zi/skippableflag &&  mpg123 /etc/zi/sounds/success.mp3')
