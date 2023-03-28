@@ -117,7 +117,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       os.execute('aplay /tmp/zi/u_1.wav'..
         '&& pico2wave -w /tmp/zi/wav.wav -l es-ES " '..vol_pitch..' '..
         get_time_left_today(users_db, logged_user)..
-        '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav'..
+        ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav'..
         '&& aplay /tmp/zi/u_2.wav')
     end
     if running == 1 then
