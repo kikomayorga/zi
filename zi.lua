@@ -60,6 +60,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   for i=1, 6 do 
     if last4keys == get_admin_password(admins_db, i)
     then 
+      os.execute("echo 0000 > /tmp/zi/last4keys")
       logged_admin = i 
       os.execute("mpg123 "..path.."zi/sounds/success.mp3")
       os.execute("aplay /tmp/zi/a_1.wav")  -- "Bienvenido Administrador"
@@ -72,6 +73,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   for i=1, 6 do 
     if last4keys == get_password(users_db, i)
     then 
+      os.execute("echo 0000 > /tmp/zi/last4keys")
       os.execute("echo 1 > /tmp/zi/busyflag")
       logged_user = i 
       os.execute("mpg123 "..path.."zi/sounds/success.mp3")
@@ -94,6 +96,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   -- if admin password
   -- states: iddle > a
   if logged_admin ~= 0 then
+    os.execute("echo 0000 > /tmp/zi/last4keys")
     set_state(states_db, "a")              -- sets statesmachine:
     -- set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
     os.execute("echo 1 > /tmp/zi/busyflag  &&  echo 1 > /tmp/zi/skippableflag  &&  echo 0000 > /tmp/zi/last4keys  ")
@@ -108,8 +111,8 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   -- states: iddle > u
   -- TODO: CHECK flags
   if logged_user ~= 0 then
-    running = get_running_status(users_db, logged_user)
     os.execute("echo 0000 > /tmp/zi/last4keys")
+    running = get_running_status(users_db, logged_user)
     if running == 0 then
       os.execute('aplay /tmp/zi/u_1.wav'..
         '&& pico2wave -w /tmp/zi/wav.wav -l es-ES " '..vol_pitch..' '..
@@ -163,6 +166,7 @@ end
 
 -- admin menus
 -- a > a7
+os.execute("echo 0000 > /tmp/zi/last4keys")
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   set_state(states_db, "iddle")              -- sets statesmachine:
@@ -178,6 +182,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
 end
 
 -- a > a1
+os.execute("echo 0000 > /tmp/zi/last4keys")
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
   os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   set_state(states_db, "a1")              -- sets statesmachine:
@@ -189,6 +194,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
 end
 
 -- a > a6
+os.execute("echo 0000 > /tmp/zi/last4keys")
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
   os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   -- lastkey = arg[2]
@@ -202,6 +208,7 @@ end
 
 -- a > a0
 -- bloquear a todos hasta mañana
+os.execute("echo 0000 > /tmp/zi/last4keys")
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "0") then
   os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   set_state(states_db, "a0")              -- sets statesmachine:
@@ -220,6 +227,7 @@ end
 -- a1 > # > iddle
 -- "agregar 60 minutos a un usuario"
 if (get_state(states_db) == "a1" and arg[1] == "key") then
+  os.execute("echo 0000 > /tmp/zi/last4keys")
   os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   usuario_nro = arg[2]
   os.execute('echo 1 > /tmp/zi/busyflag  &&  echo 0000 > /tmp/zi/last4keys')
@@ -252,6 +260,7 @@ if (get_state(states_db) == "a6" and arg[1] == "key") then
   else
     os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
   end  
+  os.execute("echo 0000 > /tmp/zi/last4keys")
   os.execute('killall -q lua')
 end
 
