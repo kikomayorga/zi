@@ -79,7 +79,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       os.execute("mpg123 "..path.."zi/sounds/success.mp3")
       os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..vol_pitch..
       ' bienvenido Usuario'..logged_user..
-      ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav &" )
+      ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav ')
       break
     end
     os.execute("echo 0 > /tmp/zi/busyflag")
