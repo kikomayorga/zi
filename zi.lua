@@ -114,14 +114,16 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     os.execute("echo 0000 > /tmp/zi/last4keys")
     running = get_running_status(users_db, logged_user)
     if running == 0 then
+      os.execute('mpg123 keypress.mp3')
       os.execute('aplay /tmp/zi/u_1.wav')
-        os.execute('pico2wave -w /tmp/zi/get_time_left.wav -l es-ES " '..vol_pitch..' '..
-        get_time_left_today(users_db, logged_user)..
-        'caso en que running es cero ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/get_time_left.wav')
-        os.execute('sleep 5')
-        os.execute('aplay /tmp/zi/u_2.wav')
+      os.execute('pico2wave -w /tmp/zi/get_time_left.wav -l es-ES " '..vol_pitch..' '..
+      get_time_left_today(users_db, logged_user)..
+      'caso en que running es cero ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/get_time_left.wav')
+      os.execute('sleep 5')
+      os.execute('aplay /tmp/zi/u_2.wav')
     end
     if running == 1 then
+      os.execute('mpg123 alarma.mp3')
       os.execute('aplay /tmp/zi/u_1.wav'..
         '&& pico2wave -w /tmp/zi/get_time_left -l es-ES " '..vol_pitch..' '..
         get_time_left_today(users_db, logged_user)..
