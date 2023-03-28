@@ -123,14 +123,15 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       os.execute('sleep 1')
       os.execute('aplay /tmp/zi/u_2.wav')
     end
-    os.execute('mpg123 keypress.mp3')
-    os.execute('aplay /tmp/zi/u_1.wav')
-    --[[ os.execute('pico2wave -w /tmp/zi/get_time_left.wav -l es-ES " '..vol_pitch..' '..
-    get_time_left_today(users_db, logged_user)..
-    'caso en que running es cero ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/get_time_left.wav')
-    ]]
-    os.execute('sleep 1')
-    os.execute('aplay /tmp/zi/u_2.wav')
+    if running == 1 then
+      os.execute('mpg123 keypress.mp3')
+      os.execute('aplay /tmp/zi/u_1.wav')
+      --[[ os.execute('pico2wave -w /tmp/zi/get_time_left.wav -l es-ES " '..vol_pitch..' '..
+      get_time_left_today(users_db, logged_user)..
+      'caso en que running es cero ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/get_time_left.wav')
+      ]]
+      os.execute('sleep 1')
+      os.execute('aplay /tmp/zi/u_2.wav')
     end  
     set_state(states_db, "user_menu")  -- sets statesmachine:
     set_logged_user(states_db, logged_user)        -- TODO:  is this needed?
