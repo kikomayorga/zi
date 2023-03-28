@@ -145,6 +145,7 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
     '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav')
     os.execute("sleep 3")
     os.execute("mpg123 "..path.."zi/sounds/ticktack.mp3")
+    set_state(states_db, "iddle")
   end
   if lastkey == "0" then
     -- TODO: la jugada en safedns
