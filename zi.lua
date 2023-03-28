@@ -73,13 +73,13 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   for i=1, 6 do 
     if last4keys == get_password(users_db, i)
     then 
+      logged_user = i 
       os.execute("echo 0000 > /tmp/zi/last4keys")
       os.execute("echo 1 > /tmp/zi/busyflag")
-      logged_user = i 
       os.execute("mpg123 "..path.."zi/sounds/success.mp3")
-      os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..vol_pitch..
-      ' bienvenido Usuario'..logged_user..
-      ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav ')
+      os.execute('pico2wave -w /tmp/bienvenido_u_n.wav -l es-ES "'..vol_pitch..
+      ' bienvenido Usuario '..logged_user..
+      ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/bienvenido_u_n.wav ')
       break
     end
     os.execute("echo 0 > /tmp/zi/busyflag")
@@ -115,16 +115,16 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     running = get_running_status(users_db, logged_user)
     if running == 0 then
       os.execute('aplay /tmp/zi/u_1.wav'..
-        '&& pico2wave -w /tmp/zi/wav.wav -l es-ES " '..vol_pitch..' '..
+        '&& pico2wave -w /tmp/zi/get_time_left.wav -l es-ES " '..vol_pitch..' '..
         get_time_left_today(users_db, logged_user)..
-        ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav'..
+        ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/get_time_left.wav'..
         '&& aplay /tmp/zi/u_2.wav')
     end
     if running == 1 then
       os.execute('aplay /tmp/zi/u_1.wav'..
-        '&& pico2wave -w /tmp/zi/wav.wav -l es-ES " '..vol_pitch..' '..
+        '&& pico2wave -w /tmp/zi/get_time_left -l es-ES " '..vol_pitch..' '..
         get_time_left_today(users_db, logged_user)..
-        '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/wav.wav'..
+        ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/get_time_left.wav'..
         '&& aplay /tmp/zi/u_3.wav')
     end  
     set_state(states_db, "user_menu")  -- sets statesmachine:
@@ -151,8 +151,8 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
     -- TODO: la jugada en safedns
     set_running_status(users_db, logged_user, 0)
     
-    os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..vol_pitch..'Pausa de internet! " '..
-    '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav')
+    os.execute('pico2wave -w /tmp/pausa_de_i.wav -l es-ES "'..vol_pitch..'Pausa de internet! " '..
+    '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/pausa_de_i.wav')
     os.execute("sleep 3")
     os.execute("mpg123 "..path.."zi/sounds/aplausos.mp3")
   end
