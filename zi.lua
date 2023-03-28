@@ -138,6 +138,8 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
 end
 
 if (get_state(states_db) == "user_menu" and arg[1] == "key") then
+  os.execute("echo 0000 > /tmp/zi/last4keys")
+  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   logged_user = get_logged_user(states_db)
   lastkey = arg[2]
   if lastkey == "1" then
