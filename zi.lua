@@ -5,11 +5,20 @@ require "zi_functions"  -- custom functions by zi
 require "states_machine" -- states need some persistance 
 require "animals_table"  -- animals_table.lua
 require "vehicles_table"  -- vehicles_table.lua
+require "policies_table"  -- policies_table.lua
 
 users_db = "users_table.db"
 admins_db = "admins_table.db"
 devices_db = "devices_table.db"
 states_db = "states_table.db"
+policies_db = "policies_table.db"
+
+-- safedns variables:
+safedns_rule_offset = "cfg038c89"
+safedns_policy_0 = "1922033194"
+safedns_policy_1 = "176489346"
+safedns_policy_2 = "1388236232"
+
 
 -- se puede borrar esto? no hay ese file:  phrases = lines_from("phrases.txt")      -- admin main menu
 phrases_a = lines_from("phrases_a.txt")  -- admin phrases
@@ -40,7 +49,9 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
 if (arg[1] == "users" and arg[2] == "reset") then users_db_reset(users_db) end
 if (arg[1] == "admins" and arg[2] == "reset") then admins_db_reset(admins_db) end
 if (arg[1] == "devices" and arg[2] == "reset") then devices_db_reset(devices_db) end
+if (arg[1] == "policies" and arg[2] == "reset") then policies_db_reset(states_db) end
 if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
+
 
 if (arg[1] == "test")
 then
@@ -143,9 +154,10 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
   logged_user = get_logged_user(states_db)
   lastkey = arg[2]
 
-  -- TOGGLE
+  -- TOGGLED
   if lastkey == "1" then
     set_running_status(users_db, logged_user, 1)
+    apply_running_status(users_db, logged_user, 1)
     os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..
     vol_pitch..'Navega!" '..
     '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav && mpg123 '..path..

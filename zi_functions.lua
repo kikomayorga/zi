@@ -35,19 +35,6 @@ table.save(t, db_file)
 return 1
 end
 
-function policies_db_create(db_file)
-  t = {}
-  for i = 1, 6 do
-    t[i] = {
-      ["Default"]="1922033194", 
-      ["Focus"]="176489346",
-      ["Libertad"]="1388236232",
-      ["Reserved"]="0000000000"
-      }
-  end
-table.save(t, db_file)
-return 1
-end
 
 function devices_db_reset(db_file)
   devices_table = {}
@@ -110,6 +97,19 @@ function set_running_status(db_file, userID, running)
   t[userID]["running"]=running
   table.save(t, db_file)
 end
+
+function apply_running_status(db_file, userID, running)
+  --NOT YET IMPLEMENTED
+end
+
+function device_to_rule(deviceNr)
+  safedns_rule_offset = "cfg038c89"
+  ruleNr = deviceNr + 038h
+  -- FIX THIS LATER !!!!
+end
+
+
+
 
 function assign_device_permanently(db_file, deviceNR, userID)
   t = table.load(db_file)
