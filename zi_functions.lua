@@ -35,6 +35,20 @@ table.save(t, db_file)
 return 1
 end
 
+function policies_db_create(db_file)
+  t = {}
+  for i = 1, 6 do
+    t[i] = {
+      ["Default"]="1922033194", 
+      ["Focus"]="176489346",
+      ["Libertad"]="1388236232",
+      ["Reserved"]="0000000000"
+      }
+  end
+table.save(t, db_file)
+return 1
+end
+
 function devices_db_reset(db_file)
   devices_table = {}
   for i = 1, 32 do
