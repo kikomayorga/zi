@@ -142,20 +142,19 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
   os.execute("mpg123 "..path.."zi/sounds/click.mp3")
   logged_user = get_logged_user(states_db)
   lastkey = arg[2]
-  if lastkey == "1" then
-    -- TODO: la jugada en safedns
-    set_running_status(users_db, logged_user, 1)
 
+  -- TOGGLE
+  if lastkey == "1" then
+    set_running_status(users_db, logged_user, 1)
     os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..
     vol_pitch..'Navega!" '..
     '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav && mpg123 '..path..
     'zi/sounds/ticktack.mp3')
     set_state(states_db, "iddle")
   end
+
   if lastkey == "0" then
-    -- TODO: la jugada en safedns
     set_running_status(users_db, logged_user, 0)
-    
     os.execute('pico2wave -w /tmp/pausa_de_i.wav -l es-ES "'..
     vol_pitch..'Pausa de internet! " '..
     '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/pausa_de_i.wav && mpg123 '..path..
@@ -171,7 +170,8 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
 os.exit() 
 end
 
--- admin menus
+
+-- ADMIN MENUS
 -- a > a7
 os.execute("echo 0000 > /tmp/zi/last4keys")
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
