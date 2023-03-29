@@ -102,14 +102,20 @@ function apply_running_status(db_file, userID, running)
   --NOT YET IMPLEMENTED
 end
 
-function device_to_rule(deviceNr)
-  safedns_rule_offset = "cfg038c89"
-  ruleNr = deviceNr + 038h
-  -- FIX THIS LATER !!!!
+function deviceToRule(deviceNr)
+  -- safedns first rule string: "cfg038c89"
+  ruleNr = string.format("%03x", tonumber(0x038) + deviceNr - 1)
+  ruleCode = "cfg"..ruleNr.."c89" 
+  return ruleCode
 end
 
-
-
+function ruleToDevice(ruleCode)
+  -- safedns first rule string: "cfg038c89"
+  -- ruleNr = "0x"..string.sub(ruleCode,4,6)
+  ruleNrHex = "0x"..string.sub(ruleCode,4,6)
+  deviceNr = tonumber(ruleNrHex) - tonumber(0x038) + 1 
+  return deviceNr
+end
 
 function assign_device_permanently(db_file, deviceNR, userID)
   t = table.load(db_file)
