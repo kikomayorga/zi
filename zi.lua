@@ -5,13 +5,13 @@ require "zi_functions"  -- custom functions by zi
 require "states_machine" -- states need some persistance 
 require "animals_table"  -- animals_table.lua
 require "vehicles_table"  -- vehicles_table.lua
-require "policies_table"  -- policies_table.lua
+
 
 users_db = "users_table.db"
 admins_db = "admins_table.db"
 devices_db = "devices_table.db"
 states_db = "states_table.db"
-policies_db = "policies_table.db"
+
 
 -- safedns variables:
 safedns_rule_offset = "cfg038c89"
