@@ -11,6 +11,7 @@ users_db = "users_table.db"
 admins_db = "admins_table.db"
 devices_db = "devices_table.db"
 states_db = "states_table.db"
+leases_db = "leases_table.db"
 
 
 -- safedns variables:

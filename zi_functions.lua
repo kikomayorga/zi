@@ -48,6 +48,22 @@ function devices_db_reset(db_file)
 return 1
 end
 
+function leases_db_reset(db_file)
+  leases_table = {}
+  for i = 1, 12 do
+    lesases_table[i] = {
+      ["user_id"]    = 0
+      ["device_id"]  = 0
+      ["start_time"] = "00:00",
+      ["credit"]     = 0
+      ["base_token_index"] = 0 
+      ["set_token_index"]  = 1
+     }
+  end
+  table.save(devices_table, db_file)
+return 1
+end
+
 function rename_user(db_file, userID, new_name)
   t = table.load(db_file)
   t[userID]["user_name"]=new_name
