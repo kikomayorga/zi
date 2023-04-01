@@ -118,9 +118,9 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     os.execute("echo 0 > /tmp/zi/busyflag && echo 0 > /tmp/zi/skippableflag")
   end
 
+  -- USER MENU:
   -- if user password
   -- states: iddle > u
-  -- TODO: CHECK flags
   if logged_user ~= 0 then
     os.execute("echo 0000 > /tmp/zi/last4keys")
     running = get_running_status(users_db, logged_user)
@@ -139,7 +139,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       get_time_left_today(users_db, logged_user)..
       ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/get_time_left.wav'..
       ' && aplay /tmp/zi/u_5.wav')
-      
+      -- uci set safedns.cfg038c89.token='1922033194'
     end  
     set_state(states_db, "user_menu")  -- sets statesmachine:
     set_logged_user(states_db, logged_user)        -- TODO:  is this needed?
