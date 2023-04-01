@@ -6,7 +6,6 @@ require "states_machine" -- states need some persistance
 require "animals_table"  -- animals_table.lua
 require "vehicles_table"  -- vehicles_table.lua
 
-
 users_db = "users_table.db"
 admins_db = "admins_table.db"
 devices_db = "devices_table.db"
@@ -52,7 +51,7 @@ if (arg[1] == "admins" and arg[2] == "reset") then admins_db_reset(admins_db) en
 if (arg[1] == "devices" and arg[2] == "reset") then devices_db_reset(devices_db) end
 if (arg[1] == "policies" and arg[2] == "reset") then policies_db_reset(states_db) end
 if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
-if (arg[1] == "leases" and arg[2] == "reset") then leases_reset(leases_db) end
+if (arg[1] == "leases" and arg[2] == "reset") then leases_db_reset(leases_db) end
 
 if (arg[1] == "test")
 then
