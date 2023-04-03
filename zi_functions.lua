@@ -17,7 +17,7 @@ function users_db_reset(db_file)
   for i = 1, 6 do
     t[i] = {
       ["password"]="1234", 
-      ["animal"]=0,
+      ["animalID"]=0,
       ["running"]=0, 
       ["daily_quota"]=180,
       ["time_left_today"]=180,
@@ -45,7 +45,8 @@ function devices_db_reset(db_file)
   for i = 1, 32 do
     devices_table[i] = {
       ["mac_adr"]="00:00:00:00:00:00",
-      ["id"]="d"..string.format("%02d",i)
+      ["vehicleID"]=0,
+      ["ownerID"]=0,   -- 0 means shared
      }
   end
   table.save(devices_table, db_file)
@@ -67,97 +68,19 @@ function set_password(db_file, userID, new_password)
   return 1
 end 
 
-function set_username(db_file, userID, new_name)
+
+function get_animal(db_file, userID)
+  t = table.load(db_file)
+  animalID = t[userID]["animalID"]
+  return animalID
+end
+
+function set_animal(db_file, userID, new_name)
   t = table.load(db_file)
   t[userID]["user_name"]=new_name
   table.save(t, db_file)
   return 1
 end 
-
-function get_saldo(db_file, userID)
-  t = table.load(db_file)
-  saldo = t[userID]["saldo"]
-  return saldo
-end 
-
-function set_saldo(db_file, userID, new_saldo)
-  t = table.load(db_file)
-  t[userID]["saldo"]=new_saldo
-  table.save(t, db_file)
-  return 1
-end
-
-function set_saldos(db_file, saldo1, saldo2, saldo3, saldo4, saldo5, saldo6)
-  t = table.load(db_file)
-  t[userID]["saldo1"]=saldo1
-  t[userID]["saldo2"]=saldo2
-  t[userID]["saldo3"]=saldo3
-  t[userID]["saldo4"]=saldo4
-  t[userID]["saldo5"]=saldo5
-  t[userID]["saldo6"]=saldo6
-  table.save(t, db_file)
-  return 1
-end
-
-
-
-
-
--- NOT USED YET
-function leases_db_reset(db_file)
-  leases_table = {}
-  for i = 1, 6 do
-    leases_table[i] = {
-      ["minutes_left"] = 0,
-      ["user_id"]    = 0,
-      ["device_id"]  = 0,
-      ["origin_token"]  = 0,
-      ["destination_token"] = 0,       
-     }
-  end
-  table.save(leases_table, db_file)
-  return 1
-end
-
--- NOT USED YET
-function new_lease(db_file, user_id, device_id, minutes)
-  t = table.load(db_file)
-  return 1
-end
-
--- NOT USED YET
-function kill_leases(db_file, user_id)
-  --function here
-  return 1
-end
-
-function get_saldo_lease(db_file, leaseID)
-  t = table.load(db_file)
-  saldo_lease = t[leaseID]["credit"]
-  return saldo_lease
-end
-
-function set_saldo_lease(db_file, leaseID, new_saldo_lease)
-  t = table.load(db_file)
-  t[leaseID]["credit"]=new_saldo_lease
-  return 1
-end  
-
-
-
-
-
-function get_admin_password(db_file, adminID)
-  t = table.load(db_file)
-  password = t[adminID]["password"]
-  return password
-end
-
-function set_password(db_file, userID, new_password)
-  t = table.load(db_file)
-  t[userID]["password"]=new_password
-  table.save(t, db_file)
-end
 
 function get_time_left_today(db_file, userID)
   t = table.load(db_file)
@@ -170,6 +93,18 @@ function set_time_left_today(db_file, userID, time_left_today)
   t[userID]["time_left_today"]= time_left_today
   table.save(t, db_file)
   return time_left
+end
+
+function set_times_left_today(db_file, saldo1, saldo2, saldo3, saldo4, saldo5, saldo6)
+  t = table.load(db_file)
+  t[userID]["saldo1"]=saldo1
+  t[userID]["saldo2"]=saldo2
+  t[userID]["saldo3"]=saldo3
+  t[userID]["saldo4"]=saldo4
+  t[userID]["saldo5"]=saldo5
+  t[userID]["saldo6"]=saldo6
+  table.save(t, db_file)
+  return 1
 end
 
 function get_running_status(db_file, userID)
@@ -194,6 +129,16 @@ function set_running_statuses(db_file, running1, running2, running3, running4, r
   t[6]["running"]=running6
   table.save(t, db_file)
 end
+
+
+-- ADMIN DB FUNCTIONS
+
+function get_admin_password(db_file, adminID)
+  t = table.load(db_file)
+  password = t[adminID]["password"]
+  return password
+end
+
 
 --TODO:   function get_lease_
 --NOT YET IMPLEMENTED

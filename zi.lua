@@ -43,6 +43,8 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
 -- lua zi.lua admins reset
 -- lua zi.lua devices reset
 -- lua zi.lua states reset
+-- lua zi.lua cron eachminute
+-- lua zi.lua cron midnight
 -- lua zi.lua hostapd connect macaddresse
 
 -- command calls
@@ -283,12 +285,71 @@ if (get_state(states_db) == "a6" and arg[1] == "key") then
   os.execute('killall -q lua')
 end
 
--- usage: (for closing)
---[[
-  os.execute("echo 0 > /tmp/zi/busyflag")
-  os.execute("echo 0 > /tmp/zi/skippableflag")
-  os.execute("sleep 1")
-  set_state(states_db, "iddle")
-  set_logged_user(states_db, 0)
-]]
+-- CRON EACHMINUTE:  user table actions
+if (arg[1] == "cron" and arg[2] == "eachminute") then
+  -- leer todos los saldos
+  local saldo1 = get_saldo(users_db, 1)
+  local saldo2 = get_saldo(users_db, 2)
+  local saldo3 = get_saldo(users_db, 3)
+  local saldo4 = get_saldo(users_db, 4)
+  local saldo5 = get_saldo(users_db, 5)
+  local saldo6 = get_saldo(users_db, 6)
+  
+  -- leer todos los running statuses
+  local running1 = get_running_status(users_db, 1)
+  local running2 = get_running_status(users_db, 2)
+  local running3 = get_running_status(users_db, 3)
+  local running4 = get_running_status(users_db, 4)
+  local running5 = get_running_status(users_db, 5)
+  local running6 = get_running_status(users_db, 6)
+  
+  -- decrementar todos los saldos que estén en running
+  if (running1 == 1) then saldo1 = saldo1 - 1 end
+  if (running2 == 1) then saldo2 = saldo2 - 1 end
+  if (running3 == 1) then saldo3 = saldo3 - 1 end
+  if (running4 == 1) then saldo4 = saldo4 - 1 end
+  if (running5 == 1) then saldo5 = saldo5 - 1 end
+  if (running6 == 1) then saldo6 = saldo6 - 1 end
+
+  -- cero es el mínimo para saldo
+  if (saldo1 == -1) then saldo1 = 0 end
+  if (saldo2 == -1) then saldo2 = 0 end
+  if (saldo3 == -1) then saldo3 = 0 end
+  if (saldo4 == -1) then saldo4 = 0 end
+  if (saldo5 == -1) then saldo5 = 0 end
+  if (saldo6 == -1) then saldo6 = 0 end
+
+  -- iterar sobre saldos y si saldo = 0 y running entonces ponr el running a 0
+  if (saldo1 == and running1 == 1) then running1 = 0 end
+  if (saldo2 == and running2 == 1) then running2 = 0 end
+  if (saldo3 == and running3 == 1) then running3 = 0 end
+  if (saldo4 == and running4 == 1) then running4 = 0 end
+  if (saldo5 == and running5 == 1) then running5 = 0 end
+  if (saldo6 == and running6 == 1) then running6 = 0 end
+
+  -- escribimos los saldos en la tabla
+  -- function set_saldos(db_file, saldo1, saldo2, saldo3, saldo4, saldo5, saldo6)
+  set_saldos(users_db, saldo1, saldo2, saldo3, saldo4, saldo5, saldo6)
+  set_running_statuses(db_file, running1, running2, running3, running4, running5, running6)
+
+end
+
+-- CRON EACHMINUTE:  lease table actions
+if (arg[1] == "cron" and arg[2] == "eachminute") then
+  -- get last 6 leases:
+  
+
+
+
+
+  -- poner devices del lease a bloqueado
+  -- leer todos los leases y read statuses
+  -- si los leases están corriendo, decrementarlos 
+  -- iterar sobre leases y si saldo_lease = o, matar el lease. 
+  -- escribimos todos los lease saldos
+
+end
+
+-- CRON 2359
+
 
