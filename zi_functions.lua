@@ -139,8 +139,8 @@ function get_admin_password(db_file, adminID)
   return password
 end
 
+-- HELPER FUNCTIONS
 
---TODO:   function get_lease_
 --NOT YET IMPLEMENTED
 function apply_running_status(db_file, userID, running)
 end
