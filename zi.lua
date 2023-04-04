@@ -1,4 +1,10 @@
+-- globals:
+-- safedns variables:
 path = "/etc/"
+safedns_rule_offset = "cfg038c89"
+safedns_policy_0 = "1922033194"
+safedns_policy_1 = "176489346"
+safedns_policy_2 = "1388236232"
 
 require "tablesaveload" -- for persistance
 require "zi_functions"  -- custom functions by zi
@@ -10,14 +16,6 @@ users_db = "users_table.db"
 admins_db = "admins_table.db"
 devices_db = "devices_table.db"
 states_db = "states_table.db"
-
-
--- safedns variables:
-safedns_rule_offset = "cfg038c89"
-safedns_policy_0 = "1922033194"
-safedns_policy_1 = "176489346"
-safedns_policy_2 = "1388236232"
-
 
 -- se puede borrar esto? no hay ese file:  phrases = lines_from("phrases.txt")      -- admin main menu
 phrases_a = lines_from("phrases_a.txt")  -- admin phrases
@@ -52,7 +50,6 @@ if (arg[1] == "admins" and arg[2] == "reset") then admins_db_reset(admins_db) en
 if (arg[1] == "devices" and arg[2] == "reset") then devices_db_reset(devices_db) end
 if (arg[1] == "policies" and arg[2] == "reset") then policies_db_reset(states_db) end
 if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
-if (arg[1] == "leases" and arg[2] == "reset") then leases_db_reset(leases_db) end
 
 if (arg[1] == "test")
 then
@@ -319,33 +316,17 @@ if (arg[1] == "cron" and arg[2] == "eachminute") then
   if (saldo6 == -1) then saldo6 = 0 end
 
   -- iterar sobre saldos y si saldo = 0 y running entonces ponr el running a 0
-  if (saldo1 == and running1 == 1) then running1 = 0 end
-  if (saldo2 == and running2 == 1) then running2 = 0 end
-  if (saldo3 == and running3 == 1) then running3 = 0 end
-  if (saldo4 == and running4 == 1) then running4 = 0 end
-  if (saldo5 == and running5 == 1) then running5 = 0 end
-  if (saldo6 == and running6 == 1) then running6 = 0 end
+  if (saldo1 == 0 and running1 == 1) then running1 = 0 end
+  if (saldo2 == 0 and running2 == 1) then running2 = 0 end
+  if (saldo3 == 0 and running3 == 1) then running3 = 0 end
+  if (saldo4 == 0 and running4 == 1) then running4 = 0 end
+  if (saldo5 == 0 and running5 == 1) then running5 = 0 end
+  if (saldo6 == 0 and running6 == 1) then running6 = 0 end
 
   -- escribimos los saldos en la tabla
   -- function set_saldos(db_file, saldo1, saldo2, saldo3, saldo4, saldo5, saldo6)
   set_saldos(users_db, saldo1, saldo2, saldo3, saldo4, saldo5, saldo6)
   set_running_statuses(db_file, running1, running2, running3, running4, running5, running6)
-
-end
-
--- CRON EACHMINUTE:  lease table actions
-if (arg[1] == "cron" and arg[2] == "eachminute") then
-  -- get last 6 leases:
-  
-
-
-
-
-  -- poner devices del lease a bloqueado
-  -- leer todos los leases y read statuses
-  -- si los leases están corriendo, decrementarlos 
-  -- iterar sobre leases y si saldo_lease = o, matar el lease. 
-  -- escribimos todos los lease saldos
 
 end
 

@@ -46,7 +46,7 @@ function devices_db_reset(db_file)
     devices_table[i] = {
       ["mac_adr"]="00:00:00:00:00:00",
       ["vehicleID"]=0,
-      ["ownerID"]=0,   -- 0 means shared
+      ["ownerID"]=0,   -- 0 means shared or leasable
      }
   end
   table.save(devices_table, db_file)
@@ -67,7 +67,6 @@ function set_password(db_file, userID, new_password)
   table.save(t, db_file)
   return 1
 end 
-
 
 function get_animal(db_file, userID)
   t = table.load(db_file)
@@ -137,27 +136,6 @@ function get_admin_password(db_file, adminID)
   t = table.load(db_file)
   password = t[adminID]["password"]
   return password
-end
-
--- HELPER FUNCTIONS
-
---NOT YET IMPLEMENTED
-function apply_running_status(db_file, userID, running)
-end
-
-function deviceToRule(deviceNr)
-  -- safedns first rule string: "cfg038c89"
-  ruleNr = string.format("%03x", tonumber(0x038) + deviceNr - 1)
-  ruleCode = "cfg"..ruleNr.."c89" 
-  return ruleCode
-end
-
-function ruleToDevice(ruleCode)
-  -- safedns first rule string: "cfg038c89"
-  -- ruleNr = "0x"..string.sub(ruleCode,4,6)
-  ruleNrHex = "0x"..string.sub(ruleCode,4,6)
-  deviceNr = tonumber(ruleNrHex) - tonumber(0x038) + 1 
-  return deviceNr
 end
 
 function assign_device_permanently(db_file, deviceNR, userID)
@@ -254,4 +232,24 @@ function lines_from(file)
     lines[#lines + 1] = line
   end
   return lines
+end
+
+-- HELPER FUNCTIONS
+
+function apply_running_status(db_file, userID, running)
+end
+
+function deviceToRule(deviceNr)
+  -- safedns first rule string: "cfg038c89"
+  ruleNr = string.format("%03x", tonumber(0x038) + deviceNr - 1)
+  ruleCode = "cfg"..ruleNr.."c89" 
+  return ruleCode
+end
+
+function ruleToDevice(ruleCode)
+  -- safedns first rule string: "cfg038c89"
+  -- ruleNr = "0x"..string.sub(ruleCode,4,6)
+  ruleNrHex = "0x"..string.sub(ruleCode,4,6)
+  deviceNr = tonumber(ruleNrHex) - tonumber(0x038) + 1 
+  return deviceNr
 end
