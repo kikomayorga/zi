@@ -15,14 +15,15 @@ safedns_policy_2 = "1388236232"
 dofile(""..path.."zi/zi_functions.lua")  -- custom functions by zi
 dofile(""..path.."zi/states_machine.lua") -- states need some persistance 
 dofile(""..path.."zi/tables/tablesaveload.lua") -- for persistance
+dofile(""..path.."zi/tables/animals_table.lua")
+dofile(""..path.."zi/tables/vehicles_table.lua")
 
 
 states_db = ""..path.."zi/tables/states_table.db"
 admins_db = ""..path.."zi/tables/admins_table.db"
 users_db = ""..path.."zi/tables/users_table.db"
 devices_db = ""..path.."zi/tables/devices_table.db"
-animals_db = ""..path.."zi/tables/animals_table.db"
-vehicles_db = ""..path.."zi/tables/vehicles_table.db"
+
 
 phrases_a = lines_from(""..path.."zi/phrases/phrases_a.txt")  -- admin phrases
 phrases_a1 = lines_from(""..path.."zi/phrases/phrases_a1.txt")  -- admin phrases
