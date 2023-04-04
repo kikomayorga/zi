@@ -1,33 +1,39 @@
 -- globals:
 -- safedns variables:
-path = "/etc/"
+
+-- debugging in router
+-- path = "/etc/"
+-- debugging in windows
+path = "/home/qeakous/Documents/"
+
 safedns_rule_offset = "cfg038c89"
 safedns_policy_0 = "1922033194"
 safedns_policy_1 = "176489346"
 safedns_policy_2 = "1388236232"
 
-require "tablesaveload" -- for persistance
-require "zi_functions"  -- custom functions by zi
-require "states_machine" -- states need some persistance 
-require "animals_table"  -- animals_table.lua
-require "vehicles_table"  -- vehicles_table.lua
 
-users_db = "users_table.db"
-admins_db = "admins_table.db"
-devices_db = "devices_table.db"
-states_db = "states_table.db"
+dofile(""..path.."zi/zi_functions.lua")  -- custom functions by zi
+dofile(""..path.."zi/states_machine.lua") -- states need some persistance 
+dofile(""..path.."zi/tables/tablesaveload.lua") -- for persistance
 
--- se puede borrar esto? no hay ese file:  phrases = lines_from("phrases.txt")      -- admin main menu
-phrases_a = lines_from("phrases_a.txt")  -- admin phrases
-phrases_a1 = lines_from("phrases_a1.txt")  -- admin phrases
-phrases_a7 = lines_from("phrases_a7.txt")  -- admin phrases
-phrases_a6 = lines_from("phrases_a6.txt")  -- admin phrases
-phrases_a0 = lines_from("phrases_a0.txt")  -- admin phrases
 
-phrases_u = lines_from("phrases_u.txt")  -- usuario
-phrases_u1 = lines_from("phrases_u1.txt")  -- usuario
-phrases_i = lines_from("phrases_i.txt")  -- inicialización
-phrases_i1 = lines_from("phrases_i1.txt")  -- inicialización
+states_db = ""..path.."zi/tables/states_table.db"
+admins_db = ""..path.."zi/tables/admins_table.db"
+users_db = ""..path.."zi/tables/users_table.db"
+devices_db = ""..path.."zi/tables/devices_table.db"
+animals_db = ""..path.."zi/tables/animals_table.db"
+vehicles_db = ""..path.."zi/tables/vehicles_table.db"
+
+phrases_a = lines_from(""..path.."zi/phrases/phrases_a.txt")  -- admin phrases
+phrases_a1 = lines_from(""..path.."zi/phrases/phrases_a1.txt")  -- admin phrases
+phrases_a7 = lines_from(""..path.."zi/phrases/phrases_a7.txt")  -- admin phrases
+phrases_a6 = lines_from(""..path.."zi/phrases/phrases_a6.txt")  -- admin phrases
+phrases_a0 = lines_from(""..path.."zi/phrases/phrases_a0.txt")  -- admin phrases
+
+phrases_u = lines_from(""..path.."zi/phrases/phrases_u.txt")  -- usuario
+phrases_u1 = lines_from(""..path.."zi/phrases/phrases_u1.txt")  -- usuario
+phrases_i = lines_from(""..path.."zi/phrases/phrases_i.txt")  -- inicialización
+phrases_i1 = lines_from(""..path.."zi/phrases/phrases_i1.txt")  -- inicialización
 
 continue =" && "  -- connects lines of voice
 vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
