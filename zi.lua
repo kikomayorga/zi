@@ -359,7 +359,6 @@ if (arg[1] == "cron" and arg[2] == "eachminute") then
   if (saldo6 == 0 and running6 == 1) then running6 = 0 end
 
   -- escribimos los saldos en la tabla
-  -- function set_saldos(db_file, saldo1, saldo2, saldo3, saldo4, saldo5, saldo6)
   users_db_set_column(users_db, "time_left_today", saldo1, saldo2, saldo3, saldo4, saldo5, saldo6)
   users_db_set_column(users_db, "lease__minutes_left", saldo_lease_1, saldo_lease_2, saldo_lease_3, saldo_lease_4, saldo_lease_5, saldo_lease_6)
   users_db_set_column(users_db, "running_status", running1, running2, running3, running4, running5, running6)
