@@ -18,7 +18,7 @@ return {
    ["day_end"]=1260,
    ["day_start"]=360,
    ["password"]="1234",
-   ["running"]=0,
+   ["running"]=1,
    ["lease__minutes_left"]=0,
    ["device_id_1"]=0,
    ["lease__destination_token"]=0,
