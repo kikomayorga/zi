@@ -60,7 +60,11 @@ if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
 
 if (arg[1] == "test")
 then
-  -- os.excecute("echo hello world")
+  os.execute("echo hello world")
+  print(animals_table[1])
+  for i = 1, 10, 1 do
+    print(vehicles_table[i])
+  end
 end
 
 -- iddle and any key

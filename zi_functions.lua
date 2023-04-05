@@ -21,10 +21,11 @@ function users_db_reset(db_file)
       ["running"]=0, 
       ["daily_quota"]=180,
       ["time_left_today"]=180,
+      ["lease__duration"] = 45,
       ["lease__minutes_left"] = 0,
       ["lease__device_id"]  = 0,
-      ["lease__origin_token"]  = 0,
-      ["lease__destination_token"] = 0,    
+      ["lease__origin_token"]  = safedns_policy_0,
+      ["lease__destination_token"] = safedns_policy_2,    
       ["device_id_1"]=0,
       ["device_id_2"]=0, 
       ["device_id_3"]=0, 
@@ -32,7 +33,8 @@ function users_db_reset(db_file)
       ["day_end"]=1260, --21 hrs
      }
   end
-  
+
+ 
   for i=1, 6 do t[i].user_name ="usuario "..i end
   table.save(t, db_file)
   return 1
