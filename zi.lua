@@ -78,7 +78,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     
     -- test for admin passwords
   for i=1, 6 do 
-    if last4keys == get_admin_password(admins_db, i)
+    if last4keys == admins_db_get_value(admins_db, i, "password")
     then 
       os.execute("echo 0000 > /tmp/zi/last4keys")
       logged_admin = i 

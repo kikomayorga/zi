@@ -1,3 +1,5 @@
+-- DEPRECATED USER FUNCTIONS
+
 function get_password(db_file, userID)
   t = table.load(db_file)
   password = t[userID]["password"]
@@ -89,3 +91,7 @@ function set_times_left_today(db_file, saldo1, saldo2, saldo3, saldo4, saldo5, s
   table.save(t, db_file)
   return 1
 end
+
+
+
+-- DEPRECATED ADMIN FUNCTIONS
