@@ -91,7 +91,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
 
   -- test for user passwords
   for i=1, 6 do 
-    if last4keys == get_password(users_db, i)
+    if last4keys == users_db_get_value(users_db, i, "password")
     then 
       logged_user = i 
       os.execute("echo 0000 > /tmp/zi/last4keys")
@@ -132,12 +132,12 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   -- states: iddle > u
   if logged_user ~= 0 then
     os.execute("echo 0000 > /tmp/zi/last4keys")
-    running = get_running_status(users_db, logged_user)
+    running = users_db_get_value(users_db, logged_user, "running_status")
     if running == 0 then
       os.execute('mpg123 keypress.mp3')
       os.execute('aplay /tmp/zi/u_1.wav && aplay /tmp/zi/u_2.wav'..
       '&& pico2wave -w /tmp/zi/get_time_left.wav -l es-ES " '..vol_pitch..' '..
-      get_time_left_today(users_db, logged_user)..
+      users_db_get_value(users_db, logged_user, "time_left_today")..
       ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/get_time_left.wav'..
       ' && aplay /tmp/zi/u_3.wav')
     end
@@ -145,7 +145,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       os.execute('mpg123 keypress.mp3')
       os.execute('aplay /tmp/zi/u_1.wav && aplay /tmp/zi/u_4.wav'..
       '&& pico2wave -w /tmp/zi/get_time_left.wav -l es-ES " '..vol_pitch..' '..
-      get_time_left_today(users_db, logged_user)..
+      users_db_get_value(users_db, logged_user, "time_left_today")..
       ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/get_time_left.wav'..
       ' && aplay /tmp/zi/u_5.wav')
       -- uci set safedns.cfg038c89.token='1922033194'
@@ -165,7 +165,7 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
 
   -- TOGGLED
   if lastkey == "1" then
-    set_running_status(users_db, logged_user, 1)
+    users_db_set_value(db_file, logged_user, "running_status", 1)
     apply_running_status(users_db, logged_user, 1)
     os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..
     vol_pitch..'Navega!" '..
@@ -175,7 +175,8 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
   end
 
   if lastkey == "0" then
-    set_running_status(users_db, logged_user, 0)
+    users_db_set_value(db_file, logged_user, "running_status", 0)
+    apply_running_status(users_db, logged_user, 0)
     os.execute('pico2wave -w /tmp/pausa_de_i.wav -l es-ES "'..
     vol_pitch..'Pausa de internet! " '..
     '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/pausa_de_i.wav && mpg123 '..path..
@@ -295,27 +296,27 @@ end
 -- CRON EACHMINUTE:  user table actions
 if (arg[1] == "cron" and arg[2] == "eachminute") then
   -- leer todos los saldos
-  local saldo1 = get_time_left_today(users_db, 1)
-  local saldo2 = get_time_left_today(users_db, 2)
-  local saldo3 = get_time_left_today(users_db, 3)
-  local saldo4 = get_time_left_today(users_db, 4)
-  local saldo5 = get_time_left_today(users_db, 5)
-  local saldo6 = get_time_left_today(users_db, 6)
+  local saldo1 = users_db_get_value(users_db, 1, "time_left_today")
+  local saldo2 = users_db_get_value(users_db, 2, "time_left_today")
+  local saldo3 = users_db_get_value(users_db, 3, "time_left_today")
+  local saldo4 = users_db_get_value(users_db, 4, "time_left_today")
+  local saldo5 = users_db_get_value(users_db, 5, "time_left_today")
+  local saldo6 = users_db_get_value(users_db, 6, "time_left_today")
 
-  local saldo_lease_1 = get_lease__minutes_left(users_db, 1)
-  local saldo_lease_2 = get_lease__minutes_left(users_db, 2)
-  local saldo_lease_3 = get_lease__minutes_left(users_db, 3)
-  local saldo_lease_4 = get_lease__minutes_left(users_db, 4)
-  local saldo_lease_5 = get_lease__minutes_left(users_db, 5)
-  local saldo_lease_6 = get_lease__minutes_left(users_db, 6)
+  local saldo_lease_1 = users_db_get_value(users_db, 1, "lease__minutes_left")
+  local saldo_lease_2 = users_db_get_value(users_db, 2, "lease__minutes_left")
+  local saldo_lease_3 = users_db_get_value(users_db, 3, "lease__minutes_left")
+  local saldo_lease_4 = users_db_get_value(users_db, 4, "lease__minutes_left")
+  local saldo_lease_5 = users_db_get_value(users_db, 5, "lease__minutes_left")
+  local saldo_lease_6 = users_db_get_value(users_db, 6, "lease__minutes_left")
 
   -- leer todos los running statuses
-  local running1 = get_running_status(users_db, 1)
-  local running2 = get_running_status(users_db, 2)
-  local running3 = get_running_status(users_db, 3)
-  local running4 = get_running_status(users_db, 4)
-  local running5 = get_running_status(users_db, 5)
-  local running6 = get_running_status(users_db, 6)
+  local running1 = users_db_get_value(users_db, 1, "running_status")
+  local running2 = users_db_get_value(users_db, 2, "running_status")
+  local running3 = users_db_get_value(users_db, 3, "running_status")
+  local running4 = users_db_get_value(users_db, 4, "running_status")
+  local running5 = users_db_get_value(users_db, 5, "running_status")
+  local running6 = users_db_get_value(users_db, 6, "running_status")
   
   -- decrementar todos los saldos que estén en running
   if (running1 == 1) then saldo1 = saldo1 - 1 end
@@ -359,9 +360,9 @@ if (arg[1] == "cron" and arg[2] == "eachminute") then
 
   -- escribimos los saldos en la tabla
   -- function set_saldos(db_file, saldo1, saldo2, saldo3, saldo4, saldo5, saldo6)
-  set_saldos(users_db, saldo1, saldo2, saldo3, saldo4, saldo5, saldo6)
-  set_running_statuses(db_file, running1, running2, running3, running4, running5, running6)
-
+  users_db_set_column(users_db, "time_left_today", saldo1, saldo2, saldo3, saldo4, saldo5, saldo6)
+  users_db_set_column(users_db, "lease__minutes_left", saldo_lease_1, saldo_lease_2, saldo_lease_3, saldo_lease_4, saldo_lease_5, saldo_lease_6)
+  users_db_set_column(users_db, "running_status", running1, running2, running3, running4, running5, running6)
 end
 
 -- CRON 2359
