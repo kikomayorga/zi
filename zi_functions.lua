@@ -98,12 +98,30 @@ end
 
 function set_times_left_today(db_file, saldo1, saldo2, saldo3, saldo4, saldo5, saldo6)
   t = table.load(db_file)
-  t[userID]["saldo1"]=saldo1
-  t[userID]["saldo2"]=saldo2
-  t[userID]["saldo3"]=saldo3
-  t[userID]["saldo4"]=saldo4
-  t[userID]["saldo5"]=saldo5
-  t[userID]["saldo6"]=saldo6
+  t[1]["saldo1"]=saldo1
+  t[2]["saldo2"]=saldo2
+  t[3]["saldo3"]=saldo3
+  t[4]["saldo4"]=saldo4
+  t[5]["saldo5"]=saldo5
+  t[6]["saldo6"]=saldo6
+  table.save(t, db_file)
+  return 1
+end
+
+function get_lease__minutes_left(db_file, userID)
+  t = table.load(db_file)
+  lease__minutes_left = t[userID]["lease__minutes_left"]
+  return lease__minutes_left
+end
+
+function set_lease__minutes_left(db_file, lease_left1, lease_left2, lease_left3, lease_left4, lease_left5, lease_left6)
+  t = table.load(db_file)
+  t[1]["lease__minutes_left"]=lease_left1
+  t[2]["lease__minutes_left"]=lease_left2
+  t[3]["lease__minutes_left"]=lease_left3
+  t[4]["lease__minutes_left"]=lease_left4
+  t[5]["lease__minutes_left"]=lease_left5
+  t[6]["lease__minutes_left"]=lease_left6
   table.save(t, db_file)
   return 1
 end

@@ -56,7 +56,7 @@ if (arg[1] == "users" and arg[2] == "reset") then users_db_reset(users_db) end
 if (arg[1] == "admins" and arg[2] == "reset") then admins_db_reset(admins_db) end
 if (arg[1] == "devices" and arg[2] == "reset") then devices_db_reset(devices_db) end
 if (arg[1] == "policies" and arg[2] == "reset") then policies_db_reset(states_db) end
-if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end
+if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end 
 
 if (arg[1] == "test")
 then
@@ -295,13 +295,20 @@ end
 -- CRON EACHMINUTE:  user table actions
 if (arg[1] == "cron" and arg[2] == "eachminute") then
   -- leer todos los saldos
-  local saldo1 = get_saldo(users_db, 1)
-  local saldo2 = get_saldo(users_db, 2)
-  local saldo3 = get_saldo(users_db, 3)
-  local saldo4 = get_saldo(users_db, 4)
-  local saldo5 = get_saldo(users_db, 5)
-  local saldo6 = get_saldo(users_db, 6)
-  
+  local saldo1 = get_time_left_today(users_db, 1)
+  local saldo2 = get_time_left_today(users_db, 2)
+  local saldo3 = get_time_left_today(users_db, 3)
+  local saldo4 = get_time_left_today(users_db, 4)
+  local saldo5 = get_time_left_today(users_db, 5)
+  local saldo6 = get_time_left_today(users_db, 6)
+
+  local saldo_lease_1 = get_lease__minutes_left(users_db, 1)
+  local saldo_lease_2 = get_lease__minutes_left(users_db, 2)
+  local saldo_lease_3 = get_lease__minutes_left(users_db, 3)
+  local saldo_lease_4 = get_lease__minutes_left(users_db, 4)
+  local saldo_lease_5 = get_lease__minutes_left(users_db, 5)
+  local saldo_lease_6 = get_lease__minutes_left(users_db, 6)
+
   -- leer todos los running statuses
   local running1 = get_running_status(users_db, 1)
   local running2 = get_running_status(users_db, 2)
@@ -318,6 +325,14 @@ if (arg[1] == "cron" and arg[2] == "eachminute") then
   if (running5 == 1) then saldo5 = saldo5 - 1 end
   if (running6 == 1) then saldo6 = saldo6 - 1 end
 
+  -- decrementar todos los leases que no sean cero.
+  saldo_lease_1 = saldo_lease_1 - 1 
+  saldo_lease_2 = saldo_lease_2 - 1 
+  saldo_lease_3 = saldo_lease_3 - 1
+  saldo_lease_4 = saldo_lease_4 - 1
+  saldo_lease_5 = saldo_lease_5 - 1
+  saldo_lease_6 = saldo_lease_6 - 1
+
   -- cero es el mínimo para saldo
   if (saldo1 == -1) then saldo1 = 0 end
   if (saldo2 == -1) then saldo2 = 0 end
@@ -325,6 +340,14 @@ if (arg[1] == "cron" and arg[2] == "eachminute") then
   if (saldo4 == -1) then saldo4 = 0 end
   if (saldo5 == -1) then saldo5 = 0 end
   if (saldo6 == -1) then saldo6 = 0 end
+
+  -- cero es el mínimo para lease
+  if (saldo_lease_1 == -1) then saldo_lease_1 = 0 end
+  if (saldo_lease_2 == -1) then saldo_lease_2 = 0 end
+  if (saldo_lease_3 == -1) then saldo_lease_3 = 0 end
+  if (saldo_lease_4 == -1) then saldo_lease_4 = 0 end
+  if (saldo_lease_5 == -1) then saldo_lease_5 = 0 end
+  if (saldo_lease_6 == -1) then saldo_lease_6 = 0 end
 
   -- iterar sobre saldos y si saldo = 0 y running entonces ponr el running a 0
   if (saldo1 == 0 and running1 == 1) then running1 = 0 end
