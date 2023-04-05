@@ -1,2 +1,2 @@
-*/1 * * * *i sh /etc/zi/timers/eachminute.sh
+*/1 * * * *i lua zi.lua cron eachminute
 59 23 * * * sh /etc/zi/timers/reset.sh
