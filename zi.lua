@@ -2,9 +2,9 @@
 -- safedns variables:
 
 -- debugging in router
--- path = "/etc/"
+path = "/etc/"
 -- debugging in windows
-path = "/home/qeakous/Documents/"
+-- path = "/home/qeakous/Documents/"
 
 safedns_rule_offset = "cfg038c89"
 safedns_policy_0 = "1922033194"
@@ -399,13 +399,13 @@ if (arg[1] == "cron" and arg[2] == "eachminute") then
   if (saldo_lease_5 > 0 and running1 == 5) then saldo_lease_5 = saldo_lease_5 - 1 end
   if (saldo_lease_6 > 0 and running1 == 6) then saldo_lease_6 = saldo_lease_6 - 1 end
   
-  -- decrementar todos los leases que no sean cero.
-  if (saldo_lease_1 == 0 and previous_saldo_lease_1 == 1) then stop_active_lease(users_db, 1)  apply_safedns_policy(users_db, 1, 0) restart_safedns_flag = 1 end
-  if (saldo_lease_2 == 0 and previous_saldo_lease_2 == 1) then stop_active_lease(users_db, 2)  apply_safedns_policy(users_db, 2, 0) restart_safedns_flag = 1 end 
-  if (saldo_lease_3 == 0 and previous_saldo_lease_3 == 1) then stop_active_lease(users_db, 3)  apply_safedns_policy(users_db, 3, 0) restart_safedns_flag = 1 end
-  if (saldo_lease_4 == 0 and previous_saldo_lease_4 == 1) then stop_active_lease(users_db, 4)  apply_safedns_policy(users_db, 4, 0) restart_safedns_flag = 1 end
-  if (saldo_lease_5 == 0 and previous_saldo_lease_5 == 1) then stop_active_lease(users_db, 5)  apply_safedns_policy(users_db, 5, 0) restart_safedns_flag = 1 end
-  if (saldo_lease_6 == 0 and previous_saldo_lease_6 == 1) then stop_active_lease(users_db, 6)  apply_safedns_policy(users_db, 6, 0) restart_safedns_flag = 1 end
+  -- cuando se acaba el lease, se pone "running" a cero
+  if (saldo_lease_1 == 0 and previous_saldo_lease_1 == 1) then running1 = 0 stop_active_lease(users_db, 1)  apply_safedns_policy(users_db, 1, 0) restart_safedns_flag = 1 end
+  if (saldo_lease_2 == 0 and previous_saldo_lease_2 == 1) then running2 = 0 stop_active_lease(users_db, 2)  apply_safedns_policy(users_db, 2, 0) restart_safedns_flag = 1 end 
+  if (saldo_lease_3 == 0 and previous_saldo_lease_3 == 1) then running3 = 0 stop_active_lease(users_db, 3)  apply_safedns_policy(users_db, 3, 0) restart_safedns_flag = 1 end
+  if (saldo_lease_4 == 0 and previous_saldo_lease_4 == 1) then running4 = 0 stop_active_lease(users_db, 4)  apply_safedns_policy(users_db, 4, 0) restart_safedns_flag = 1 end
+  if (saldo_lease_5 == 0 and previous_saldo_lease_5 == 1) then running5 = 0 stop_active_lease(users_db, 5)  apply_safedns_policy(users_db, 5, 0) restart_safedns_flag = 1 end
+  if (saldo_lease_6 == 0 and previous_saldo_lease_6 == 1) then running6 = 0 stop_active_lease(users_db, 6)  apply_safedns_policy(users_db, 6, 0) restart_safedns_flag = 1 end
 
   if restart_safedns_flag == 1 then 
     os.execute("/etc/init.d/safedns restart")
