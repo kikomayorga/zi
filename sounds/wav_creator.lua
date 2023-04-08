@@ -1,6 +1,9 @@
 -- path = "/etc/"
+path = "/etc/"
+-- debugging in windows
+-- path = "/home/qeakous/Documents/"
 
-require "zi_functions"  -- custom functions by zi
+dofile(""..path.."zi/zi_functions.lua")  -- custom functions by zi
 
 phrases = lines_from("phrases.txt")      -- main menu
 phrases_a = lines_from("phrases_a.txt")  -- admin phrases
