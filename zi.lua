@@ -297,7 +297,7 @@ end
 if (arg[1] == "cron" and arg[2] == "eachminute") then
 
   -- en principio no se reiniciará safedns
-  restart_safedns_flag == 0
+  restart_safedns_flag = 0
   -- leer todos los saldos
   local saldo1 = users_db_get_value(users_db, 1, "time_left_today")
   local saldo2 = users_db_get_value(users_db, 2, "time_left_today")
