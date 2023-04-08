@@ -392,12 +392,12 @@ if (arg[1] == "cron" and arg[2] == "eachminute") then
   previous_saldo_lease_6 = saldo_lease_6
 
   -- decrementar todos los leases que no sean cero.
-  if (saldo_lease_1 > 0) then saldo_lease_1 = saldo_lease_1 - 1 end
-  if (saldo_lease_2 > 0) then saldo_lease_2 = saldo_lease_2 - 1 end 
-  if (saldo_lease_3 > 0) then saldo_lease_3 = saldo_lease_3 - 1 end
-  if (saldo_lease_4 > 0) then saldo_lease_4 = saldo_lease_4 - 1 end
-  if (saldo_lease_5 > 0) then saldo_lease_5 = saldo_lease_5 - 1 end
-  if (saldo_lease_6 > 0) then saldo_lease_6 = saldo_lease_6 - 1 end
+  if (saldo_lease_1 > 0 and running1 == 1) then saldo_lease_1 = saldo_lease_1 - 1 end
+  if (saldo_lease_2 > 0 and running1 == 2) then saldo_lease_2 = saldo_lease_2 - 1 end 
+  if (saldo_lease_3 > 0 and running1 == 3) then saldo_lease_3 = saldo_lease_3 - 1 end
+  if (saldo_lease_4 > 0 and running1 == 4) then saldo_lease_4 = saldo_lease_4 - 1 end
+  if (saldo_lease_5 > 0 and running1 == 5) then saldo_lease_5 = saldo_lease_5 - 1 end
+  if (saldo_lease_6 > 0 and running1 == 6) then saldo_lease_6 = saldo_lease_6 - 1 end
   
   -- decrementar todos los leases que no sean cero.
   if (saldo_lease_1 == 0 and previous_saldo_lease_1 == 1) then stop_active_lease(users_db, 1)  apply_safedns_policy(users_db, 1, 0) restart_safedns_flag = 1 end
