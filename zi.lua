@@ -165,8 +165,8 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
 
   -- TOGGLED
   if lastkey == "1" then
-    users_db_set_value(db_file, logged_user, "running", 1)
-    apply_running_status(users_db, logged_user, 1)
+    users_db_set_value(users_db, logged_user, "running", 1)
+    apply_safedns_policy(users_db, logged_user, 1)
     os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..
     vol_pitch..'Navega!" '..
     '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav && mpg123 '..path..
@@ -175,8 +175,8 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
   end
 
   if lastkey == "0" then
-    users_db_set_value(db_file, logged_user, "running", 0)
-    apply_running_status(users_db, logged_user, 0)
+    users_db_set_value(users_db, logged_user, "running", 0)
+    apply_safedns_policy(users_db, logged_user, 0)
     os.execute('pico2wave -w /tmp/pausa_de_i.wav -l es-ES "'..
     vol_pitch..'Pausa de internet! " '..
     '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/pausa_de_i.wav && mpg123 '..path..
