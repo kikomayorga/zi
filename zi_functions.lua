@@ -108,7 +108,7 @@ function apply_safedns_policy(db_file, userID, new_running)
   -- OWN DEVICES
   for own_device_iterator = 1, 3, 1 do
     t = table.load(db_file)
-    deviceID = t[userID]["own_device_id_"..own_device_iterator]
+    deviceID = t[userID]["own_device_id_"..own_device_iterator..""]
     if deviceID ~= 0 then
       --uci set safedns.cfg038c89.token='1922033194'
       if new_running == 1 then
