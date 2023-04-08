@@ -20,7 +20,6 @@ cd /etc/zi/ && lua zi.lua hostapd $1 $2 $3
 # mac_u1d1=`echo $mac_u1d1 | tr '[A-Z]' '[a-z]'`
 
 # before
-
 # if [[ $2 == "AP-STA-CONNECTED" ]]
 # then
 #   echo "someone has connected with mac id $3 on $1"
