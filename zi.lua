@@ -1,4 +1,8 @@
 --[[ 
+* DOING >>>  connect and disconnects
+  - -- TODO: lua zi.lua hostapd connect macaddresse
+  - -- TODO: lua zi.lua hostapd dis-connect macaddresse
+  
 TO DO !
 * populate mac2policy in lua version (?) or maybe just a setup flag (?)
 * populate 
@@ -12,9 +16,7 @@ TO DO !
 * user menu:
   - add external credit (x ej trotadora o smartwatch)
   - select device to be leased
-* connect and disconnects
-  - -- TODO: lua zi.lua hostapd connect macaddresse
-  - -- TODO: lua zi.lua hostapd dis-connect macaddresse
+
 
 ]] 
 
