@@ -1,3 +1,23 @@
+-- HELPER FUNCTIONS
+
+function deviceToRule(deviceNr)
+  -- safedns first rule string: "cfg038c89"
+  ruleNr = string.format("%03x", tonumber(0x038) + deviceNr - 1)
+  ruleCode = "cfg"..ruleNr.."c89" 
+  return ruleCode
+end
+
+function ruleToDevice(ruleCode)
+  -- safedns first rule string: "cfg038c89"
+  -- ruleNr = "0x"..string.sub(ruleCode,4,6)
+  ruleNrHex = "0x"..string.sub(ruleCode,4,6)
+  deviceNr = tonumber(ruleNrHex) - tonumber(0x038) + 1 
+  return deviceNr
+end
+
+
+-- RESETTER FUNCTIONS
+
 function admins_db_reset(db_file)
   t = {}
   for i = 1, 6 do
@@ -18,17 +38,19 @@ function users_db_reset(db_file)
     t[i] = {
       ["password"]="1234", 
       ["animalID"]=0,
-      ["running"]=0, 
       ["daily_quota"]=180,
+      ["running"]=0, 
+      ["previous_running"]=0,
       ["time_left_today"]=180,
+      ["previous_time_left_today"]=180,
       ["lease__duration"] = 45,
       ["lease__minutes_left"] = 0,
       ["lease__device_id"]  = 0,
       ["lease__origin_token"]  = safedns_policy_0,
       ["lease__destination_token"] = safedns_policy_2,    
-      ["device_id_1"]=0,
-      ["device_id_2"]=0, 
-      ["device_id_3"]=0, 
+      ["own_device_id_1"]=0,
+      ["own_device_id_2"]=0, 
+      ["own_device_id_3"]=0, 
       ["day_start"]=360, -- 6hrs
       ["day_end"]=1260, --21 hrs
      }
@@ -81,6 +103,58 @@ function users_db_set_column(db_file, paramNAME, newvalue1, newvalue2, newvalue3
   table.save(t, db_file)
   return 1
 end
+
+function apply_safedns_policy(db_file, userID, new_running)
+  -- OWN DEVICES
+  for own_device_iterator = 1, 3, 1 do
+    t = table.load(db_file)
+    deviceID = t[userID]["own_device_id_"..own_device_iterator]
+    if deviceID ~= 0 then
+      --uci set safedns.cfg038c89.token='1922033194'
+      if new_running == 1 then
+        os.execute('uci set safedns.'..deviceToRule(deviceID)..
+        '.token='..users_db_get_value(users_db, userID, "lease__destination_token") )   
+      end
+
+      if new_running == 0 then
+        os.execute('uci set safedns.'..deviceToRule(deviceID)..
+        '.token='..users_db_get_value(users_db, userID, "lease__origin_token") )   
+      end
+
+    end
+  end
+
+  -- LEASED DEVICE
+  do
+    t = table.load(db_file)
+    deviceID = t[userID]["lease__device_id"]
+    if deviceID ~= 0 then
+      --uci set safedns.cfg038c89.token='1922033194'
+      if new_running == 1 then
+        os.execute('uci set safedns.'..deviceToRule(deviceID)..
+        '.token='..users_db_get_value(users_db, userID, "lease__destination_token") )   
+      end
+
+      if new_running == 0 then
+        os.execute('uci set safedns.'..deviceToRule(deviceID)..
+        '.token='..users_db_get_value(users_db, userID, "lease__origin_token") )   
+      end
+
+    end
+  end
+
+
+
+
+end
+
+function stop_active_lease(db_file, userID) 
+  t = table.load(db_file)
+  t[userID]["lease__device_id"]=0
+  table.save(t, db_file)
+  return 1
+end
+
 
 -- ADMIN DB FUNCTIONS
 
@@ -207,22 +281,3 @@ function lines_from(file)
   return lines
 end
 
--- HELPER FUNCTIONS
-
-function apply_running_status(db_file, userID, running)
-end
-
-function deviceToRule(deviceNr)
-  -- safedns first rule string: "cfg038c89"
-  ruleNr = string.format("%03x", tonumber(0x038) + deviceNr - 1)
-  ruleCode = "cfg"..ruleNr.."c89" 
-  return ruleCode
-end
-
-function ruleToDevice(ruleCode)
-  -- safedns first rule string: "cfg038c89"
-  -- ruleNr = "0x"..string.sub(ruleCode,4,6)
-  ruleNrHex = "0x"..string.sub(ruleCode,4,6)
-  deviceNr = tonumber(ruleNrHex) - tonumber(0x038) + 1 
-  return deviceNr
-end
