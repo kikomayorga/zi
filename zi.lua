@@ -36,7 +36,6 @@ phrases_u1 = lines_from(""..path.."zi/phrases/phrases_u1.txt")  -- usuario
 phrases_i = lines_from(""..path.."zi/phrases/phrases_i.txt")  -- inicialización
 phrases_i1 = lines_from(""..path.."zi/phrases/phrases_i1.txt")  -- inicialización
 
-continue =" && "  -- connects lines of voice
 vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
 
 -- usage:
@@ -121,8 +120,8 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     -- set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
     os.execute("echo 1 > /tmp/zi/busyflag  &&  echo 1 > /tmp/zi/skippableflag  &&  echo 0000 > /tmp/zi/last4keys  ")
     os.execute(
-    'aplay /tmp/zi/a_2.wav'..continue..'aplay /tmp/zi/a_3.wav'..continue..
-    'aplay /tmp/zi/a_4.wav'..continue..'aplay /tmp/zi/a_5.wav'..continue..
+    'aplay /tmp/zi/a_2.wav'..'aplay /tmp/zi/a_3.wav'..
+    'aplay /tmp/zi/a_4.wav'..'aplay /tmp/zi/a_5.wav'..
     'aplay /tmp/zi/a_6.wav')
     os.execute("echo 0 > /tmp/zi/busyflag && echo 0 > /tmp/zi/skippableflag")
   end
@@ -184,7 +183,7 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
   
   os.execute("uci commit")
   os.execute("/etc/init.d/safedns restart")
-  
+
   -- sets statesmachine:
   set_state(states_db, "iddle")
   -- enables triggerhappy
