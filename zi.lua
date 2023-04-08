@@ -12,7 +12,29 @@ TO DO !
 * user menu:
   - add external credit (x ej trotadora o smartwatch)
   - select device to be leased
+* connect and disconnects
+  - -- TODO: lua zi.lua hostapd connect macaddresse
+  - -- TODO: lua zi.lua hostapd dis-connect macaddresse
+  
 ]] 
+
+
+-- usage:
+-- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
+-- examples:
+-- lua zi.lua key 1 1234
+-- lua zi.lua states reset
+
+-- lua zi.lua users reset
+-- lua zi.lua admins reset
+-- lua zi.lua devices reset
+
+-- lua zi.lua cron eachminute
+-- lua zi.lua cron midnight
+
+-- TODO: lua zi.lua hostapd connect macaddresse
+-- TODO: lua zi.lua hostapd dis-connect macaddresse
+
 
 -- globals:
 -- safedns variables:
@@ -35,36 +57,26 @@ dofile(""..path.."zi/tables/animals_table.lua")
 dofile(""..path.."zi/tables/vehicles_table.lua")
 
 
-states_db = ""..path.."zi/tables/states_table.db"
-admins_db = ""..path.."zi/tables/admins_table.db"
-users_db = ""..path.."zi/tables/users_table.db"
+states_db  = ""..path.."zi/tables/states_table.db"
+admins_db  = ""..path.."zi/tables/admins_table.db"
+users_db   = ""..path.."zi/tables/users_table.db"
 devices_db = ""..path.."zi/tables/devices_table.db"
 
 
-phrases_a = lines_from(""..path.."zi/phrases/phrases_a.txt")  -- admin phrases
+phrases_a  = lines_from(""..path.."zi/phrases/phrases_a.txt")  -- admin phrases
 phrases_a1 = lines_from(""..path.."zi/phrases/phrases_a1.txt")  -- admin phrases
 phrases_a7 = lines_from(""..path.."zi/phrases/phrases_a7.txt")  -- admin phrases
 phrases_a6 = lines_from(""..path.."zi/phrases/phrases_a6.txt")  -- admin phrases
 phrases_a0 = lines_from(""..path.."zi/phrases/phrases_a0.txt")  -- admin phrases
 
-phrases_u = lines_from(""..path.."zi/phrases/phrases_u.txt")  -- usuario
+phrases_u  = lines_from(""..path.."zi/phrases/phrases_u.txt")  -- usuario
 phrases_u1 = lines_from(""..path.."zi/phrases/phrases_u1.txt")  -- usuario
-phrases_i = lines_from(""..path.."zi/phrases/phrases_i.txt")  -- inicialización
+phrases_i  = lines_from(""..path.."zi/phrases/phrases_i.txt")  -- inicialización
 phrases_i1 = lines_from(""..path.."zi/phrases/phrases_i1.txt")  -- inicialización
 
 vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
 
--- usage:
--- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
--- examples:
--- lua zi.lua key 1 1234   <  reading keysn
--- lua zi.lua users reset
--- lua zi.lua admins reset
--- lua zi.lua devices reset
--- lua zi.lua states reset
--- lua zi.lua cron eachminute
--- lua zi.lua cron midnight
--- lua zi.lua hostapd connect macaddresse
+
 
 -- command calls
 if (arg[1] == "users" and arg[2] == "reset") then users_db_reset(users_db) end
