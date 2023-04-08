@@ -134,7 +134,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     os.execute("echo 0000 > /tmp/zi/last4keys")
     running = users_db_get_value(users_db, logged_user, "running")
     if running == 0 then
-      os.execute('mpg123 keypress.mp3')
+      os.execute('mpg123 /etc/zi/sounds/keypress.mp3')
       os.execute('aplay /tmp/zi/u_1.wav && aplay /tmp/zi/u_2.wav'..
       '&& pico2wave -w /tmp/zi/get_time_left.wav -l es-ES " '..vol_pitch..' '..
       users_db_get_value(users_db, logged_user, "time_left_today")..
@@ -142,7 +142,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       ' && aplay /tmp/zi/u_3.wav')
     end
     if running == 1 then
-      os.execute('mpg123 keypress.mp3')
+      os.execute('mpg123 /etc/zi/sounds/keypress.mp3')
       os.execute('aplay /tmp/zi/u_1.wav && aplay /tmp/zi/u_4.wav'..
       '&& pico2wave -w /tmp/zi/get_time_left.wav -l es-ES " '..vol_pitch..' '..
       users_db_get_value(users_db, logged_user, "time_left_today")..
