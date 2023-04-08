@@ -369,19 +369,19 @@ if (arg[1] == "cron" and arg[2] == "eachminute") then
   if (saldo6 == 0 and running6 == 1) then running6 = 0 end
 
   -- detectar flancos y llamar acciones sobre ... apply_safedns_policy(db_file, userID, new_running)
-  if (running1 == 0 and previous_running1 ==1) then apply_safedns_policy(users_db, 1, 0) end
-  if (running2 == 0 and previous_running2 ==1) then apply_safedns_policy(users_db, 2, 0) end
-  if (running3 == 0 and previous_running3 ==1) then apply_safedns_policy(users_db, 3, 0) end
-  if (running4 == 0 and previous_running4 ==1) then apply_safedns_policy(users_db, 4, 0) end
-  if (running5 == 0 and previous_running5 ==1) then apply_safedns_policy(users_db, 5, 0) end
-  if (running6 == 0 and previous_running6 ==1) then apply_safedns_policy(users_db, 6, 0) end
+  if (running1 == 0 and previous_running1 == 1) then apply_safedns_policy(users_db, 1, 0) end
+  if (running2 == 0 and previous_running2 == 1) then apply_safedns_policy(users_db, 2, 0) end
+  if (running3 == 0 and previous_running3 == 1) then apply_safedns_policy(users_db, 3, 0) end
+  if (running4 == 0 and previous_running4 == 1) then apply_safedns_policy(users_db, 4, 0) end
+  if (running5 == 0 and previous_running5 == 1) then apply_safedns_policy(users_db, 5, 0) end
+  if (running6 == 0 and previous_running6 == 1) then apply_safedns_policy(users_db, 6, 0) end
 
-  if (running1 == 0 and previous_running1 ==1) then restart_safedns_flag = 1 end
-  if (running2 == 0 and previous_running2 ==1) then restart_safedns_flag = 1 end
-  if (running3 == 0 and previous_running3 ==1) then restart_safedns_flag = 1 end
-  if (running4 == 0 and previous_running4 ==1) then restart_safedns_flag = 1 end
-  if (running5 == 0 and previous_running5 ==1) then restart_safedns_flag = 1 end
-  if (running6 == 0 and previous_running6 ==1) then restart_safedns_flag = 1 end
+  if (running1 == 0 and previous_running1 == 1) then restart_safedns_flag = 1 end
+  if (running2 == 0 and previous_running2 == 1) then restart_safedns_flag = 1 end
+  if (running3 == 0 and previous_running3 == 1) then restart_safedns_flag = 1 end
+  if (running4 == 0 and previous_running4 == 1) then restart_safedns_flag = 1 end
+  if (running5 == 0 and previous_running5 == 1) then restart_safedns_flag = 1 end
+  if (running6 == 0 and previous_running6 == 1) then restart_safedns_flag = 1 end
 
   -- guardar ultimo estado de saldo_lease
   previous_saldo_lease_1 = saldo_lease_1
