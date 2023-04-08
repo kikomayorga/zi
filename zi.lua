@@ -1,3 +1,19 @@
+--[[ 
+TO DO !
+* populate mac2policy in lua version (?) or maybe just a setup flag (?)
+* populate 
+* test devices in users_db: own and leased 
+* use animals
+* use vehicles
+* admin menus:
+  - add and assign user's shared and own devices
+  - add and assign admins devices 
+  - 
+* user menu:
+  - add external credit (x ej trotadora o smartwatch)
+  - select device to be leased
+]] 
+
 -- globals:
 -- safedns variables:
 
