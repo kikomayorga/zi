@@ -109,17 +109,17 @@ function apply_safedns_policy(db_file, userID, new_running)
   for own_device_iterator = 1, 3, 1 do
     t = table.load(db_file)
     deviceID = t[userID]["own_device_id_"..own_device_iterator..""]
-    if deviceID ~= 0 then
+    if ( deviceID ~= 0 ) then
       -- formateando el nro de regla, pues la funcion deviceToRule no se podia llamar?
       ruleNr = string.format("%03x", tonumber(0x038) + deviceID - 1)
       ruleCode = "cfg"..ruleNr.."c89" 
       --uci set safedns.cfg038c89.token='1922033194'
-      if new_running == 1 then
+      if ( new_running == 1) then
         os.execute('uci set safedns.'..ruleCode..
         '.token='..users_db_get_value(users_db, userID, "lease__destination_token") )   
       end
 
-      if new_running == 0 then
+      if ( new_running == 0 ) then
         os.execute('uci set safedns.'..ruleCode..
         '.token='..users_db_get_value(users_db, userID, "lease__origin_token") )   
       end
@@ -136,12 +136,12 @@ function apply_safedns_policy(db_file, userID, new_running)
       ruleNr = string.format("%03x", tonumber(0x038) + deviceID - 1)
       ruleCode = "cfg"..ruleNr.."c89" 
       --uci set safedns.cfg038c89.token='1922033194'
-      if new_running == 1 then
+      if ( new_running == 1 ) then
         os.execute('uci set safedns.'..ruleCode..
         '.token='..users_db_get_value(users_db, userID, "lease__destination_token") )   
       end
 
-      if new_running == 0 then
+      if ( new_running == 0 ) then
         os.execute('uci set safedns.'..ruleCode..
         '.token='..users_db_get_value(users_db, userID, "lease__origin_token") )   
       end
