@@ -15,7 +15,7 @@ TO DO !
 * connect and disconnects
   - -- TODO: lua zi.lua hostapd connect macaddresse
   - -- TODO: lua zi.lua hostapd dis-connect macaddresse
-  
+
 ]] 
 
 
@@ -92,6 +92,12 @@ then
   for i = 1, 10, 1 do
     print(vehicles_table[i])
   end
+end
+
+if (arg[1] == "hostapd")
+then
+  os.execute("echo helloworld")
+  os.execute("mpg123 /etc/zi/sounds/success.mp3")
 end
 
 -- iddle and any key
