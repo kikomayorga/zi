@@ -132,14 +132,17 @@ function apply_safedns_policy(db_file, userID, new_running)
     t = table.load(db_file)
     deviceID = t[userID]["lease__device_id"]
     if deviceID ~= 0 then
+      -- formateando el nro de regla, pues la funcion deviceToRule no se podia llamar?
+      ruleNr = string.format("%03x", tonumber(0x038) + deviceID - 1)
+      ruleCode = "cfg"..ruleNr.."c89" 
       --uci set safedns.cfg038c89.token='1922033194'
       if new_running == 1 then
-        os.execute('uci set safedns.'..deviceToRule(deviceID)..
+        os.execute('uci set safedns.'..ruleCode..
         '.token='..users_db_get_value(users_db, userID, "lease__destination_token") )   
       end
 
       if new_running == 0 then
-        os.execute('uci set safedns.'..deviceToRule(deviceID)..
+        os.execute('uci set safedns.'..ruleCode..
         '.token='..users_db_get_value(users_db, userID, "lease__origin_token") )   
       end
 
