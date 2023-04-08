@@ -5,18 +5,18 @@ path = "/etc/"
 
 dofile(""..path.."zi/zi_functions.lua")  -- custom functions by zi
 
-phrases = lines_from("phrases.txt")      -- main menu
-phrases_a = lines_from("phrases_a.txt")  -- admin phrases
-phrases_a1 = lines_from("phrases_a1.txt")  -- admin phrases
-phrases_a7 = lines_from("phrases_a7.txt")  -- admin phrases
-phrases_a6 = lines_from("phrases_a6.txt")  -- admin phrases
-phrases_a0 = lines_from("phrases_a0.txt")  -- admin phrases
+phrases = lines_from("/etc/zi/phrases/phrases.txt")      -- main menu
+phrases_a = lines_from("/etc/zi/phrases/phrases_a.txt")  -- admin phrases
+phrases_a1 = lines_from("/etc/zi/phrases/phrases_a1.txt")  -- admin phrases
+phrases_a7 = lines_from("/etc/zi/phrases/phrases_a7.txt")  -- admin phrases
+phrases_a6 = lines_from("/etc/zi/phrases/phrases_a6.txt")  -- admin phrases
+phrases_a0 = lines_from("/etc/zi/phrases/phrases_a0.txt")  -- admin phrases
 
-phrases_u = lines_from("phrases_u.txt")  -- usuario
-phrases_u1 = lines_from("phrases_u.txt")  -- usuario
+phrases_u = lines_from("/etc/zi/phrases/phrases_u.txt")  -- usuario
+phrases_u1 = lines_from("/etc/zi/phrases/phrases_u.txt")  -- usuario
 
-phrases_i = lines_from("phrases_i.txt")  -- inicialización
-phrases_i2 = lines_from("phrases_i2.txt")  -- inicialización
+phrases_i = lines_from("/etc/zi/phrases/phrases_i.txt")  -- inicialización
+phrases_i2 = lines_from("/etc/zi/phrases/phrases_i2.txt")  -- inicialización
 
 vol_pitch = "<volume level=\'30\'><pitch level=\'120\'><speed level=\'80\'>"
 continue = " && " 
