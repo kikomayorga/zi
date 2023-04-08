@@ -181,7 +181,10 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
     'zi/sounds/aplausos.mp3')
     set_state(states_db, "iddle")
   end
-        
+  
+  os.execute("uci commit")
+  os.execute("/etc/init.d/safedns restart")
+  
   -- sets statesmachine:
   set_state(states_db, "iddle")
   -- enables triggerhappy
@@ -406,8 +409,9 @@ if (arg[1] == "cron" and arg[2] == "eachminute") then
   if (saldo_lease_6 == 0 and previous_saldo_lease_6 == 1) then running6 = 0 stop_active_lease(users_db, 6)  apply_safedns_policy(users_db, 6, 0) restart_safedns_flag = 1 end
 
   if restart_safedns_flag == 1 then 
-    -- os.execute("/etc/init.d/safedns restart")
+    -- 
     os.execute("uci commit")
+    os.execute("/etc/init.d/safedns restart")
   end
 
   -- escribimos los saldos en la tabla
