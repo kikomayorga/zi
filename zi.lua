@@ -2,10 +2,10 @@
 * DOING >>>  connect and disconnects
   - -- TODO: lua zi.lua hostapd connect macaddresse
   - -- TODO: lua zi.lua hostapd dis-connect macaddresse
-  
+
 TO DO !
+* CRON 2359
 * populate mac2policy in lua version (?) or maybe just a setup flag (?)
-* populate 
 * test devices in users_db: own and leased 
 * use animals
 * use vehicles
@@ -16,6 +16,7 @@ TO DO !
 * user menu:
   - add external credit (x ej trotadora o smartwatch)
   - select device to be leased
+
 
 
 ]] 
@@ -94,10 +95,17 @@ then
   for i = 1, 10, 1 do
     print(vehicles_table[i])
   end
-end
+endcd 
 
 if (arg[1] == "hostapd")
-then
+-- if (arg[2] == "AP-STA-CONNECTED") 
+-- if (arg[2] == "AP-STA-DISCONNECTED") 
+  mensaje_hostapd = arg[2]
+  mac_adress_detected = arg[3] 
+  os.execute("El mensaje de hostapd es: " ..mensaje_hostapd)
+  os.execute("La MAC address detectada es: " ..mac_adress_detected)
+--  cd /etc/zi/ && lua zi.lua hostapd $1 $2 $3 
+
   os.execute("echo helloworld")
   os.execute("mpg123 /etc/zi/sounds/success.mp3")
 end
