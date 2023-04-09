@@ -102,8 +102,8 @@ if (arg[1] == "hostapd")
 -- if (arg[2] == "AP-STA-DISCONNECTED") 
   mensaje_hostapd = arg[2]
   mac_adress_detected = arg[3] 
-  os.execute("El mensaje de hostapd es: " ..mensaje_hostapd)
-  os.execute("La MAC address detectada es: " ..mac_adress_detected)
+  os.execute("echo El mensaje de hostapd es: " ..mensaje_hostapd)
+  os.execute("echo La MAC address detectada es: " ..mac_adress_detected)
 --  cd /etc/zi/ && lua zi.lua hostapd $1 $2 $3 
 
   os.execute("echo helloworld")
