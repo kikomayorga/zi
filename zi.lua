@@ -98,6 +98,7 @@ then
 endcd 
 
 if (arg[1] == "hostapd")
+then
 -- if (arg[2] == "AP-STA-CONNECTED") 
 -- if (arg[2] == "AP-STA-DISCONNECTED") 
   mensaje_hostapd = arg[2]
