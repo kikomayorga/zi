@@ -105,8 +105,6 @@ if (arg[1] == "hostapd") then
   os.execute("echo El mensaje de hostapd es: " ..mensaje_hostapd)
   os.execute("echo La MAC address detectada es: " ..mac_adress_detected)
 --  cd /etc/zi/ && lua zi.lua hostapd $1 $2 $3 
-
-  os.execute("echo helloworld")
   os.execute("mpg123 /etc/zi/sounds/success.mp3")
 end
 
