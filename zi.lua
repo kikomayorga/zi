@@ -95,10 +95,9 @@ then
   for i = 1, 10, 1 do
     print(vehicles_table[i])
   end
-endcd 
+end
 
-if (arg[1] == "hostapd")
-then
+if (arg[1] == "hostapd") then
 -- if (arg[2] == "AP-STA-CONNECTED") 
 -- if (arg[2] == "AP-STA-DISCONNECTED") 
   mensaje_hostapd = arg[2]
