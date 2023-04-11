@@ -97,16 +97,32 @@ then
   end
 end
 
-if (arg[1] == "hostapd") then
--- if (arg[2] == "AP-STA-CONNECTED") 
--- if (arg[2] == "AP-STA-DISCONNECTED") 
-  mensaje_hostapd = arg[2]
-  mac_adress_detected = arg[3] 
-  os.execute("echo El mensaje de hostapd es: " ..mensaje_hostapd)
-  os.execute("echo La MAC address detectada es: " ..mac_adress_detected)
---  cd /etc/zi/ && lua zi.lua hostapd $1 $2 $3 
+if (arg[1] == "hostapd" and arg[2] == "AP-STA-CONNECTED") then
   os.execute("mpg123 /etc/zi/sounds/success.mp3")
+  mac_adress_detected = arg[3] 
+  -- SI LA MAC ESTÁ REGISTRADA
+  --    GET MAC >> SEARCH DEVICEID >>   
+
+
+  -- SI LA MAC NO ESTÁ REGISTRADA
+  
 end
+
+if (arg[1] == "hostapd" and arg[2] == "AP-STA-DISCONNECTED") then
+  os.execute("mpg123 /etc/zi/sounds/success.mp3")
+  mac_adress_detected = arg[3] 
+  -- SI LA MAC ESTÁ REGISTRADA
+  -- SI LA MAC NO ESTÁ REGISTRADA
+  end
+--[[
+"SONIDO DE SUCCESS.MP3
+"""SONIDO DE ""RECONOCIDO""  
+""SE HA CONECTADO ____ Y PERTENECE A ____"""
+"""SONIDO DE ""RECONOCIDO""  
+""PARAPENTE RECONOCIDO: 
+LISTO PARA NAVEGAR""
+INGRESA TU CLAVE PARA ZARPAR."
+]]
 
 -- iddle and any key
 if (get_state(states_db) == "iddle" and arg[1] == "key") then

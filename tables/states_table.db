@@ -3,5 +3,6 @@ return {
 {
    ["state"]="iddle",
    ["logged_user"]=0,
+   ['last_device_added']=0
 },
 }
