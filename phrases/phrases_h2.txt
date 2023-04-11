@@ -1,0 +1,3 @@
+Para liberar el dispositivo permanentemente, marca 1.
+Para asignar el dispositivo a un usuario en forma exclusiva, marca 2.
+Para marcar el dispositivo como compartido, marca 3.

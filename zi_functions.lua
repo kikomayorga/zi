@@ -191,6 +191,12 @@ end
 
 
 -- DEVICE DB FUNCTIONS
+function set_device_db_row(db_file, deviceID, MAC, vehicleID)
+  t = table.load(db_file)
+  -- TODO
+  table.save(t, db_file)
+end
+
 function assign_device_permanently(db_file, deviceNR, userID)
   t = table.load(db_file)
 
@@ -247,9 +253,7 @@ function mark_device_shared(deviceNR)
   -- 
 end
 
-function name_device(deviceNR)
-  -- db_file, insects_db_file
-end
+
 
 function name_vehicle(db_file, insects_db_file)
   -- asdfasdfasdf

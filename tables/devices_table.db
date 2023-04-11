@@ -37,193 +37,161 @@ return {
 -- Table: {2}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {3}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {4}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {5}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {6}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {7}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {8}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {9}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {10}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {11}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {12}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {13}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {14}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {15}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {16}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {17}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {18}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {19}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {20}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {21}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {22}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {23}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {24}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {25}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {26}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {27}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {28}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {29}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {30}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {31}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {32}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 -- Table: {33}
 {
    ["mac_adr"]="00:00:00:00:00:00",
-   ["vehicleID"]=0,
-   ["ownerID"]=0,
+   ["vehicleID"]=0
 },
 }
