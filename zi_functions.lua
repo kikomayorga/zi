@@ -1,19 +1,5 @@
 -- HELPER FUNCTIONS
 
-function deviceToRule(deviceNr)
-  -- safedns first rule string: "cfg038c89"
-  ruleNr = string.format("%03x", tonumber(0x038) + deviceNr - 1)
-  ruleCode = "cfg"..ruleNr.."c89" 
-  return ruleCode
-end
-
-function ruleToDevice(ruleCode)
-  -- safedns first rule string: "cfg038c89"
-  -- ruleNr = "0x"..string.sub(ruleCode,4,6)
-  ruleNrHex = "0x"..string.sub(ruleCode,4,6)
-  deviceNr = tonumber(ruleNrHex) - tonumber(0x038) + 1 
-  return deviceNr
-end
 
 
 -- RESETTER FUNCTIONS
@@ -64,18 +50,86 @@ function users_db_reset(db_file)
 
 end
 
+-- DEVICES FUNCTIONS
+
 function devices_db_reset(db_file)
   devices_table = {}
   for i = 1, 32 do
     devices_table[i] = {
       ["mac_adr"]="00:00:00:00:00:00",
-      ["vehicleID"]=0,
-      ["ownerID"]=0,   -- 0 means shared or leasable
+      ["vehicleName"]="dispositivo "..i
+      ["use"]="blocked"                         -- blocked, free, exclusive, shared
+      ["leased"]="false"
      }
   end
   table.save(devices_table, db_file)
   return 1
 end
+
+function getDevIndex(devices_db_file, MAC)
+  t = table.load(devices_db_file)
+  output = 0   -- case not found
+  for i, v in ipairs(t) do
+    if v["mac_adr"] == MAC then
+      output = i
+    end
+  end
+  return output
+end
+
+function getDevUse(devices_db_file, MAC)
+  t = table.load(devices_db_file)
+  output = "blocked"   -- blocked, free, exclusive, shared
+  for i, v in ipairs(t) do
+    if v["mac_adr"] == MAC then
+      output = v["use"]
+    end
+  end
+  return output
+end
+
+function setDevUse(devices_db_file, index, use)
+  t = table.load(devices_db_file)
+  t[index]["use"]= use
+  table.save(t, devices_db_file)
+end
+
+function getDevLeased(devices_db_file, MAC)
+  t = table.load(devices_db_file)
+  output = 0   -- case not found
+  for i, v in ipairs(t) do
+    if v["mac_adr"] == MAC then
+      output = v["leased"]
+    end
+  end
+  return output
+end
+
+function setDevLeased(devices_db_file, index, leased)
+  t = table.load(devices_db_file)
+  t[index]["leased"]= leased
+  table.save(t, devices_db_file)
+end
+
+
+
+
+function deviceToRule(deviceNr)
+  -- safedns first rule string: "cfg038c89"
+  ruleNr = string.format("%03x", tonumber(0x038) + deviceNr - 1)
+  ruleCode = "cfg"..ruleNr.."c89" 
+  return ruleCode
+end
+
+function ruleToDevice(ruleCode)
+  -- safedns first rule string: "cfg038c89"
+  -- ruleNr = "0x"..string.sub(ruleCode,4,6)
+  ruleNrHex = "0x"..string.sub(ruleCode,4,6)
+  deviceNr = tonumber(ruleNrHex) - tonumber(0x038) + 1 
+  return deviceNr
+end
+
+
 
 -- USERS DB FUNCTIONS
 
@@ -194,6 +248,11 @@ end
 function set_device_db_row(db_file, deviceID, MAC, vehicleID)
   t = table.load(db_file)
   -- TODO
+  --[[
+      t = table.load(db_file)
+  t["state"]=state
+  table.save(t, db_file)
+  ]]
   table.save(t, db_file)
 end
 
@@ -252,8 +311,6 @@ end
 function mark_device_shared(deviceNR)
   -- 
 end
-
-
 
 function name_vehicle(db_file, insects_db_file)
   -- asdfasdfasdf
