@@ -97,18 +97,20 @@ then
   end
 end
 
-if (arg[1] == "hostapd" and arg[2] == "AP-STA-CONNECTED") then
+if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-STA-CONNECTED") then
   os.execute("mpg123 /etc/zi/sounds/success.mp3")
   mac_adress_detected = arg[3] 
-  -- SI LA MAC ESTÁ REGISTRADA
-  --    GET MAC >> SEARCH DEVICEID >>   
-
-
-  -- SI LA MAC NO ESTÁ REGISTRADA
+  if( getDevNr(devices_db, mac_adress_detected) == 0 ) then
+    -- dispositivo desconocido
+    set_state("h1")
+  else
+  -- DISPOSITIVO CONOCIDO
+    if set_state("")
+  end
   
 end
 
-if (arg[1] == "hostapd" and arg[2] == "AP-STA-DISCONNECTED") then
+if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-STA-DISCONNECTED") then
   os.execute("mpg123 /etc/zi/sounds/success.mp3")
   mac_adress_detected = arg[3] 
   -- SI LA MAC ESTÁ REGISTRADA
