@@ -102,10 +102,11 @@ if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-ST
   mac_adress_detected = arg[3] 
   if( getDevNr(devices_db, mac_adress_detected) == 0 ) then
     -- dispositivo desconocido
-    set_state("h1")
+    set_state(states_db, "h1")
   else
-  -- DISPOSITIVO CONOCIDO
-    if set_state("")
+    -- dispositivo conocido
+    -- 
+    if get_state(states_db, "h3")
   end
   
 end

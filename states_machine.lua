@@ -34,3 +34,16 @@ function set_logged_user(db_file, user)
   table.save(t, db_file)
 return 1
 end 
+
+function set_last_device_added(db_file, last_index)
+  t = table.load(db_file)
+  t["last_device_added"]=last_index
+  table.save(t, db_file)
+  return 1
+end
+
+function get_last_device_added(db_file)
+  t = table.load(db_file)
+  output = t["last_device_added"]
+  return output
+end

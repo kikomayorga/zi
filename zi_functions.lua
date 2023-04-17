@@ -1,7 +1,5 @@
 -- HELPER FUNCTIONS
 
-
-
 -- RESETTER FUNCTIONS
 
 function admins_db_reset(db_file)
@@ -46,8 +44,6 @@ function users_db_reset(db_file)
   for i=1, 6 do t[i].user_name ="usuario "..i end
   table.save(t, db_file)
   return 1
-
-
 end
 
 -- DEVICES FUNCTIONS
@@ -66,6 +62,19 @@ function devices_db_reset(db_file)
   return 1
 end
 
+function devices_db_get_value(devices_db_file, index, field)
+  t = table.load(devices_db_file)
+  value = t[index][field]
+  table.save(t, devices_db_file)
+  return value
+end
+
+function devices_db_set_value(devices_db_file, index, field, value)
+  t = table.load(devices_db_file)
+  t[index][field]= value
+  table.save(t, devices_db_file)
+end
+
 function getDevIndex(devices_db_file, MAC)
   t = table.load(devices_db_file)
   output = 0   -- case not found
@@ -79,7 +88,7 @@ end
 
 function getDevUse(devices_db_file, MAC)
   t = table.load(devices_db_file)
-  output = "blocked"   -- blocked, free, exclusive, shared
+  output = "blocked"   -- blocked, liberated, exclusive, shared
   for i, v in ipairs(t) do
     if v["mac_adr"] == MAC then
       output = v["use"]
@@ -111,9 +120,6 @@ function setDevLeased(devices_db_file, index, leased)
   table.save(t, devices_db_file)
 end
 
-
-
-
 function deviceToRule(deviceNr)
   -- safedns first rule string: "cfg038c89"
   ruleNr = string.format("%03x", tonumber(0x038) + deviceNr - 1)
@@ -128,7 +134,6 @@ function ruleToDevice(ruleCode)
   deviceNr = tonumber(ruleNrHex) - tonumber(0x038) + 1 
   return deviceNr
 end
-
 
 
 -- USERS DB FUNCTIONS
