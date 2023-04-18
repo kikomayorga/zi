@@ -43,9 +43,9 @@ TO DO !
 -- safedns variables:
 
 -- debugging in router
-path = "/etc/"
+-- path = "/etc/"
 -- debugging in windows
--- path = "/home/qeakous/Documents/"
+path = "/home/qeakous/Documents/"
 
 safedns_rule_offset = "cfg038c89"
 safedns_policy_0 = "1922033194"
@@ -98,21 +98,27 @@ then
 end
 
 if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-STA-CONNECTED") then
-  os.execute("mpg123 /etc/zi/sounds/success.mp3")
+  os.execute("echo 1 > /tmp/zi/busyflag")
+  os.execute("echo 1 > /tmp/zi/skippableflag")
+  play_success()
   mac_adress_detected = arg[3] 
   if( getDevNr(devices_db, mac_adress_detected) == 0 ) then
     -- dispositivo desconocido
     set_state(states_db, "h1")
+    say("Nuevo dispositivo detectado. Ingresa una clave de administrador para configurarlo.")
+    set_state(states_db, "wait_admin_key")
   else
     -- dispositivo conocido
     -- 
-    if get_state(states_db, "h3")
+    -- if get_state(states_db, "h3")
+  os.execute("echo 0 > /tmp/zi/busyflag")
+  os.execute("echo 0 > /tmp/zi/skippableflag")
   end
   
 end
 
 if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-STA-DISCONNECTED") then
-  os.execute("mpg123 /etc/zi/sounds/success.mp3")
+  play_success()
   mac_adress_detected = arg[3] 
   -- SI LA MAC ESTÁ REGISTRADA
   -- SI LA MAC NO ESTÁ REGISTRADA
@@ -142,7 +148,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     then 
       os.execute("echo 0000 > /tmp/zi/last4keys")
       logged_admin = i 
-      os.execute("mpg123 "..path.."zi/sounds/success.mp3")
+      play_success()
       os.execute("aplay /tmp/zi/a_1.wav")  -- "Bienvenido Administrador"
       break
     end
@@ -156,7 +162,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       logged_user = i 
       os.execute("echo 0000 > /tmp/zi/last4keys")
       os.execute("echo 1 > /tmp/zi/busyflag")
-      os.execute("mpg123 "..path.."zi/sounds/success.mp3")
+      play_success()
       os.execute('pico2wave -w /tmp/bienvenido_u_n.wav -l es-ES "'..vol_pitch..
       ' bienvenido Usuario '..logged_user..
       ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/bienvenido_u_n.wav ')
@@ -187,6 +193,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     os.execute("echo 0 > /tmp/zi/busyflag && echo 0 > /tmp/zi/skippableflag")
   end
 
+
   -- USER MENU:
   -- if user password
   -- states: iddle > u
@@ -213,6 +220,29 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   end
   os.execute("echo 0 > /tmp/zi/busyflag")
   os.exit()
+end
+
+if (get_state(states_db) == "wait_admin_key" and arg[1] == "key") then
+
+  os.execute("echo 1 > /tmp/zi/busyflag")
+  os.execute("mpg123 "..path.."zi/sounds/click.mp3 &")
+  last4keys = arg[3]
+    
+    -- test for admin passwords
+  for i=1, 6 do 
+    if last4keys == admins_db_get_value(admins_db, i, "password")
+    then 
+      os.execute("echo 0000 > /tmp/zi/last4keys")
+      logged_admin = i 
+      play_success()
+      say("Bienvenido Administrador. Elige un nombre para este dispositivo.")
+      
+
+      break
+    end
+    os.execute("echo 0 > /tmp/zi/busyflag")
+  end
+
 end
 
 if (get_state(states_db) == "user_menu" and arg[1] == "key") then

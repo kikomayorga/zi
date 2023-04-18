@@ -46,21 +46,21 @@ function users_db_reset(db_file)
   return 1
 end
 
--- DEVICES FUNCTIONS
-
 function devices_db_reset(db_file)
   devices_table = {}
   for i = 1, 32 do
     devices_table[i] = {
       ["mac_adr"]="00:00:00:00:00:00",
-      ["vehicleName"]="dispositivo "..i
-      ["use"]="blocked"                         -- blocked, free, exclusive, shared
+      ["vehicleName"]="dispositivo "..i,
+      ["use"]="blocked",                     -- blocked, free, exclusive, shared
       ["leased"]="false"
      }
   end
   table.save(devices_table, db_file)
   return 1
 end
+
+-- DEVICES FUNCTIONS
 
 function devices_db_get_value(devices_db_file, index, field)
   t = table.load(devices_db_file)
@@ -351,5 +351,15 @@ function lines_from(file)
     lines[#lines + 1] = line
   end
   return lines
+end
+
+-- SOUND FUNCTIONS
+function say(string)
+  os.execute('pico2wave -w /tmp/saybuffer.wav -l es-ES "'..vol_pitch..
+  string..' && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/saybuffer.wav')
+end
+
+function play_success()
+  os.execute("mpg123 "..path.."/etc/zi/sounds/success.mp3")
 end
 
