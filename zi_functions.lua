@@ -363,3 +363,22 @@ function play_success()
   os.execute("mpg123 "..path.."/etc/zi/sounds/success.mp3")
 end
 
+-- STATES MACHINE FUNCTIONS
+
+function set_busy()
+  --do
+end
+
+function set_skippable()
+  -- do
+end
+
+function clear_busy()
+  --do
+end
+
+function clear_skippable()
+  -- do
+end
+
+
