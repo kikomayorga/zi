@@ -64,6 +64,7 @@ states_db  = ""..path.."zi/tables/states_table.db"
 admins_db  = ""..path.."zi/tables/admins_table.db"
 users_db   = ""..path.."zi/tables/users_table.db"
 devices_db = ""..path.."zi/tables/devices_table.db"
+vehicles_db = ""..path.."zi/tables/vehicles_table.db"
 
 
 phrases_a  = lines_from(""..path.."zi/phrases/phrases_a.txt")  -- admin phrases
@@ -86,7 +87,9 @@ if (arg[1] == "users" and arg[2] == "reset") then users_db_reset(users_db) end
 if (arg[1] == "admins" and arg[2] == "reset") then admins_db_reset(admins_db) end
 if (arg[1] == "devices" and arg[2] == "reset") then devices_db_reset(devices_db) end
 if (arg[1] == "policies" and arg[2] == "reset") then policies_db_reset(states_db) end
-if (arg[1] == "states" and arg[2] == "reset") then states_reset(states_db) end 
+if (arg[1] == "states" and arg[2] == "reset") then states_db_reset(states_db) end 
+if (arg[1] == "vehicles" and arg[2] == "reset") then vehicles_db_reset(vehicles_db) end 
+
 
 if (arg[1] == "test")
 then
@@ -99,7 +102,7 @@ end
 
 -- MAC / HOSTAPD ROUTINES
 
--- DEVICE GETS CONNECTED
+-- device gets connected
 if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-STA-CONNECTED") then
   set_busy()
   set_skippable()
@@ -109,14 +112,33 @@ if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-ST
     -- unknown device
     set_state(states_db, "h1")
     say("Nuevo dispositivo detectado. Ingresa una clave de administrador para configurarlo.")
-    set_state(states_db, "wait_admin_key")
+    set_state(states_db, "check_admin_pass")
   else
     -- known device
-
     clear_busy()
     clear_skippable()
   end
-  
+end
+
+-- testing for admin key
+if (get_state(states_db) == "check_admin_pass" and arg[1] == "key") then
+  set_busy()
+  play_click()
+  last4keys = arg[3]
+    -- test for admin passwords
+  for i=1, 6 do 
+    if last4keys == admins_db_get_value(admins_db, i, "password")
+    then 
+      clear_last4keys()
+      set_state(states_db, "choose_animal")
+      logged_admin = i 
+      play_success()
+      say("Autenticación Exitosa. Elige un nombre para el nuevo dispositivo. Los nombres disponibles son: ")
+      
+      break
+    end
+    clear_busy()
+  end
 end
 
 if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-STA-DISCONNECTED") then
@@ -225,28 +247,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   os.exit()
 end
 
-if (get_state(states_db) == "wait_admin_key" and arg[1] == "key") then
 
-  set_busy()
-  play_click()
-  last4keys = arg[3]
-    
-    -- test for admin passwords
-  for i=1, 6 do 
-    if last4keys == admins_db_get_value(admins_db, i, "password")
-    then 
-      clear_last4keys()
-      logged_admin = i 
-      play_success()
-      say("Bienvenido Administrador. Elige un nombre para este dispositivo.")
-      
-
-      break
-    end
-    clear_busy()
-  end
-
-end
 
 if (get_state(states_db) == "user_menu" and arg[1] == "key") then
   clear_last4keys()

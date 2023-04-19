@@ -60,6 +60,20 @@ function devices_db_reset(db_file)
   return 1
 end
 
+function vehicles_db_reset(db_file)
+  vt ={}
+  for i= 1,47 do
+    vt[i]={
+      ["vehicle"]=vehicles_table[i],
+      ["taken"]=0,
+      ["gender"]="nil",
+      ["aumentativo"]="nil"
+    }
+  end
+  table.save(vt, db_file)
+  return 1
+end
+
 -- DEVICES FUNCTIONS
 
 function devices_db_get_value(devices_db_file, index, field)
@@ -371,19 +385,19 @@ end
 -- STATES MACHINE FUNCTIONS
 
 function set_busy()
-  os.execute(echo 1 > /tmp/zi/busyflag)
+  os.execute("echo 1 > /tmp/zi/busyflag")
 end
 
 function set_skippable()
-  os.execute(echo 1 > /tmp/zi/skippableflag)
+  os.execute("echo 1 > /tmp/zi/skippableflag")
 end
 
 function clear_busy()
-  os.execute(echo 0 > /tmp/zi/busyflag)
+  os.execute("echo 0 > /tmp/zi/busyflag")
 end
 
 function clear_skippable()
-  os.execute(echo 0 > /tmp/zi/skippableflag)
+  os.execute("echo 0 > /tmp/zi/skippableflag")
 end
 
 function clear_last4keys()
