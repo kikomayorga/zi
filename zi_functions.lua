@@ -363,22 +363,30 @@ function play_success()
   os.execute("mpg123 "..path.."/etc/zi/sounds/success.mp3")
 end
 
+function play_click()
+  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
+end
+
+
 -- STATES MACHINE FUNCTIONS
 
 function set_busy()
-  --do
+  os.execute(echo 1 > /tmp/zi/busyflag)
 end
 
 function set_skippable()
-  -- do
+  os.execute(echo 1 > /tmp/zi/skippableflag)
 end
 
 function clear_busy()
-  --do
+  os.execute(echo 0 > /tmp/zi/busyflag)
 end
 
 function clear_skippable()
-  -- do
+  os.execute(echo 0 > /tmp/zi/skippableflag)
 end
 
+function clear_last4keys()
+  os.execute("echo 0000 > /tmp/zi/last4keys")
+end
 

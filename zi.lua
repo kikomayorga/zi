@@ -138,7 +138,7 @@ INGRESA TU CLAVE PARA ZARPAR."
 -- iddle and any key
 if (get_state(states_db) == "iddle" and arg[1] == "key") then
   set_busy()
-  os.execute("mpg123 "..path.."zi/sounds/click.mp3 &")
+  play_click()
   logged_user = 0
   logged_admin = 0
   lastkey = arg[2]
@@ -148,7 +148,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   for i=1, 6 do 
     if last4keys == admins_db_get_value(admins_db, i, "password")
     then 
-      os.execute("echo 0000 > /tmp/zi/last4keys")
+      clear_last4keys()
       logged_admin = i 
       play_success()
       os.execute("aplay /tmp/zi/a_1.wav")  -- "Bienvenido Administrador"
@@ -162,12 +162,10 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     if last4keys == users_db_get_value(users_db, i, "password")
     then 
       logged_user = i 
-      os.execute("echo 0000 > /tmp/zi/last4keys")
+      clear_last4keys()
       set_busy()
       play_success()
-      os.execute('pico2wave -w /tmp/bienvenido_u_n.wav -l es-ES "'..vol_pitch..
-      ' bienvenido Usuario '..logged_user..
-      ' ." && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/bienvenido_u_n.wav ')
+      say('bienvenido Usuario '..logged_user)
       break
     end
     clear_busy()
@@ -184,12 +182,12 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   -- if admin password
   -- states: iddle > a
   if logged_admin ~= 0 then
-    os.execute("echo 0000 > /tmp/zi/last4keys")
+    clear_last4keys()
     set_state(states_db, "a")              -- sets statesmachine:
     -- set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
     set_busy()
     set_skippable()
-    os.execute("echo 0000 > /tmp/zi/last4keys  ")
+    clear_last4keys()
     os.execute(
     'aplay /tmp/zi/a_2.wav'..'aplay /tmp/zi/a_3.wav'..
     'aplay /tmp/zi/a_4.wav'..'aplay /tmp/zi/a_5.wav'..
@@ -203,7 +201,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   -- if user password
   -- states: iddle > u
   if logged_user ~= 0 then
-    os.execute("echo 0000 > /tmp/zi/last4keys")
+    clear_last4keys()
     running = users_db_get_value(users_db, logged_user, "running")
     if running == 0 then
       os.execute('aplay /tmp/zi/u_1.wav && aplay /tmp/zi/u_2.wav'..
@@ -230,14 +228,14 @@ end
 if (get_state(states_db) == "wait_admin_key" and arg[1] == "key") then
 
   set_busy()
-  os.execute("mpg123 "..path.."zi/sounds/click.mp3 &")
+  play_click()
   last4keys = arg[3]
     
     -- test for admin passwords
   for i=1, 6 do 
     if last4keys == admins_db_get_value(admins_db, i, "password")
     then 
-      os.execute("echo 0000 > /tmp/zi/last4keys")
+      clear_last4keys()
       logged_admin = i 
       play_success()
       say("Bienvenido Administrador. Elige un nombre para este dispositivo.")
@@ -251,8 +249,8 @@ if (get_state(states_db) == "wait_admin_key" and arg[1] == "key") then
 end
 
 if (get_state(states_db) == "user_menu" and arg[1] == "key") then
-  os.execute("echo 0000 > /tmp/zi/last4keys")
-  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
+  clear_last4keys()
+  play_click()
   logged_user = get_logged_user(states_db)
   lastkey = arg[2]
 
@@ -260,20 +258,16 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
   if lastkey == "1" then
     users_db_set_value(users_db, logged_user, "running", 1)
     apply_safedns_policy(users_db, logged_user, 1)
-    os.execute('pico2wave -w /tmp/welcome.wav -l es-ES "'..
-    vol_pitch..'Navega!" '..
-    '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/welcome.wav && mpg123 '..path..
-    'zi/sounds/ticktack.mp3')
+    say("Navega! ")
+    os.execute('mpg123 '..path..'zi/sounds/ticktack.mp3')
     set_state(states_db, "iddle")
   end
 
   if lastkey == "0" then
     users_db_set_value(users_db, logged_user, "running", 0)
     apply_safedns_policy(users_db, logged_user, 0)
-    os.execute('pico2wave -w /tmp/pausa_de_i.wav -l es-ES "'..
-    vol_pitch..'Pausa de internet! " '..
-    '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/pausa_de_i.wav && mpg123 '..path..
-    'zi/sounds/aplausos.mp3')
+    say('Pausa de Internet! ')
+    os.execute('mpg123 '..path..'zi/sounds/aplausos.mp3')
     set_state(states_db, "iddle")
   end
   
@@ -291,16 +285,15 @@ end
 
 -- ADMIN MENUS
 -- a > a7
-os.execute("echo 0000 > /tmp/zi/last4keys")
+clear_last4keys()
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
-  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
+  play_click()
   set_state(states_db, "iddle")              -- sets statesmachine:
   clear_busy()
-  os.execute("echo 0 > /tmp/zi/skippableflag && "..
-  "echo 0000 > /tmp/zi/last4keys" )
-  os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
-  '" '..vol_pitch..'Se agregó 60 minutos a cada usuario. Un Exito." '..
-  '&& aplay /tmp/zi/buffer.wav && mpg123 /etc/zi/sounds/success.mp3')
+  clear_skippable()
+  clear_last4keys()
+  say('Se agregó 60 minutos a cada usuario. Un Éxito.')
+  play_success()
   clear_busy()
   clear_skippable()
   set_logged_user(states_db, 0)
@@ -308,28 +301,28 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
 end
 
 -- a > a1
-os.execute("echo 0000 > /tmp/zi/last4keys")
+clear_last4keys()
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
-  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
+  play_click()
   set_state(states_db, "a1")              -- sets statesmachine:
   set_busy()
   set_skippable()
-  os.execute("echo 0000 > /tmp/zi/last4keys  ")
+  clear_last4keys()
   os.execute('aplay /tmp/zi/a1_1.wav')
   os.execute('sleep 3  &&   echo 0 > /tmp/zi/busyflag  &&   sleep 1' )
   os.execute('killall -q lua')
 end
 
 -- a > a6
-os.execute("echo 0000 > /tmp/zi/last4keys")
+clear_last4keys()
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
-  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
+  play_click()
   -- lastkey = arg[2]
   -- logged_user = get_logged_user(states_db)
   set_state(states_db, "a6")              -- sets statesmachine:
   set_busy()
   set_skippable()
-  os.execute("echo 0000 > /tmp/zi/last4keys")
+  clear_last4keys()
   os.execute('aplay /tmp/zi/a6_1.wav')
   clear_busy()
   clear_skippable()
@@ -338,16 +331,14 @@ end
 
 -- a > a0
 -- bloquear a todos hasta mañana
-os.execute("echo 0000 > /tmp/zi/last4keys")
+clear_last4keys()
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "0") then
-  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
+  play_click()
   set_state(states_db, "a0")              -- sets statesmachine:
   set_busy()
   clear_skippable()
-  os.execute("echo 0000 > /tmp/zi/last4keys")
-  os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
-  '" '..vol_pitch..' '..'Se eliminó el saldo de todos los usuarios por hoy." '..
-  '&& aplay /tmp/zi/buffer.wav') 
+  clear_last4keys()
+  say('Se eliminó el saldo de todos los usuarios por hoy.')
   clear_busy()
   clear_skippable()
   set_state(states_db, "iddle")
@@ -358,11 +349,11 @@ end
 -- a1 > # > iddle
 -- "agregar 60 minutos a un usuario"
 if (get_state(states_db) == "a1" and arg[1] == "key") then
-  os.execute("echo 0000 > /tmp/zi/last4keys")
-  os.execute("mpg123 "..path.."zi/sounds/click.mp3")
+  clear_last4keys()
+  play_click()
   usuario_nro = arg[2]
   set_busy()
-  os.execute('echo 0000 > /tmp/zi/last4keys')
+  clear_last4keys()
   os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
   '"'..vol_pitch..'Se agregó 60 minutos al usuario '..usuario_nro..'." && '..
   'aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav  &&'..
@@ -378,9 +369,9 @@ end
 -- a6 > # > iddle
 -- "bloquear un usuario"
 if (get_state(states_db) == "a6" and arg[1] == "key") then
-  os.execute("mpg123 /etc/zi/sounds/click.mp3")
+  play_click()
   set_busy()
-  os.execute('echo 0000 > /tmp/zi/last4keys')
+  clear_last4keys()
   usuario_nro = arg[2]
   -- os.execute("mpg123 /etc/zi/sounds/success.mp3")
   if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6") then
@@ -393,7 +384,7 @@ if (get_state(states_db) == "a6" and arg[1] == "key") then
   else
     os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
   end  
-  os.execute("echo 0000 > /tmp/zi/last4keys")
+  clear_last4keys()
   os.execute('killall -q lua')
 end
 
