@@ -60,10 +60,10 @@ dofile(""..path.."zi/tables/animals_table.lua")
 dofile(""..path.."zi/tables/vehicles_table.lua")
 
 
-states_db  = ""..path.."zi/tables/states_table.db"
-admins_db  = ""..path.."zi/tables/admins_table.db"
-users_db   = ""..path.."zi/tables/users_table.db"
-devices_db = ""..path.."zi/tables/devices_table.db"
+states_db   = ""..path.."zi/tables/states_table.db"
+admins_db   = ""..path.."zi/tables/admins_table.db"
+users_db    = ""..path.."zi/tables/users_table.db"
+devices_db  = ""..path.."zi/tables/devices_table.db"
 vehicles_db = ""..path.."zi/tables/vehicles_table.db"
 
 
@@ -83,11 +83,11 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
 
 
 -- command calls
-if (arg[1] == "users" and arg[2] == "reset") then users_db_reset(users_db) end
-if (arg[1] == "admins" and arg[2] == "reset") then admins_db_reset(admins_db) end
-if (arg[1] == "devices" and arg[2] == "reset") then devices_db_reset(devices_db) end
-if (arg[1] == "policies" and arg[2] == "reset") then policies_db_reset(states_db) end
-if (arg[1] == "states" and arg[2] == "reset") then states_db_reset(states_db) end 
+if (arg[1] == "users"    and arg[2] == "reset") then    users_db_reset(users_db)   end
+if (arg[1] == "admins"   and arg[2] == "reset") then   admins_db_reset(admins_db)   end
+if (arg[1] == "devices"  and arg[2] == "reset") then  devices_db_reset(devices_db)  end
+if (arg[1] == "policies" and arg[2] == "reset") then policies_db_reset(states_db)   end
+if (arg[1] == "states"   and arg[2] == "reset") then   states_db_reset(states_db)   end 
 if (arg[1] == "vehicles" and arg[2] == "reset") then vehicles_db_reset(vehicles_db) end 
 
 
