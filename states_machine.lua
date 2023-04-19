@@ -15,6 +15,12 @@ function get_state(db_file)
 return state
 end 
 
+function get_last_state(db_file)
+  t = table.load(db_file)
+  state = t["last_state"]
+return state
+end 
+
 function set_state(db_file, state)
   t = table.load(db_file)
   t["state"]=state
