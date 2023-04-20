@@ -63,7 +63,7 @@ dofile(""..path.."zi/zi_functions_users.lua") -- states need some persistance
 dofile(""..path.."zi/zi_functions_admins.lua") -- states need some persistance 
 dofile(""..path.."zi/zi_functions_devices.lua") -- states need some persistance 
 dofile(""..path.."zi/zi_functions_vehicles.lua") -- states need some persistance 
-dofile(""..path.."zi/zi_functions.lua") -- states need some persistance 
+
 
 
 
