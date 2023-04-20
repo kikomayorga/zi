@@ -1,4 +1,3 @@
-for k,0,1 do -- commenting
   --[[ 
   * DOING >>>  connect and disconnects
     - -- TODO: lua zi.lua hostapd connect macaddresse
@@ -39,14 +38,13 @@ for k,0,1 do -- commenting
   -- TODO: lua zi.lua hostapd connect macaddresse
   -- TODO: lua zi.lua hostapd dis-connect macaddresse
 
-
   -- globals:
   -- safedns variables:
 
   -- debugging in router
   -- path = "/etc/"
   -- debugging in windows
-end
+
 
 path = "/home/qeakous/Documents/"
 
@@ -67,6 +65,7 @@ dofile(""..path.."zi/zi_functions_users.lua")
 dofile(""..path.."zi/zi_functions_admins.lua") 
 dofile(""..path.."zi/zi_functions_devices.lua") 
 dofile(""..path.."zi/zi_functions_vehicles.lua") 
+dofile(""..path.."zi/zi_functions_sounds.lua") 
 
 states_db   = ""..path.."zi/tables/states_table.db"
 admins_db   = ""..path.."zi/tables/admins_table.db"
