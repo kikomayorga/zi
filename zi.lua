@@ -65,7 +65,7 @@ dofile(""..path.."zi/zi_functions_users.lua")
 dofile(""..path.."zi/zi_functions_admins.lua") 
 dofile(""..path.."zi/zi_functions_devices.lua") 
 dofile(""..path.."zi/zi_functions_vehicles.lua") 
-dofile(""..path.."zi/zi_functions_sounds.lua") 
+dofile(""..path.."zi/zi_functions_sound.lua") 
 
 states_db   = ""..path.."zi/tables/states_table.db"
 admins_db   = ""..path.."zi/tables/admins_table.db"
