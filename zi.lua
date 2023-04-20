@@ -42,11 +42,11 @@
   -- safedns variables:
 
   -- debugging in router
-  -- path = "/etc/"
+  path = "/etc/"
   -- debugging in windows
 
 
-path = "/home/qeakous/Documents/"
+  -- path = "/home/qeakous/Documents/"
 
 safedns_rule_offset = "cfg038c89"
 safedns_policy_0 = "1922033194"
