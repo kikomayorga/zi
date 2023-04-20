@@ -224,7 +224,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       logged_admin = i 
       play_success()
       os.execute("aplay /tmp/zi/a_1.wav")  -- "Bienvenido Administrador"
-    --clear_busy()
+      clear_busy()
     end
     
   end
@@ -239,9 +239,9 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       play_success()
       say('bienvenido Usuario '..logged_user)
     end
-    --clear_busy()
+    clear_busy()
   end
-
+  
   -- if no found password
   if (logged_user == 0 and logged_admin == 0) then
     set_state(sates_db, "iddle")
