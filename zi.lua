@@ -112,7 +112,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-ST
   set_skippable()
   play_success()
   mac_adress_detected = arg[3] 
-  if( getDevNr(devices_db, mac_adress_detected) == 0 ) then
+  if(getDevIndex(devices_db, mac_adress_detected) == 0 ) then
     -- unknown device
     set_state(states_db, "h1")
     say("Nuevo dispositivo detectado. Ingresa una clave de administrador para configurarlo.")
