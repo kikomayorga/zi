@@ -1,10 +1,13 @@
+-- STATES MACHINE FUNCTIONS
+
 function states_db_reset(db_file)
   t = {}
   t = {
     ["state"]="iddle",    -- anonymous or logged
     ["logged_user"]=0,        -- 0: no user selected
     ['device_count']=0,
-    ['last_state']="iddle"
+    ['last_state']="iddle",
+    ["last_MAC_connected"]="00:00:00:00:00:00"
     }
   table.save(t, db_file)
   return 1
@@ -54,4 +57,30 @@ function get_last_device_added(db_file)
   t = table.load(db_file)
   output = t["last_device_added"]
   return output
+end
+
+function get_last_MAC_connected(db_file)
+  t = table.load(db_file)
+  output = t["last_MAC_connected"]
+  return output
+end
+
+function set_busy()
+  os.execute("echo 1 > /tmp/zi/busyflag")
+end
+
+function set_skippable()
+  os.execute("echo 1 > /tmp/zi/skippableflag")
+end
+
+function clear_busy()
+  os.execute("echo 0 > /tmp/zi/busyflag")
+end
+
+function clear_skippable()
+  os.execute("echo 0 > /tmp/zi/skippableflag")
+end
+
+function clear_last4keys()
+  os.execute("echo 0000 > /tmp/zi/last4keys")
 end
