@@ -30,13 +30,15 @@ function available_vehicles_menu(db_file, vh_table)
   t = table.load(db_file)
   menustring = ""
   for i, v in ipairs(t) do
-    if v["taken"] == 0
-    menustring = menustring..", "..i.." "..vh_table[i]
+    if v["taken"] == 0 then
+      menustring = menustring..", "..i.." "..vh_table[i]
+    end
   end
   return menustring
 end
 
 function get_vehicles_ammount(db_file)
-  t.load(vehicles_db)
-  return t#
+  t.load(db_file)
+  vehicles_ammount = tableLength(t)
+  return vehicles_ammount
 end

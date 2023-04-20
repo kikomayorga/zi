@@ -92,8 +92,8 @@ end
 function set_device_db_row(db_file, deviceID, MAC, vehicleID)
   t = table.load(db_file)
   t[deviceID]["mac_adr"]=MAC
-  t[deviceID]["leased"]="false",
-  t[deviceID]["use"]="blocked",
+  t[deviceID]["leased"]="false"
+  t[deviceID]["use"]="blocked"
   table.save(t, db_file)
 end
 
