@@ -2,11 +2,10 @@ return {
 -- Table: {1}
 {
    ["state"]="iddle",
+   ["user_count"]=0,
+   ["logged_user"]=0,
    ["last_state"]="iddle",
    ["device_count"]=0,
-   ["users_count"]=0,
-   ["logged_user"]=0,
    ["last_MAC_connected"]="00:00:00:00:00:00",
-   ["last_deviceID"]=0
 },
 }

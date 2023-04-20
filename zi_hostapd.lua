@@ -56,8 +56,8 @@ if (get_state(states_db) == "choose_vehicle_name" and arg[1] == "key") then
       say("Elija el uso del dispositivo:"..
       "Para asignar permanentemente un dispositivo marca 2."..
       "Para marcar el dispositivo como compartido marca 3"..
-      "Para liberar el dispositivo permanentemente marca 1"..
-    )
+      "Para liberar el dispositivo permanentemente marca 1")
+    end
   end
   clear_last4keys()
   set_state(states_db, "choose_vehicle_use")
