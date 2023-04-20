@@ -5,7 +5,8 @@ function states_db_reset(db_file)
   t = {
     ["state"]="iddle",    -- anonymous or logged
     ["logged_user"]=0,        -- 0: no user selected
-    ['device_count']=0,
+    ["device_count"]=0,
+    ["user_count"]=0,
     ['last_state']="iddle",
     ["last_MAC_connected"]="00:00:00:00:00:00"
     }
@@ -32,6 +33,20 @@ function set_state(db_file, state)
   table.save(t, db_file)
 return 1
 end 
+
+function get_user_count(db_file)
+  t = table.load(db_file)
+  user_count = t["user_count"]
+return logged_user
+end 
+
+function set_user_count(db_file, user_count)
+  t = table.load(db_file)
+  t["user_count"]=user_count
+  table.save(t, db_file)
+return 1
+end 
+
 
 function get_logged_user(db_file)
   t = table.load(db_file)
