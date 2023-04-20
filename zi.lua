@@ -59,10 +59,11 @@ dofile(""..path.."zi/tables/vehicles_table.lua")
 dofile(""..path.."zi/zi_functions.lua")  -- custom functions by zi
 
 -- single concern function files
-dofile(""..path.."zi/zi_functions_users.lua") -- states need some persistance 
-dofile(""..path.."zi/zi_functions_admins.lua") -- states need some persistance 
-dofile(""..path.."zi/zi_functions_devices.lua") -- states need some persistance 
-dofile(""..path.."zi/zi_functions_vehicles.lua") -- states need some persistance 
+dofile(""..path.."zi/zi_functions_states.lua") 
+dofile(""..path.."zi/zi_functions_users.lua") 
+dofile(""..path.."zi/zi_functions_admins.lua") 
+dofile(""..path.."zi/zi_functions_devices.lua") 
+dofile(""..path.."zi/zi_functions_vehicles.lua") 
 
 
 
@@ -87,13 +88,16 @@ phrases_i1 = lines_from(""..path.."zi/phrases/phrases_i1.txt")  -- inicializaci√
 
 vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
 
+-- do files - after separation of concerns
+dofile(""..path.."zi/zi_hostapd.lua") 
+dofile(""..path.."zi/zi_key.lua") 
+dofile(""..path.."zi/zi_cron.lua") 
 
 
 -- command calls
 if (arg[1] == "users"    and arg[2] == "reset") then    users_db_reset(users_db)   end
 if (arg[1] == "admins"   and arg[2] == "reset") then   admins_db_reset(admins_db)   end
 if (arg[1] == "devices"  and arg[2] == "reset") then  devices_db_reset(devices_db)  end
-if (arg[1] == "policies" and arg[2] == "reset") then policies_db_reset(states_db)   end
 if (arg[1] == "states"   and arg[2] == "reset") then   states_db_reset(states_db)   end 
 if (arg[1] == "vehicles" and arg[2] == "reset") then vehicles_db_reset(vehicles_db) end 
 
@@ -107,7 +111,3 @@ then
   end
 end
 
--- do files - after separation of concerns
-dofile(""..path.."zi/zi_hostapd.lua") 
-dofile(""..path.."zi/zi_key.lua") 
-dofile(""..path.."zi/zi_cron.lua") 
