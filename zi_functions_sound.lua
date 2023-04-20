@@ -5,7 +5,7 @@ function say(string)
 end
 
 function play_success()
-  os.execute("mpg123 "..path.."/etc/zi/sounds/success.mp3")
+  os.execute("mpg123 "..path.."zi/sounds/success.mp3")
 end
 
 function play_click()
