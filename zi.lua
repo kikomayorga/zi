@@ -107,8 +107,6 @@ then
   end
 end
 
-
-
 -- do files - after separation of concerns
 dofile(""..path.."zi/zi_hostapd.lua") 
 dofile(""..path.."zi/zi_key.lua") 
