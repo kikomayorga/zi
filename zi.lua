@@ -225,6 +225,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       play_success()
       os.execute("aplay /tmp/zi/a_1.wav")  -- "Bienvenido Administrador"
       clear_busy()
+      break
     end
     
   end
@@ -238,8 +239,9 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       set_busy()
       play_success()
       say('bienvenido Usuario '..logged_user)
+      clear_busy()
+      break
     end
-    clear_busy()
   end
   
   -- if no found password
