@@ -52,12 +52,19 @@ safedns_policy_0 = "1922033194"
 safedns_policy_1 = "176489346"
 safedns_policy_2 = "1388236232"
 
-
-dofile(""..path.."zi/zi_functions.lua")  -- custom functions by zi
-dofile(""..path.."zi/states_machine.lua") -- states need some persistance 
+-- very basic functions
 dofile(""..path.."zi/tables/tablesaveload.lua") -- for persistance
 dofile(""..path.."zi/tables/animals_table.lua")
 dofile(""..path.."zi/tables/vehicles_table.lua")
+dofile(""..path.."zi/zi_functions.lua")  -- custom functions by zi
+
+-- single concern function files
+dofile(""..path.."zi/zi_functions_users.lua") -- states need some persistance 
+dofile(""..path.."zi/zi_functions_admins.lua") -- states need some persistance 
+dofile(""..path.."zi/zi_functions_devices.lua") -- states need some persistance 
+dofile(""..path.."zi/zi_functions_vehicles.lua") -- states need some persistance 
+dofile(""..path.."zi/zi_functions.lua") -- states need some persistance 
+
 
 
 states_db   = ""..path.."zi/tables/states_table.db"
