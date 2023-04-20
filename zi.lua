@@ -204,6 +204,9 @@ LISTO PARA NAVEGAR""
 INGRESA TU CLAVE PARA ZARPAR."
 ]]
 
+
+
+-- KEYPAD ROUTINES
 -- iddle and any key
 if (get_state(states_db) == "iddle" and arg[1] == "key") then
   set_busy()
@@ -221,9 +224,9 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       logged_admin = i 
       play_success()
       os.execute("aplay /tmp/zi/a_1.wav")  -- "Bienvenido Administrador"
-      break
+    --clear_busy()
     end
-    clear_busy()
+    
   end
 
   -- test for user passwords
@@ -235,9 +238,8 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       set_busy()
       play_success()
       say('bienvenido Usuario '..logged_user)
-      break
     end
-    clear_busy()
+    --clear_busy()
   end
 
   -- if no found password
@@ -258,9 +260,9 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     set_skippable()
     clear_last4keys()
     os.execute(
-    'aplay /tmp/zi/a_2.wav'..'aplay /tmp/zi/a_3.wav'..
-    'aplay /tmp/zi/a_4.wav'..'aplay /tmp/zi/a_5.wav'..
-    'aplay /tmp/zi/a_6.wav')
+    'aplay /tmp/zi/a_2.wav '..' && aplay /tmp/zi/a_3.wav '..
+    ' && aplay /tmp/zi/a_4.wav '..' && aplay /tmp/zi/a_5.wav '..
+    ' && aplay /tmp/zi/a_6.wav ')
     clear_busy()
     clear_skippable()
   end
