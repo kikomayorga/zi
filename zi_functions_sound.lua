@@ -1,7 +1,7 @@
 -- SOUND FUNCTIONS
 function say(string)
   os.execute('pico2wave -w /tmp/saybuffer.wav -l es-ES "'..vol_pitch..
-  string..' && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/saybuffer.wav')
+  string..'" && aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/saybuffer.wav')
 end
 
 function play_success()

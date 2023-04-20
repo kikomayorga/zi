@@ -119,9 +119,9 @@ if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-ST
     set_state(states_db, "check_admin_pass")
   else
     -- known device
+  end
     clear_busy()
     clear_skippable()
-  end
 end
 
 -- testing for admin key
