@@ -144,6 +144,7 @@ if (get_state(states_db) == "check_admin_pass" and arg[1] == "key") then
     end
     clear_busy()
   end
+  clear_busy()
 end
 
 if (get_state(states_db) == "choose_vehicle_name" and arg[1] == "key") then
@@ -225,7 +226,6 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       play_success()
       os.execute("aplay /tmp/zi/a_1.wav")  -- "Bienvenido Administrador"
       clear_busy()
-      break
     end
     
   end
@@ -235,6 +235,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     if last4keys == users_db_get_value(users_db, i, "password")
     then 
       logged_user = i 
+      set_logged_user(sates_db, logged_user)
       clear_last4keys()
       set_busy()
       play_success()
@@ -256,9 +257,9 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   -- states: iddle > a
   if logged_admin ~= 0 then
     clear_last4keys()
-    set_state(states_db, "a")              -- sets statesmachine:
-    -- set_logged_user(states_db, logged_admin)        -- TODO:  is this needed?
-    set_busy()
+    set_logged_admin(states_db, logged_admin)
+    set_state(states_db, "a")
+    set_busy()   -- filters triggerhappy
     set_skippable()
     clear_last4keys()
     os.execute(
