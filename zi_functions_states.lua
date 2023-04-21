@@ -5,6 +5,7 @@ function states_db_reset(db_file)
   t = {
     ["state"]="iddle",    -- anonymous or logged
     ["logged_user"]=0,        -- 0: no user selected
+    ["logged_admin"]=0,
     ["device_count"]=0,
     ["user_count"]=0,
     ['last_state']="iddle",
@@ -57,6 +58,19 @@ end
 function set_logged_user(db_file, user)
   t = table.load(db_file)
   t["logged_user"]=user
+  table.save(t, db_file)
+return 1
+end 
+
+function get_logged_admin(db_file)
+  t = table.load(db_file)
+  logged_admin = t["logged_admin"]
+return logged_admin
+end 
+
+function set_logged_admin(db_file, admin_id)
+  t = table.load(db_file)
+  t["logged_admin"]=admin_id
   table.save(t, db_file)
 return 1
 end 
