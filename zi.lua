@@ -247,7 +247,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   
   -- if no found password
   if (logged_user == 0 and logged_admin == 0) then
-    set_state(sates_db, "iddle")
+    set_state(states_db, "iddle")
     set_logged_user(sates_db, 0)
     -- enables triggerhappy
     clear_busy()
@@ -266,7 +266,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     'aplay /tmp/zi/a_2.wav '..' && aplay /tmp/zi/a_3.wav '..
     ' && aplay /tmp/zi/a_4.wav '..' && aplay /tmp/zi/a_5.wav '..
     ' && aplay /tmp/zi/a_6.wav ')
-    clear_busy()
+    clear_busy() -- remove triggerhappy filters
     clear_skippable()
   end
 
