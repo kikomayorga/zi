@@ -284,8 +284,7 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
 end
 
 
--- DEDE ACÁ REVISAR
---[[
+
 
 -- ADMIN MENUS
 -- a > a7
@@ -305,7 +304,9 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
 end
 
 
-
+-- DEDE ACÁ REVISAR
+--[[
+  
 -- a > a1
 clear_last4keys()
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
