@@ -93,6 +93,7 @@ if (arg[1] == "vehicles" and arg[2] == "reset") then vehicles_db_reset(vehicles_
 
 if (arg[1] == "test")
 then
+  os.execute('killall -q lua')
   os.execute("echo hello world")
 --  print(animals_table[1])
   for i = 1, 10, 1 do
