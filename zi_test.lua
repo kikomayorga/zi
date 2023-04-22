@@ -288,7 +288,7 @@ end
 
 -- ADMIN MENUS
 -- a > a7
--- clear_last4keys()
+clear_last4keys()
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   play_click()
   set_state(states_db, "iddle")              -- sets statesmachine:
