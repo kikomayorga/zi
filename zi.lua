@@ -1,52 +1,49 @@
-  --[[ 
-  * DOING >>>  connect and disconnects
-    - -- TODO: lua zi.lua hostapd connect macaddresse
-    - -- TODO: lua zi.lua hostapd dis-connect macaddresse
+--[[ 
+* DOING >>>  connect and disconnects
+  - -- TODO: lua zi.lua hostapd connect macaddresse
+  - -- TODO: lua zi.lua hostapd dis-connect macaddresse
 
-  TO DO !
-  * CRON 2359
-  * populate mac2policy in lua version (?) or maybe just a setup flag (?)
-  * test devices in users_db: own and leased 
-  * use animals
-  * use vehicles
-  * admin menus:
-    - add and assign user's shared and own devices
-    - add and assign admins devices 
-    - 
-  * user menu:
-    - add external credit (x ej trotadora o smartwatch)
-    - select device to be leased
-
-
-
-  ]] 
+TO DO !
+* CRON 2359
+* populate mac2policy in lua version (?) or maybe just a setup flag (?)
+* test devices in users_db: own and leased 
+* use animals
+* use vehicles
+* admin menus:
+  - add and assign user's shared and own devices
+  - add and assign admins devices 
+  - 
+* user menu:
+  - add external credit (x ej trotadora o smartwatch)
+  - select device to be leased
+]] 
 
 
-  -- usage:
-  -- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
-  -- examples:
-  -- lua zi.lua key 1 1234
-  -- lua zi.lua states reset
+-- usage:
+-- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
+-- examples:
+-- lua zi.lua key 1 1234
+-- lua zi.lua states reset
 
-  -- lua zi.lua users reset
-  -- lua zi.lua admins reset
-  -- lua zi.lua devices reset
+-- lua zi.lua users reset
+-- lua zi.lua admins reset
+-- lua zi.lua devices reset
 
-  -- lua zi.lua cron eachminute
-  -- lua zi.lua cron midnight
+-- lua zi.lua cron eachminute
+-- lua zi.lua cron midnight
 
-  -- TODO: lua zi.lua hostapd connect macaddresse
-  -- TODO: lua zi.lua hostapd dis-connect macaddresse
+-- TODO: lua zi.lua hostapd connect macaddresse
+-- TODO: lua zi.lua hostapd dis-connect macaddresse
 
-  -- globals:
-  -- safedns variables:
+-- globals:
+-- safedns variables:
 
-  -- debugging in router
-  path = "/etc/"
-  -- debugging in windows
+-- debugging in router
+path = "/etc/"
+-- debugging in windows
 
 
-  -- path = "/home/qeakous/Documents/"
+-- path = "/home/qeakous/Documents/"
 
 safedns_rule_offset = "cfg038c89"
 safedns_policy_0 = "1922033194"
@@ -205,8 +202,6 @@ end
 LISTO PARA NAVEGAR""
 INGRESA TU CLAVE PARA ZARPAR."
 ]]
-
-
 
 -- KEYPAD ROUTINES
 -- iddle and any key
