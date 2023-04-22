@@ -283,7 +283,8 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
 -- os.exit() 
 end
 
---[[
+-- DEDE ACÁ REVISAR
+
 
 -- ADMIN MENUS
 -- a > a7
@@ -301,6 +302,8 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   set_logged_user(states_db, 0)
   os.execute('killall -q lua')
 end
+
+--[[
 
 -- a > a1
 clear_last4keys()
@@ -349,6 +352,10 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "0") then
 end
 
 ]]
+
+
+-- HASTA ACÁ REVISAR 
+
 
 -- a1 > # > iddle
 -- "agregar 60 minutos a un usuario"
