@@ -290,7 +290,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       ' && aplay /tmp/zi/u_5.wav')
       -- uci set safedns.cfg038c89.token='1922033194'
     end  
-    set_state(states_db, "user_menu")  -
+    set_state(states_db, "user_menu")  
     set_logged_user(states_db, logged_user)   
   end
 
