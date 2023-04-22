@@ -94,9 +94,10 @@ if (arg[1] == "vehicles" and arg[2] == "reset") then vehicles_db_reset(vehicles_
 if (arg[1] == "test")
 then
   os.execute("echo hello world")
-  print(animals_table[1])
+--  print(animals_table[1])
   for i = 1, 10, 1 do
-    print(vehicles_table[i])
+--  print(vehicles_table[i])
+    print(i)
   end
 end
 
