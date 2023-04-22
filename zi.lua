@@ -84,20 +84,20 @@ phrases_i1 = lines_from(""..path.."zi/phrases/phrases_i1.txt")  -- inicializaciÃ
 vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
 
 -- command calls
-if (arg[1] == "users"    and arg[2] == "reset") then    users_db_reset(users_db)    end
-if (arg[1] == "admins"   and arg[2] == "reset") then   admins_db_reset(admins_db)   end
-if (arg[1] == "devices"  and arg[2] == "reset") then  devices_db_reset(devices_db)  end
-if (arg[1] == "states"   and arg[2] == "reset") then   states_db_reset(states_db)   end 
+if (arg[1] == "users" and arg[2] == "reset") then users_db_reset(users_db) end
+if (arg[1] == "admins" and arg[2] == "reset") then admins_db_reset(admins_db) end
+if (arg[1] == "devices" and arg[2] == "reset") then devices_db_reset(devices_db) end
+if (arg[1] == "states" and arg[2] == "reset") then states_db_reset(states_db) end 
 if (arg[1] == "vehicles" and arg[2] == "reset") then vehicles_db_reset(vehicles_db) end 
 
 
 if (arg[1] == "test")
 then
   os.execute("echo hello world")
-  --print(animals_table[1])
-  --for i = 1, 10, 1 do
-  --  print(vehicles_table[i])
-  --end
+  print(animals_table[1])
+  for i = 1, 10, 1 do
+    print(vehicles_table[i])
+  end
 end
 
 
