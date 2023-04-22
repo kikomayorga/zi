@@ -284,7 +284,7 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
 end
 
 --[[
-  
+
 -- ADMIN MENUS
 -- a > a7
 clear_last4keys()
@@ -348,6 +348,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "0") then
   os.execute('killall -q lua')
 end
 
+]]
 
 -- a1 > # > iddle
 -- "agregar 60 minutos a un usuario"
@@ -525,4 +526,3 @@ end
 
 -- CRON 2359
 
-]]
