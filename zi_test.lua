@@ -295,7 +295,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   clear_busy()
   clear_skippable()
   clear_last4keys()
-  -- say('Se agregó 60 minutos a cada usuario. Un Éxito.')
+  say('Se agregó 60 minutos a cada usuario. Un Éxito.')
   play_success()
   -- set_logged_user(states_db, 0)
   os.execute('killall -q lua')
