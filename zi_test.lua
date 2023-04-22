@@ -1,44 +1,4 @@
---[[ 
-* DOING >>>  connect and disconnects
-  - -- TODO: lua zi.lua hostapd connect macaddresse
-  - -- TODO: lua zi.lua hostapd dis-connect macaddresse
 
-TO DO !
-* CRON 2359
-* populate mac2policy in lua version (?) or maybe just a setup flag (?)
-* test devices in users_db: own and leased 
-* use animals
-* use vehicles
-* admin menus:
-  - add and assign user's shared and own devices
-  - add and assign admins devices 
-  - 
-* user menu:
-  - add external credit (x ej trotadora o smartwatch)
-  - select device to be leased
-]] 
-
-
--- usage:
--- cd /etc/zi/ && lua zi.lua arg1 arg2 arg3
--- examples:
--- lua zi.lua key 1 1234
--- lua zi.lua states reset
-
--- lua zi.lua users reset
--- lua zi.lua admins reset
--- lua zi.lua devices reset
-
--- lua zi.lua cron eachminute
--- lua zi.lua cron midnight
-
--- TODO: lua zi.lua hostapd connect macaddresse
--- TODO: lua zi.lua hostapd dis-connect macaddresse
-
--- globals:
--- safedns variables:
-
--- debugging in router
 path = "/etc/"
 -- debugging in windows
 
@@ -100,7 +60,7 @@ then
   end
 end
 
-
+--[[
 -- HOSTAPD ROUTINES
 
 -- device gets connected
@@ -193,14 +153,6 @@ if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-ST
   -- SI LA MAC ESTÁ REGISTRADA
   -- SI LA MAC NO ESTÁ REGISTRADA
 end
---[[
-"SONIDO DE SUCCESS.MP3
-"""SONIDO DE ""RECONOCIDO""  
-""SE HA CONECTADO ____ Y PERTENECE A ____"""
-"""SONIDO DE ""RECONOCIDO""  
-""PARAPENTE RECONOCIDO: 
-LISTO PARA NAVEGAR""
-INGRESA TU CLAVE PARA ZARPAR."
 ]]
 
 -- KEYPAD ROUTINES
