@@ -255,7 +255,6 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   -- if admin password
   -- states: iddle > a
   if logged_admin ~= 0 then
-    clear_last4keys()
     set_logged_admin(states_db, logged_admin)
     set_state(states_db, "a")
     set_busy()   -- filters triggerhappy
@@ -291,13 +290,13 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
       ' && aplay /tmp/zi/u_5.wav')
       -- uci set safedns.cfg038c89.token='1922033194'
     end  
-    set_state(states_db, "user_menu")  -- sets statesmachine:
-    set_logged_user(states_db, logged_user)        -- TODO:  is this needed?
+    set_state(states_db, "user_menu")  -
+    set_logged_user(states_db, logged_user)   
   end
 
-  
+
   clear_busy()
-  -- os.exit()
+
 end
 
 
@@ -328,12 +327,10 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
   os.execute("uci commit")
   os.execute("/etc/init.d/safedns restart")
 
-  -- sets statesmachine:
   set_state(states_db, "iddle")
-  -- enables triggerhappy
   clear_busy()
 
-os.exit() 
+-- os.exit() 
 end
 
 
