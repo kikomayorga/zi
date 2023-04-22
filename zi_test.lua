@@ -18,11 +18,11 @@ dofile(""..path.."zi/zi_functions.lua")  -- custom functions by zi
 
 -- single concern function files
 dofile(""..path.."zi/zi_functions_states.lua") 
--- dofile(""..path.."zi/zi_functions_users.lua") 
--- dofile(""..path.."zi/zi_functions_admins.lua") 
--- dofile(""..path.."zi/zi_functions_devices.lua") 
--- dofile(""..path.."zi/zi_functions_vehicles.lua") 
--- dofile(""..path.."zi/zi_functions_sound.lua") 
+dofile(""..path.."zi/zi_functions_users.lua") 
+dofile(""..path.."zi/zi_functions_admins.lua") 
+dofile(""..path.."zi/zi_functions_devices.lua") 
+dofile(""..path.."zi/zi_functions_vehicles.lua") 
+dofile(""..path.."zi/zi_functions_sound.lua") 
 
 states_db   = "/tmp/zi/states_table.db"
 admins_db   = ""..path.."zi/tables/admins_table.db"
