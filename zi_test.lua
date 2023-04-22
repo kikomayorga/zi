@@ -249,7 +249,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   clear_busy()
 end
 
---[[
+
 
 if (get_state(states_db) == "user_menu" and arg[1] == "key") then
   clear_last4keys()
@@ -283,7 +283,7 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
 -- os.exit() 
 end
 
-
+--[[
 -- ADMIN MENUS
 -- a > a7
 clear_last4keys()
