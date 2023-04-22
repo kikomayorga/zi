@@ -288,7 +288,7 @@ end
 
 -- ADMIN MENUS
 -- a > a7
-clear_last4keys()
+-- clear_last4keys()
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   play_click()
   set_state(states_db, "iddle")              -- sets statesmachine:
@@ -297,9 +297,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   clear_last4keys()
   -- say('Se agregó 60 minutos a cada usuario. Un Éxito.')
   play_success()
-  clear_busy()
-  clear_skippable()
-  set_logged_user(states_db, 0)
+  -- set_logged_user(states_db, 0)
   os.execute('killall -q lua')
 end
 
