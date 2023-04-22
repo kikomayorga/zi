@@ -132,10 +132,9 @@ function clear_last4keys(db_file)
   table.save(t,db_file)
 end
 
-function pull_last4keys(db_file)
-  local keystring = os.execute("lkchain_old=`cat /tmp/zi/last4keys` && echo $lkchain_old")
+function set_last4keys(db_file, string)
   t = table.load(db_file)
-  t["last4keys"] = keystring
+  t["last4keys"] = string
   table.save(t,db_file)
 end
 
