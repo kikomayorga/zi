@@ -99,7 +99,7 @@ then
 --  print(vehicles_table[i])
     print(i)
   end
-  os.execute('killall -q lua')
+  -- os.execute('killall -q lua')
 end
 
 
