@@ -9,7 +9,10 @@ function states_db_reset(db_file)
     ["device_count"]=0,
     ["user_count"]=0,
     ['last_state']="iddle",
-    ["last_MAC_connected"]="00:00:00:00:00:00"
+    ["last_MAC_connected"]="00:00:00:00:00:00",
+    ["last4keys"]="0000",
+    ["busyflag"]=0,
+    ["skippableflag"]=0
     }
   table.save(t, db_file)
   return 1
@@ -94,22 +97,45 @@ function get_last_MAC_connected(db_file)
   return output
 end
 
-function set_busy()
+function set_busy(db_file)
   os.execute("echo 1 > /tmp/zi/busyflag")
+  t = table.load(db_file)
+  t["busyflag"] = 1
+  table.save(t,db_file)
 end
 
-function set_skippable()
+function set_skippable(db_file)
   os.execute("echo 1 > /tmp/zi/skippableflag")
+  t = table.load(db_file)
+  t["skippableflag"] = 1
+  table.save(t,db_file)
 end
 
 function clear_busy()
   os.execute("echo 0 > /tmp/zi/busyflag")
+  t = table.load(db_file)
+  t["busyflag"] = 0
+  table.save(t,db_file)
 end
 
-function clear_skippable()
+function clear_skippable(db_file)
   os.execute("echo 0 > /tmp/zi/skippableflag")
+  t = table.load(db_file)
+  t["skippableflag"] = 0
+  table.save(t,db_file)
 end
 
-function clear_last4keys()
+function clear_last4keys(db_file)
   os.execute("echo 0000 > /tmp/zi/last4keys")
+  t = table.load(db_file)
+  t["last4keys"] = "0000"
+  table.save(t,db_file)
 end
+
+function pull_last4keys(db_file)
+  local keystring = os.execute(`cat /tmp/zi/last4keys && echo $lkchain_old`)
+  t = table.load(db_file)
+  t["last4keys"] = keystring
+  table.save(t,db_file)
+end
+

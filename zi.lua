@@ -129,6 +129,7 @@ if (get_state(states_db) == "check_admin_pass" and arg[1] == "key") then
   set_busy()
   play_click()
   last4keys = arg[3]
+  pull_last4keys(states_db)  -- pulls current keybuffer to states table
     -- test for admin passwords
   for i=1, 6 do 
     if last4keys == admins_db_get_value(admins_db, i, "password")
@@ -216,6 +217,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   logged_admin = 0
   lastkey = arg[2]
   last4keys = arg[3]
+  pull_last4keys(states_db)  -- pulls current keybuffer to states table
     
     -- test for admin passwords
   for i=1, 6 do 
