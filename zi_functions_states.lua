@@ -113,7 +113,7 @@ function set_skippable(db_file)
 return 1
 end
 
-function clear_busy()
+function clear_busy(db_file)
   os.execute("echo 0 > /tmp/zi/busyflag")
   t = table.load(db_file)
   t["busyflag"] = 0

@@ -105,8 +105,8 @@ end
 
 -- device gets connected
 if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-STA-CONNECTED") then
-  set_busy()
-  set_skippable()
+  set_busy(states_db)
+  set_skippable(states_db)
   play_success()
   mac_adress_detected = arg[3] 
   if(getDevIndex(devices_db, mac_adress_detected) == 0 ) then
@@ -117,13 +117,13 @@ if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-ST
   else
     -- known device
   end
-    clear_busy()
-    clear_skippable()
+    clear_busy(states_db)
+    clear_skippable(states_db)
 end
 
 -- testing for admin key
 if (get_state(states_db) == "check_admin_pass" and arg[1] == "key") then
-  set_busy()
+  set_busy(states_db)
   play_click()
   last4keys = arg[3]
   set_last4keys(states_db, last4keys) 
@@ -131,22 +131,22 @@ if (get_state(states_db) == "check_admin_pass" and arg[1] == "key") then
   for i=1, 6 do 
     if last4keys == admins_db_get_value(admins_db, i, "password")
     then 
-      clear_last4keys()
+      clear_last4keys(states_db)
       set_state(states_db, "choose_vehicle_name")
-      set_skippable()
+      set_skippable(states_db)
       logged_admin = i 
       play_success()
       say("Autenticación Exitosa. Elige un nombre para el nuevo dispositivo. Los nombres disponibles son: ")
-      say(available_vehicles_menu())
+      say(available_vehicles_menu(vehicles_db))
       arg[1]="kill"
     end
-    clear_busy()
+    clear_busy(states_db)
   end
-  clear_busy()
+  clear_busy(states_db)
 end
 
 if (get_state(states_db) == "choose_vehicle_name" and arg[1] == "key") then
-  set_busy()
+  set_busy(states_db)
   play_click()
   last4keys = arg[3]
   last2keys = string.sub(last4keys, -2)
@@ -155,8 +155,8 @@ if (get_state(states_db) == "choose_vehicle_name" and arg[1] == "key") then
     if vehicleID <= get_vehicles_ammount(vehicles_db) then
       say("Se ha asignado el nombre "..vehicles_table[vehicleID].." al equipo recientemente conectado. ")
       set_vehicle_taken(vehicles_db, vehicleID, 1)
-      set_device_db_row(db_file, get_last_device_added()+1, get_last_MAC_connected(states_db) , vehicleID)
-      set_last_device_added(get_last_device_added() + 1)
+      set_device_db_row(devices_db, get_last_device_added(states_db)+1, get_last_MAC_connected(states_db) , vehicleID)
+      set_last_device_added(get_last_device_added(states_db) + 1)
       delay(5)
       say("Elija el uso del dispositivo:"..
       "Para asignar permanentemente un dispositivo marca 2."..
@@ -164,15 +164,15 @@ if (get_state(states_db) == "choose_vehicle_name" and arg[1] == "key") then
       "Para liberar el dispositivo permanentemente marca 1")
     end
   end
-  clear_last4keys()
+  clear_last4keys(states_db)
   set_state(states_db, "choose_vehicle_use")
-  set_skippable()
+  set_skippable(states_db)
   play_success()
-  clear_busy()
+  clear_busy(states_db)
 end
 
 if (get_state(states_db) == "choose_vehicle_use" and arg[1] == "key") then
-  set_busy()
+  set_busy(states_db)
   set_state(states_db, "iddle")
   play_click()
   if (arg[2] == 2) then
@@ -182,9 +182,9 @@ if (get_state(states_db) == "choose_vehicle_use" and arg[1] == "key") then
   if (arg[2] == 3) then
     -- TODO
   end
-  clear_last4keys()
+  clear_last4keys(states_db)
   play_success()
-  clear_busy()
+  clear_busy(states_db)
 end
 
 if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-STA-DISCONNECTED") then
@@ -206,7 +206,7 @@ INGRESA TU CLAVE PARA ZARPAR."
 -- KEYPAD ROUTINES
 -- iddle and any key
 if (get_state(states_db) == "iddle" and arg[1] == "key") then
-  set_busy()
+  set_busy(states_db)
   play_click()
   logged_user = 0
   logged_admin = 0
@@ -218,12 +218,12 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   for i=1, 6 do 
     if last4keys == admins_db_get_value(admins_db, i, "password")
     then 
-      clear_last4keys()
+      clear_last4keys(states_db)
       logged_admin = i 
       set_logged_admin(states_db, i)
       play_success()
       os.execute("aplay /tmp/zi/a_1.wav")  -- "Bienvenido Administrador"
-      clear_busy()
+      clear_busy(states_db)
     end
     
   end
@@ -234,11 +234,11 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     then 
       logged_user = i 
       set_logged_user(states_db, logged_user)
-      clear_last4keys()
-      set_busy()
+      clear_last4keys(states_db)
+      set_busy(states_db)
       play_success()
       say('bienvenido Usuario '..logged_user)
-      clear_busy()
+      clear_busy(states_db)
     end
   end
   
@@ -247,7 +247,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     set_state(states_db, "iddle")
     set_logged_user(states_db, 0)
     -- enables triggerhappy
-    clear_busy()
+    clear_busy(states_db)
   end
 
   -- if admin password
@@ -255,15 +255,15 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   if logged_admin ~= 0 then
     set_logged_admin(states_db, logged_admin)
     set_state(states_db, "a")
-    set_busy()   -- filters triggerhappy
-    set_skippable()
-    clear_last4keys()
+    set_busy(states_db)   -- filters triggerhappy
+    set_skippable(states_db)
+    clear_last4keys(states_db)
     os.execute(
     'aplay /tmp/zi/a_2.wav '..' && aplay /tmp/zi/a_3.wav '..
     ' && aplay /tmp/zi/a_4.wav '..' && aplay /tmp/zi/a_5.wav '..
     ' && aplay /tmp/zi/a_6.wav ')
-    clear_busy() -- remove triggerhappy filters
-    clear_skippable()
+    clear_busy(states_db) -- remove triggerhappy filters
+    clear_skippable(states_db)
   end
 
 
@@ -271,7 +271,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   -- if user password
   -- states: iddle > u
   if logged_user ~= 0 then
-    clear_last4keys()
+    clear_last4keys(states_db)
     running = users_db_get_value(users_db, logged_user, "running")
     if running == 0 then
       os.execute('aplay /tmp/zi/u_1.wav && aplay /tmp/zi/u_2.wav'..
@@ -292,13 +292,13 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     set_logged_user(states_db, logged_user)   
   end
 
-  clear_busy()
+  clear_busy(states_db)
 end
 
 
 
 if (get_state(states_db) == "user_menu" and arg[1] == "key") then
-  clear_last4keys()
+  clear_last4keys(states_db)
   play_click()
   logged_user = get_logged_user(states_db)
   lastkey = arg[2]
@@ -324,7 +324,7 @@ if (get_state(states_db) == "user_menu" and arg[1] == "key") then
   os.execute("/etc/init.d/safedns restart")
 
   set_state(states_db, "iddle")
-  clear_busy()
+  clear_busy(states_db)
 
 -- os.exit() 
 end
@@ -332,62 +332,62 @@ end
 
 -- ADMIN MENUS
 -- a > a7
-clear_last4keys()
+clear_last4keys(states_db)
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   play_click()
   set_state(states_db, "iddle")              -- sets statesmachine:
-  clear_busy()
-  clear_skippable()
-  clear_last4keys()
+  clear_busy(states_db)
+  clear_skippable(states_db)
+  clear_last4keys(states_db)
   say('Se agregó 60 minutos a cada usuario. Un Éxito.')
   play_success()
-  clear_busy()
-  clear_skippable()
+  clear_busy(states_db)
+  clear_skippable(states_db)
   set_logged_user(states_db, 0)
   os.execute('killall -q lua')
 end
 
 -- a > a1
-clear_last4keys()
+clear_last4keys(states_db)
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
   play_click()
   set_state(states_db, "a1")              -- sets statesmachine:
-  set_busy()
-  set_skippable()
-  clear_last4keys()
+  set_busy(states_db)
+  set_skippable(states_db)
+  clear_last4keys(states_db)
   os.execute('aplay /tmp/zi/a1_1.wav')
   os.execute('sleep 3  &&   echo 0 > /tmp/zi/busyflag  &&   sleep 1' )
   os.execute('killall -q lua')
 end
 
 -- a > a6
-clear_last4keys()
+clear_last4keys(states_db)
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
   play_click()
   -- lastkey = arg[2]
   -- logged_user = get_logged_user(states_db)
   set_state(states_db, "a6")              -- sets statesmachine:
-  set_busy()
-  set_skippable()
-  clear_last4keys()
+  set_busy(states_db)
+  set_skippable(states_db)
+  clear_last4keys(states_db)
   os.execute('aplay /tmp/zi/a6_1.wav')
-  clear_busy()
-  clear_skippable()
+  clear_busy(states_db)
+  clear_skippable(states_db)
   os.execute('killall -q lua')
 end
 
 -- a > a0
 -- bloquear a todos hasta mañana
-clear_last4keys()
+clear_last4keys(states_db)
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "0") then
   play_click()
   set_state(states_db, "a0")              -- sets statesmachine:
-  set_busy()
-  clear_skippable()
-  clear_last4keys()
+  set_busy(states_db)
+  clear_skippable(states_db)
+  clear_last4keys(states_db)
   say('Se eliminó el saldo de todos los usuarios por hoy.')
-  clear_busy()
-  clear_skippable()
+  clear_busy(states_db)
+  clear_skippable(states_db)
   set_state(states_db, "iddle")
   set_logged_user(states_db, 0)
   os.execute('killall -q lua')
@@ -396,18 +396,18 @@ end
 -- a1 > # > iddle
 -- "agregar 60 minutos a un usuario"
 if (get_state(states_db) == "a1" and arg[1] == "key") then
-  clear_last4keys()
+  clear_last4keys(states_db)
   play_click()
   usuario_nro = arg[2]
-  set_busy()
-  clear_last4keys()
+  set_busy(states_db)
+  clear_last4keys(states_db)
   os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
   '"'..vol_pitch..'Se agregó 60 minutos al usuario '..usuario_nro..'." && '..
   'aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav  &&'..
   'mpg123 /etc/zi/sounds/success.mp3')
   -- os.execute("sleep 3")
   -- os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
-  clear_busy()
+  clear_busy(states_db)
   set_state(states_db, "iddle")
   os.execute('killall -q lua')
 end
@@ -417,8 +417,8 @@ end
 -- "bloquear un usuario"
 if (get_state(states_db) == "a6" and arg[1] == "key") then
   play_click()
-  set_busy()
-  clear_last4keys()
+  set_busy(states_db)
+  clear_last4keys(states_db)
   usuario_nro = arg[2]
   -- os.execute("mpg123 /etc/zi/sounds/success.mp3")
   if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6") then
@@ -426,12 +426,12 @@ if (get_state(states_db) == "a6" and arg[1] == "key") then
     '"'..vol_pitch..'Se puso a cero los minutos de hoy para usuario número '..usuario_nro..' ." '..
     '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav'..
     '&& mpg123 '..path..'zi/sounds/success.mp3')
-    set_busy()
+    set_busy(states_db)
     set_state(states_db, "iddle")
   else
     os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
   end  
-  clear_last4keys()
+  clear_last4keys(states_db)
   os.execute('killall -q lua')
 end
 
