@@ -304,7 +304,7 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
 end
 
 -- DEDE ACÁ REVISAR
-
+--[[
 
 -- a > a1
 clear_last4keys()
@@ -319,8 +319,8 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
   os.execute('killall -q lua')
 end
 
---[[
-  
+
+
 -- a > a6
 clear_last4keys()
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
