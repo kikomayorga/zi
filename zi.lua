@@ -100,7 +100,7 @@ then
   end
 end
 
-
+--[[
 -- HOSTAPD ROUTINES
 
 -- device gets connected
@@ -203,6 +203,7 @@ LISTO PARA NAVEGAR""
 INGRESA TU CLAVE PARA ZARPAR."
 ]]
 
+--[[
 -- KEYPAD ROUTINES
 -- iddle and any key
 if (get_state(states_db) == "iddle" and arg[1] == "key") then
@@ -569,3 +570,4 @@ end
 
 -- CRON 2359
 
+]]
