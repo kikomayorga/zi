@@ -15,7 +15,7 @@ function states_db_reset(db_file)
     ["skippableflag"]=0
     }
   table.save(t, db_file)
-  return 1
+return 1
 end
 
 function get_state(db_file)
@@ -82,19 +82,19 @@ function set_last_device_added(db_file, last_index)
   t = table.load(db_file)
   t["last_device_added"]=last_index
   table.save(t, db_file)
-  return 1
+return 1
 end
 
 function get_last_device_added(db_file)
   t = table.load(db_file)
   output = t["last_device_added"]
-  return output
+return output
 end
 
 function get_last_MAC_connected(db_file)
   t = table.load(db_file)
   output = t["last_MAC_connected"]
-  return output
+return output
 end
 
 function set_busy(db_file)
@@ -102,6 +102,7 @@ function set_busy(db_file)
   t = table.load(db_file)
   t["busyflag"] = 1
   table.save(t,db_file)
+return 1
 end
 
 function set_skippable(db_file)
@@ -109,6 +110,7 @@ function set_skippable(db_file)
   t = table.load(db_file)
   t["skippableflag"] = 1
   table.save(t,db_file)
+return 1
 end
 
 function clear_busy()
@@ -116,6 +118,7 @@ function clear_busy()
   t = table.load(db_file)
   t["busyflag"] = 0
   table.save(t,db_file)
+return 1
 end
 
 function clear_skippable(db_file)
@@ -123,6 +126,7 @@ function clear_skippable(db_file)
   t = table.load(db_file)
   t["skippableflag"] = 0
   table.save(t,db_file)
+return 1
 end
 
 function clear_last4keys(db_file)
@@ -130,11 +134,13 @@ function clear_last4keys(db_file)
   t = table.load(db_file)
   t["last4keys"] = "0000"
   table.save(t,db_file)
+return 1
 end
 
 function set_last4keys(db_file, string)
   t = table.load(db_file)
   t["last4keys"] = string
   table.save(t,db_file)
+return 1
 end
 
