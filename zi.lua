@@ -225,6 +225,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     then 
       clear_last4keys()
       logged_admin = i 
+      set_logged_admin(states_db, i)
       play_success()
       os.execute("aplay /tmp/zi/a_1.wav")  -- "Bienvenido Administrador"
       clear_busy()
@@ -247,7 +248,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
   end
   
   -- if no found password
-  if (logged_user == 0 and logged_admin == 0) then
+  if (get_logged_user(states_db) == 0 and get_logged_admin(states_db) == 0) then
     set_state(states_db, "iddle")
     set_logged_user(states_db, 0)
     -- enables triggerhappy
@@ -296,9 +297,7 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     set_logged_user(states_db, logged_user)   
   end
 
-
   clear_busy()
-
 end
 
 
