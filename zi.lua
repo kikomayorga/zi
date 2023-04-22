@@ -67,7 +67,7 @@ dofile(""..path.."zi/zi_functions_devices.lua")
 dofile(""..path.."zi/zi_functions_vehicles.lua") 
 dofile(""..path.."zi/zi_functions_sound.lua") 
 
-states_db   = ""..path.."zi/tables/states_table.db"
+states_db   = "/tmp/zi/states_table.db"
 admins_db   = ""..path.."zi/tables/admins_table.db"
 users_db    = ""..path.."zi/tables/users_table.db"
 devices_db  = ""..path.."zi/tables/devices_table.db"
@@ -235,20 +235,19 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     if last4keys == users_db_get_value(users_db, i, "password")
     then 
       logged_user = i 
-      set_logged_user(sates_db, logged_user)
+      set_logged_user(states_db, logged_user)
       clear_last4keys()
       set_busy()
       play_success()
       say('bienvenido Usuario '..logged_user)
       clear_busy()
-      break
     end
   end
   
   -- if no found password
   if (logged_user == 0 and logged_admin == 0) then
     set_state(states_db, "iddle")
-    set_logged_user(sates_db, 0)
+    set_logged_user(states_db, 0)
     -- enables triggerhappy
     clear_busy()
   end
@@ -295,8 +294,10 @@ if (get_state(states_db) == "iddle" and arg[1] == "key") then
     set_state(states_db, "user_menu")  -- sets statesmachine:
     set_logged_user(states_db, logged_user)        -- TODO:  is this needed?
   end
+
+  
   clear_busy()
-  os.exit()
+  -- os.exit()
 end
 
 
