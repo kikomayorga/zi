@@ -98,7 +98,6 @@ then
   for i = 1, 10, 1 do
     print(vehicles_table[i])
   end
-  break
 end
 
 
