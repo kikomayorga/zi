@@ -60,7 +60,7 @@ then
   end
 end
 
---[[
+
 -- HOSTAPD ROUTINES
 
 -- device gets connected
@@ -153,7 +153,9 @@ if (get_state(states_db) == "iddle" and arg[1] == "hostapd" and arg[2] == "AP-ST
   -- SI LA MAC ESTÁ REGISTRADA
   -- SI LA MAC NO ESTÁ REGISTRADA
 end
-]]
+
+
+--[[
 
 -- KEYPAD ROUTINES
 -- iddle and any key
@@ -521,3 +523,4 @@ end
 
 -- CRON 2359
 
+]]
