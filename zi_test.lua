@@ -299,14 +299,14 @@ if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
   play_success()
   clear_busy()
   clear_skippable()
-  set_logged_user(states_db, 0)
+  -- set_logged_user(states_db, 0)
   os.execute('killall -q lua')
 end
 
 
 -- DEDE ACÁ REVISAR
 --[[
-  
+
 -- a > a1
 clear_last4keys()
 if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
