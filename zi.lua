@@ -452,9 +452,10 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
         users_db_set_value(users_db, usuario_nro, "time_left_today", 0)
         clear_busy(states_db)
         set_state(states_db, "iddle")
+        set_logged_admin(states_db, 0)
       else   -- case user not existant
         os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
-        play("Número de usuario inválido...")
+        say("Número de usuario inválido...")
       end  
     end
   -- END ADMIN LEVEL 2 MENUS
