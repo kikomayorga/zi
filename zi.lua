@@ -207,28 +207,24 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
 -- KEYPAD ROUTINES
   -- iddle and any key
   if (get_state(states_db) == "iddle" and arg[1] == "key") then
-    play_click()
+    -- setting up call
     set_busy(states_db)
-    logged_user = 0
-    set_logged_user(states_db, 0)
-    logged_admin = 0
-    set_logged_admin(states_db, 0)
     lastkey = arg[2]
-    -- set lastkey in tmp/zi/states_table.db?
+    -- set lastkey in tmp/zi/states_table.db as well?
     last4keys = arg[3]
     set_last4keys(states_db, last4keys)
+    play_click()
     
-      
-      -- test for admin passwords
+    -- test for admin passwords
     for i=1, 6 do 
       if last4keys == admins_db_get_value(admins_db, i, "password")
       then 
-        play_success()
         logged_admin = i 
         set_logged_admin(states_db, logged_admin)
         clear_last4keys(states_db)
+        play_success()
         os.execute("aplay /tmp/zi/a_1.wav")  -- "Bienvenido Administrador"
-        clear_busy(states_db)
+        -- clear_busy(states_db)
         break
       end
       
@@ -252,6 +248,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
     if (get_logged_user(states_db) == 0 and get_logged_admin(states_db) == 0) then
       set_state(states_db, "iddle")
       set_logged_user(states_db, 0)
+      set_logged_admin(states_db, 0)
       -- enables triggerhappy
       clear_busy(states_db)
     end
@@ -316,7 +313,10 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
       apply_safedns_policy(users_db, logged_user, 1)
       say("Navega! ")
       os.execute('mpg123 '..path..'zi/sounds/ticktack.mp3')
+      set_logged_user(states_db, 0)
+      set_logged_admin(states_db, 0)
       set_state(states_db, "iddle")
+
     end
 
     if lastkey == "0" then
@@ -324,6 +324,8 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
       apply_safedns_policy(users_db, logged_user, 0)
       say('Pausa de Internet! ')
       os.execute('mpg123 '..path..'zi/sounds/aplausos.mp3')
+      set_logged_user(states_db, 0)
+      set_logged_admin(states_db, 0)
       set_state(states_db, "iddle")
     end
     
@@ -348,24 +350,45 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
     end
     say('Se agregó 60 minutos a cada usuario.')
     play_applause()
-    set_state(states_db, "iddle")              -- sets statesmachine:
     set_logged_user(states_db, 0)
     set_logged_admin(states_db, 0)
+    set_state(states_db, "iddle")              -- sets statesmachine:
     clear_busy(states_db)
+    clear_last4keys(states_db)
     -- os.execute('killall -q lua')
   end
 
   -- a > a1
   -- clear_last4keys(states_db)
   if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
-    play_click()
-    set_state(states_db, "a1")              -- sets statesmachine:
+    clear_last4keys(states_db)
     set_busy(states_db)
     set_skippable(states_db)
+    set_state(states_db, "a1")              -- sets statesmachine:
+    play_click()
+    play('Elija un usuario para agregar una hora adicional.')
+    sleep(1)   -- waits before enabling a bit
+    clear_busy(states_db)
+    clear_skippable(states_db)
+  end
+
+    -- a1 > # > iddle
+  -- "agregar 60 minutos a un usuario"
+  if (get_state(states_db) == "a1" and arg[1] == "key") then
     clear_last4keys(states_db)
-    os.execute('aplay /tmp/zi/a1_1.wav')
-    os.execute('sleep 3  &&   echo 0 > /tmp/zi/busyflag  &&   sleep 1' )
-    os.execute('killall -q lua')
+    set_busy(states_db)
+    play_click()
+    usuario_nro = arg[2]
+    print("aquí viene el comando en duda")
+    users_db_set_value(users_db, usuario_nro, "time_left_today", users_db_get_value(users_db, usuario_nro, "time_left_today") + 60)
+    print("parece que se ejecutó")
+    os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
+    '"'..vol_pitch..'Se agregó 60 minutos al usuario '..usuario_nro..'." && '..
+    'aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav  &&'..
+    'mpg123 /etc/zi/sounds/aplausos.mp3')
+    clear_busy(states_db)
+    set_state(states_db, "iddle")
+    -- os.execute('killall -q lua')
   end
 
   -- a > a6
@@ -402,24 +425,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
     os.execute('killall -q lua')
   end
 
-  -- a1 > # > iddle
-  -- "agregar 60 minutos a un usuario"
-  if (get_state(states_db) == "a1" and arg[1] == "key") then
-    clear_last4keys(states_db)
-    set_busy(states_db)
-    play_click()
-    usuario_nro = arg[2]
-    print("aquí viene el comando en duda")
-    users_db_set_value(users_db, usuario_nro, "time_left_today", users_db_get_value(users_db, usuario_nro, "time_left_today") + 60)
-    print("parece que se ejecutó")
-    os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
-    '"'..vol_pitch..'Se agregó 60 minutos al usuario '..usuario_nro..'." && '..
-    'aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav  &&'..
-    'mpg123 /etc/zi/sounds/aplausos.mp3')
-    clear_busy(states_db)
-    set_state(states_db, "iddle")
-    -- os.execute('killall -q lua')
-  end
+
 
   -- a6 > # > iddle
   -- "bloquear un usuario"
