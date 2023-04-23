@@ -4,7 +4,7 @@ function users_db_reset(db_file)
   t = {}
   for i = 1, 6 do
     t[i] = {
-      ["password"]="1234", 
+      ["password"]=tostring(i)..tostring(i)..tostring(i)..tostring(i), 
       ["animalID"]=0,
       ["daily_quota"]=180,
       ["running"]=0, 
