@@ -253,10 +253,7 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
     -- if no found password
     if (get_logged_user(states_db) == 0 and get_logged_admin(states_db) == 0) then
       set_state(states_db, "iddle")
-      set_logged_user(states_db, 0)
-      set_logged_admin(states_db, 0)
-      -- enables triggerhappy
-      clear_busy(states_db)
+      outro_states_reset(states_db)
     end
 
     -- ADMIN MENU
@@ -360,11 +357,8 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
       end
       say('Se agregó 60 minutos a cada usuario.')
       play_applause()
-      set_logged_user(states_db, 0)
-      set_logged_admin(states_db, 0)
+      outro_states_reset(states_db)
       set_state(states_db, "iddle")              -- sets statesmachine:
-      clear_busy(states_db)
-      clear_last4keys(states_db)
 
     -- a > a1  
     elseif (arg[2] == "1") then
@@ -404,11 +398,10 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
       say('Se eliminó el saldo de todos los usuarios por hoy.')
       -- sleep(1)
       play_applause()
-      clear_busy(states_db)
-      clear_skippable(states_db)
+
       set_state(states_db, "iddle")
-      set_logged_user(states_db, 0)
-      set_logged_admin(states_db, 0)
+      outro_states_reset(states_db)
+
 
     -- selección inválida
     else
@@ -417,9 +410,7 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
       play_click()
       set_state(states_db, "iddle")
       say('Elección inválida. Vuelva a comenzar.')
-      set_logged_user(states_db, 0)
-      set_logged_admin(states_db, 0)
-      clear_busy(states_db)
+      outro_states_reset(states_db)
     end
   end
 
@@ -459,12 +450,13 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
         '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav'..
         '&& mpg123 '..path..'zi/sounds/aplausos.mp3')
         users_db_set_value(users_db, usuario_nro, "time_left_today", 0)
-        clear_busy(states_db)
         set_state(states_db, "iddle")
-        set_logged_admin(states_db, 0)
+        outro_states_reset(states_db)
       else   -- case user not existant
         os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
         say("Número de usuario inválido...")
+        set_state(states_db, "iddle")
+        outro_states_reset(states_db)
       end  
     end
   -- END ADMIN LEVEL 2 MENUS
