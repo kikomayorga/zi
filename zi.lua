@@ -341,6 +341,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
 
   -- state "a"
   if (get_state(states_db) == "a" and arg[1] == "key") then
+    os.execute("killall -q aplay")
     clear_last4keys(states_db)
     -- a > a7
     if (arg[2] == "7") then
