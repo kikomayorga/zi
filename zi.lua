@@ -448,7 +448,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
         os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
         '"'..vol_pitch..'Se puso a cero los minutos de hoy para usuario número '..usuario_nro..' ." '..
         '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav'..
-        '&& mpg123 '..path..'zi/sounds/success.mp3')
+        '&& mpg123 '..path..'zi/sounds/aplausos.mp3')
         users_db_set_value(users_db, usuario_nro, "time_left_today", 0)
         set_busy(states_db)
         set_state(states_db, "iddle")
