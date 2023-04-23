@@ -342,16 +342,15 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
   -- clear_last4keys(states_db)
   if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
     play_click()
-    set_state(states_db, "iddle")              -- sets statesmachine:
-    clear_busy(states_db)
-    clear_skippable(states_db)
-    clear_last4keys(states_db)
     say('Se agregó 60 minutos a cada usuario.')
     play_applause()
-    clear_busy(states_db)
+    set_state(states_db, "iddle")              -- sets statesmachine:
     clear_skippable(states_db)
+    clear_last4keys(states_db)
+    clear_busy(states_db)
     set_logged_user(states_db, 0)
-    os.execute('killall -q lua')
+    set_logged_admin(states_db, 0)
+    -- os.execute('killall -q lua')
   end
 
   -- a > a1
