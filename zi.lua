@@ -65,6 +65,12 @@
   dofile(""..path.."zi/zi_functions_devices.lua") 
   dofile(""..path.."zi/zi_functions_vehicles.lua") 
   dofile(""..path.."zi/zi_functions_sound.lua") 
+
+  -- meta functions files getdeclared in the end
+  dofile(""..path.."zi/zi_functions_meta.lua")
+
+
+
 -- END FUNCTION FILES
 
 -- DB FILES
