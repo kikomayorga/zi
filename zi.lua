@@ -229,7 +229,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
         clear_last4keys(states_db)
         os.execute("aplay /tmp/zi/a_1.wav")  -- "Bienvenido Administrador"
         clear_busy(states_db)
-        break
+        breakgit
       end
       
     end
@@ -346,8 +346,8 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
     clear_busy(states_db)
     clear_skippable(states_db)
     clear_last4keys(states_db)
-    say('Se agregó 60 minutos a cada usuario. Un Éxito.')
-    play_success()
+    say('Se agregó 60 minutos a cada usuario.')
+    play_applause()
     clear_busy(states_db)
     clear_skippable(states_db)
     set_logged_user(states_db, 0)
