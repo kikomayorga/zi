@@ -417,7 +417,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
       clear_last4keys(states_db)
       set_busy(states_db)
       play_click()
-      usuario_nro = arg[2]
+      usuario_nro = tonumber(arg[2])
       print("aquí viene el comando en duda")
       local tlt = users_db_get_value(users_db, usuario_nro, "time_left_today")
       users_db_set_value(users_db, usuario_nro, "time_left_today", tlt + 60)
