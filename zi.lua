@@ -88,7 +88,7 @@
   phrases_i1 = lines_from(""..path.."zi/phrases/phrases_i1.txt")  -- inicialización
 -- END PHRASES FILES 
 
-vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
+vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
 
 
 -- COMAND CALLS
