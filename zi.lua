@@ -317,7 +317,9 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
       set_logged_user(states_db, 0)
       set_logged_admin(states_db, 0)
       set_state(states_db, "iddle")
+      clear_busy(states_db)
       clear_skippable(states_db)
+      clear_last4keys(states_db)
     end
 
     if lastkey == "0" then
@@ -333,6 +335,7 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
       set_state(states_db, "iddle")
       clear_busy(states_db)
       clear_skippable(states_db)
+      clear_last4keys(states_db)
     end
     
     os.execute("uci commit")
