@@ -375,7 +375,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
     elseif (arg[2] == "6") then
       arg[1]= "nil"  -- preventing other executions
       set_busy(states_db)
-      clear_skippable(states_db)
+      set_skippable(states_db)
       clear_last4keys(states_db)
       set_state(states_db, "a6")
       play_click()
