@@ -443,7 +443,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
       set_busy(states_db)
       usuario_nro = tonumber(arg[2])
       -- os.execute("mpg123 /etc/zi/sounds/success.mp3")
-      if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6") then
+      if (usuario_nro == 1 or usuario_nro == 2 or usuario_nro == 3 or usuario_nro == 4 or usuario_nro == 5 or usuario_nro == 6) then
         users_db_set_value(users_db, usuario_nro, "time_left_today", 0)
         os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
         '"'..vol_pitch..'Se puso a cero los minutos de hoy para usuario número '..usuario_nro..' ." '..
