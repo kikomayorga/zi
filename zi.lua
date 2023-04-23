@@ -94,7 +94,7 @@
   phrases_i1 = lines_from(""..path.."zi/phrases/phrases_i1.txt")  -- inicialización
 -- END PHRASES FILES 
 
-vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
+vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
 
 
 -- COMAND CALLS
@@ -302,8 +302,8 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
 
 -- USER MENUS
   if (get_state(states_db) == "user_menu" and arg[1] == "key") then
-    clear_last4keys(states_db)
     set_busy(states_db)
+    clear_last4keys(states_db)
     clear_skippable(states_db)
     -- TO DO : BUILD INTRO_CALLS?
     logged_user = get_logged_user(states_db)
