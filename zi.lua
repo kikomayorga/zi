@@ -344,6 +344,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
     clear_last4keys(states_db)
     -- a > a7
     if (arg[2] == "7") then
+      arg[2]= "nil"  -- preventing other executions
       clear_last4keys(states_db)
       play_click()
       for i=1, 6, 1 do
@@ -359,6 +360,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
 
     -- a > a1  
     elseif (arg[2] == "1") then
+      arg[2]= "nil"  -- preventing other executions
       clear_last4keys(states_db)
       set_busy(states_db)
       set_skippable(states_db)
@@ -370,10 +372,11 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
       clear_skippable(states_db)
     -- a > a6 // 
     elseif (arg[2] == "6") then
+      arg[2]= "nil"  -- preventing other executions
       set_busy(states_db)
       clear_skippable(states_db)
       clear_last4keys(states_db)
-      set_state(states_db, "a6")            
+      set_state(states_db, "a6")
       play_click()
       say("Elige el número de usuario a ser bloqueado.")
       -- os.execute('aplay /tmp/zi/a6_1.wav')
@@ -383,6 +386,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
     -- a > a0
     -- a > 0 // bloquear a todos hasta mañana
     elseif (arg[2] == "0") then
+      arg[2]= "nil"  -- preventing other executions
       play_click()
       clear_last4keys(states_db)
       set_state(states_db, "a0")              
@@ -396,7 +400,8 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
       set_logged_user(states_db, 0)
 
     -- selección inválida
-    else 
+    else
+      arg[2]= "nil"  -- preventing other executions
       set_busy(states_db)
       play_click()
       set_state(states_db, "iddle")
@@ -406,7 +411,6 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
       clear_skippable(states_db)
       set_logged_user(states_db, 0)
     end
-    arg[1]= "nil"  -- preventing other executions
   end
 
   -- ADMIN LEVEL 2 MENUS
@@ -427,7 +431,6 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
       'mpg123 /etc/zi/sounds/aplausos.mp3')
       clear_busy(states_db)
       set_state(states_db, "iddle")
-      arg[1]= "nil"  -- preventing other executions
     end
 
     -- a6 > # > iddle  //  "bloquear un usuario"
@@ -450,7 +453,6 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
         os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
         play("Número de usuario inválido...")
       end  
-      arg[1]= "nil"  -- preventing other executions
     end
   -- END ADMIN LEVEL 2 MENUS
 -- END ADMIN MENUS
