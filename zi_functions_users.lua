@@ -33,7 +33,7 @@ end
 
 function users_db_get_value(db_file, userID, paramNAME)
   t = table.load(db_file)
-  gotten = t[userID][paramNAME]
+  local gotten = t[userID][paramNAME]
   return gotten
 end
 
