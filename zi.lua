@@ -387,10 +387,11 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
   -- clear_last4keys(states_db)
   if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "0") then
     play_click()
+    clear_last4keys(states_db)
     set_state(states_db, "a0")              -- sets statesmachine:
     set_busy(states_db)
     clear_skippable(states_db)
-    clear_last4keys(states_db)
+    users_db_set_column(users_db, "time_left_today", 0)
     say('Se eliminó el saldo de todos los usuarios por hoy.')
     clear_busy(states_db)
     clear_skippable(states_db)
@@ -420,23 +421,25 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
   -- a6 > # > iddle
   -- "bloquear un usuario"
   if (get_state(states_db) == "a6" and arg[1] == "key") then
+    clear_last4keys(states_db)
     play_click()
     set_busy(states_db)
-    clear_last4keys(states_db)
     usuario_nro = arg[2]
     -- os.execute("mpg123 /etc/zi/sounds/success.mp3")
     if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6") then
+      users_db_set_value(users_db, usuario_nro, "time_left_today", 0)
       os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
       '"'..vol_pitch..'Se puso a cero los minutos de hoy para usuario número '..usuario_nro..' ." '..
       '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav'..
       '&& mpg123 '..path..'zi/sounds/success.mp3')
+      users_db_set_value(users_db, usuario_nro, "time_left_today", 0)
       set_busy(states_db)
       set_state(states_db, "iddle")
-    else
+    else   -- case user not existant
       os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
+      play("Número de usuario inválido...")
     end  
-    clear_last4keys(states_db)
-    os.execute('killall -q lua')
+    -- os.execute('killall -q lua')
   end
 -- END ADMIN MENUS
 
