@@ -418,6 +418,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
     --state "a1"
     -- a1 > # > iddle  //  "agregar 60 minutos a un usuario"
     if (get_state(states_db) == "a1" and arg[1] == "key") then
+      os.execute("killall -q aplay")
       clear_last4keys(states_db)
       set_logged_admin(states_db, 0)
       set_busy(states_db)
@@ -436,6 +437,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
 
     -- a6 > # > iddle  //  "bloquear un usuario"
     if (get_state(states_db) == "a6" and arg[1] == "key") then
+      os.execute("killall -q aplay")
       clear_last4keys(states_db)
       play_click()
       set_busy(states_db)
