@@ -399,6 +399,7 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
       clear_skippable(states_db)
       set_state(states_db, "iddle")
       set_logged_user(states_db, 0)
+      set_logged_admin(states_db, 0)
 
     -- selección inválida
     else
