@@ -370,17 +370,17 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
       clear_skippable(states_db)
     -- a > a6 // 
     elseif (arg[2] == "6") then
-      play_click()
+      clear_last4keys(states_db)
       set_state(states_db, "a6")            
       set_busy(states_db)
       set_skippable(states_db)
-      clear_last4keys(states_db)
+      play_click()
       say("Elige el número de usuario a ser bloqueado.")
       -- os.execute('aplay /tmp/zi/a6_1.wav')
       clear_busy(states_db)
       clear_skippable(states_db)
 
-        -- a > a0
+    -- a > a0
     -- a > 0 // bloquear a todos hasta mañana
     elseif (arg[2] == "0") then
       play_click()
@@ -394,7 +394,6 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
       clear_skippable(states_db)
       set_state(states_db, "iddle")
       set_logged_user(states_db, 0)
-      os.execute('killall -q lua')
 
     -- selección inválida
     else 
