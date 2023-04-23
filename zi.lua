@@ -450,7 +450,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
         '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav'..
         '&& mpg123 '..path..'zi/sounds/aplausos.mp3')
         users_db_set_value(users_db, usuario_nro, "time_left_today", 0)
-        set_busy(states_db)
+        clear_busy(states_db)
         set_state(states_db, "iddle")
       else   -- case user not existant
         os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
