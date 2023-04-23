@@ -410,12 +410,12 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
     os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
     '"'..vol_pitch..'Se agregó 60 minutos al usuario '..usuario_nro..'." && '..
     'aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav  &&'..
-    'mpg123 /etc/zi/sounds/success.mp3')
+    'mpg123 /etc/zi/sounds/aplausos.mp3')
     -- os.execute("sleep 3")
     -- os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
     clear_busy(states_db)
     set_state(states_db, "iddle")
-    os.execute('killall -q lua')
+    -- os.execute('killall -q lua')
   end
 
   -- a6 > # > iddle
