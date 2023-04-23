@@ -311,6 +311,7 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
 
     -- TOGGLED
     if lastkey == "1" then
+      set_busy(states_db)
       os.execute("killall -q aplay")
       users_db_set_value(users_db, logged_user, "running", 1)
       apply_safedns_policy(users_db, logged_user, 1)
@@ -321,6 +322,7 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
     end
 
     if lastkey == "0" then
+      set_busy(states_db)
       os.execute("killall -q aplay")
       users_db_set_value(users_db, logged_user, "running", 0)
       apply_safedns_policy(users_db, logged_user, 0)
