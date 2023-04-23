@@ -301,41 +301,31 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
 -- USER MENUS
   if (get_state(states_db) == "user_menu" and arg[1] == "key") then
     clear_last4keys(states_db)
-    play_click()
+    set_busy(states_db)
+    -- TO DO : BUILD INTRO_CALLS?
     logged_user = get_logged_user(states_db)
     lastkey = arg[2]
+    play_click()
 
     -- TOGGLED
     if lastkey == "1" then
-      set_busy(states_db)
-      clear_skippable(states_db)
       os.execute("killall -q aplay")
       users_db_set_value(users_db, logged_user, "running", 1)
       apply_safedns_policy(users_db, logged_user, 1)
       say("Navega! ")
       os.execute('mpg123 '..path..'zi/sounds/ticktack.mp3')
-      set_logged_user(states_db, 0)
-      set_logged_admin(states_db, 0)
       set_state(states_db, "iddle")
-      clear_busy(states_db)
-      clear_skippable(states_db)
-      clear_last4keys(states_db)
+      outro_states_reset(states_db)
     end
 
     if lastkey == "0" then
-      set_busy(states_db)
-      clear_skippable(states_db)
       os.execute("killall -q aplay")
       users_db_set_value(users_db, logged_user, "running", 0)
       apply_safedns_policy(users_db, logged_user, 0)
       say('Pausa de Internet! ')
       os.execute('mpg123 '..path..'zi/sounds/aplausos.mp3')
-      set_logged_user(states_db, 0)
-      set_logged_admin(states_db, 0)
       set_state(states_db, "iddle")
-      clear_busy(states_db)
-      clear_skippable(states_db)
-      clear_last4keys(states_db)
+      outro_states_reset(states_db)
     end
     
     os.execute("uci commit")
