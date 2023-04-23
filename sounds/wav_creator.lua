@@ -18,7 +18,7 @@ phrases_u1 = lines_from("/etc/zi/phrases/phrases_u.txt")  -- usuario
 phrases_i = lines_from("/etc/zi/phrases/phrases_i.txt")  -- inicialización
 phrases_i2 = lines_from("/etc/zi/phrases/phrases_i2.txt")  -- inicialización
 
-vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
+vol_pitch = "<volume level=\'60\'><pitch level=\'80\'><speed level=\'130\'>"
 continue = " && " 
 
 -- u
