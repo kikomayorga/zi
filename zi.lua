@@ -340,7 +340,8 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
 -- ADMIN MENUS
 
   -- state "a"
-  if (get_state(states_db) == "a" and arg[1] == "key")
+  if (get_state(states_db) == "a" and arg[1] == "key") then
+    clear_last4keys(states_db)
     -- a > a7
     if (arg[2] == "7") then
       clear_last4keys(states_db)
@@ -402,7 +403,6 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
       set_busy(states_db)
       play_click()
       set_state(states_db, "iddle")
-      clear_last4keys(states_db)
       set_skippable(states_db)
       say('Elección inválida. Vuelva a comenzar.')
       clear_busy(states_db)
@@ -410,7 +410,6 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
       set_logged_user(states_db, 0)
     end
     arg[2]= "nil"  -- preventing other executions
-    clear_last4keys(states_db)
   end
 
   -- ADMIN LEVEL 2 MENUS
