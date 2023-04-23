@@ -309,7 +309,7 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
     if lastkey == "1" then
       set_busy(states_db)
       clear_skippable(states_db)
-      os.execute(killall -q aplay)
+      os.execute("killall -q aplay")
       users_db_set_value(users_db, logged_user, "running", 1)
       apply_safedns_policy(users_db, logged_user, 1)
       say("Navega! ")
@@ -323,7 +323,7 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
     if lastkey == "0" then
       set_busy(states_db)
       clear_skippable(states_db)
-      os.execute(killall -q aplay)
+      os.execute("killall -q aplay")
       users_db_set_value(users_db, logged_user, "running", 0)
       apply_safedns_policy(users_db, logged_user, 0)
       say('Pausa de Internet! ')
