@@ -253,7 +253,6 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
     -- if no found password
     if (get_logged_user(states_db) == 0 and get_logged_admin(states_db) == 0) then
       set_state(states_db, "iddle")
-      outro_states_reset(states_db)
     end
 
     -- ADMIN MENU
