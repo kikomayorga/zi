@@ -341,15 +341,17 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
   -- a > a7
   -- clear_last4keys(states_db)
   if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
+    clear_last4keys(states_db)
     play_click()
+    for i=1, 6, 1 do
+      users_db_set_value(users_db, i, "time_left_today", users_db_get_value(users_db, i, "time_left_today") + 60)
+    end
     say('Se agregó 60 minutos a cada usuario.')
     play_applause()
     set_state(states_db, "iddle")              -- sets statesmachine:
-    clear_skippable(states_db)
-    clear_last4keys(states_db)
-    clear_busy(states_db)
     set_logged_user(states_db, 0)
     set_logged_admin(states_db, 0)
+    clear_busy(states_db)
     -- os.execute('killall -q lua')
   end
 
