@@ -406,11 +406,10 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
       set_busy(states_db)
       play_click()
       set_state(states_db, "iddle")
-      set_skippable(states_db)
       say('Elección inválida. Vuelva a comenzar.')
-      clear_busy(states_db)
-      clear_skippable(states_db)
       set_logged_user(states_db, 0)
+      set_logged_admin(states_db, 0)
+      clear_busy(states_db)
     end
   end
 
