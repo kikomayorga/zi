@@ -370,6 +370,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
     sleep(1)   -- waits before enabling a bit
     clear_busy(states_db)
     clear_skippable(states_db)
+    os.execute('killall -q lua')
   end
 
     -- a1 > # > iddle
