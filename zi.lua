@@ -364,7 +364,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
       set_skippable(states_db)
       set_state(states_db, "a1")              -- sets statesmachine:
       play_click()
-      play('Elija un usuario para agregar una hora adicional.')
+      say('Elija un usuario para agregar una hora adicional.')
       sleep(1)   -- waits a bit before enabling th
       clear_busy(states_db)
       clear_skippable(states_db)
