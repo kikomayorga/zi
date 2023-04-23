@@ -13,11 +13,9 @@ echo newchain: $lkchain
 
 if [ "$busyflag" = "0" ]
 then
-
 	#save into temporary file
 	echo $lkchain > /tmp/zi/last4keys
 	cd /etc/zi && lua zi.lua key 1 $lkchain
-
 fi
 
 if [ "$busyflag" = "1" ] && [ "$skippableflag" = "1" ]
