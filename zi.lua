@@ -370,10 +370,10 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
       clear_skippable(states_db)
     -- a > a6 // 
     elseif (arg[2] == "6") then
-      clear_last4keys(states_db)
-      set_state(states_db, "a6")            
       set_busy(states_db)
       clear_skippable(states_db)
+      clear_last4keys(states_db)
+      set_state(states_db, "a6")            
       play_click()
       say("Elige el número de usuario a ser bloqueado.")
       -- os.execute('aplay /tmp/zi/a6_1.wav')
@@ -427,7 +427,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
       'mpg123 /etc/zi/sounds/aplausos.mp3')
       clear_busy(states_db)
       set_state(states_db, "iddle")
-      arg[2]= "nil"  -- preventing other executions
+      arg[1]= "nil"  -- preventing other executions
     end
 
     -- a6 > # > iddle  //  "bloquear un usuario"
