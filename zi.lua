@@ -340,40 +340,83 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
 -- END USER MENUS
 
 -- ADMIN MENUS
-  -- a > a7
-  -- clear_last4keys(states_db)
-  if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "7") then
-    clear_last4keys(states_db)
-    play_click()
-    for i=1, 6, 1 do
-      users_db_set_value(users_db, i, "time_left_today", users_db_get_value(users_db, i, "time_left_today") + 60)
+
+  -- state "a"
+  if (get_state(states_db) == "a" and arg[1] == "key")
+    -- a > a7
+    if (arg[2] == "7") then
+      clear_last4keys(states_db)
+      play_click()
+      for i=1, 6, 1 do
+        users_db_set_value(users_db, i, "time_left_today", users_db_get_value(users_db, i, "time_left_today") + 60)
+      end
+      say('Se agregó 60 minutos a cada usuario.')
+      play_applause()
+      set_logged_user(states_db, 0)
+      set_logged_admin(states_db, 0)
+      set_state(states_db, "iddle")              -- sets statesmachine:
+      clear_busy(states_db)
+      clear_last4keys(states_db)
+
+    -- a > a1  
+    elseif (arg[2] == "1") then
+      clear_last4keys(states_db)
+      set_busy(states_db)
+      set_skippable(states_db)
+      set_state(states_db, "a1")              -- sets statesmachine:
+      play_click()
+      play('Elija un usuario para agregar una hora adicional.')
+      sleep(1)   -- waits before enabling a bit
+      clear_busy(states_db)
+      clear_skippable(states_db)
+      os.execute('killall -q lua')
+
+    -- a > a6 // 
+    elseif (arg[2] == "6") then
+      play_click()
+      set_state(states_db, "a6")            
+      set_busy(states_db)
+      set_skippable(states_db)
+      clear_last4keys(states_db)
+      play("Elige el número de usuario a ser bloqueado.")
+      -- os.execute('aplay /tmp/zi/a6_1.wav')
+      clear_busy(states_db)
+      clear_skippable(states_db)
+
+        -- a > a0
+    -- a > 0 // bloquear a todos hasta mañana
+    elseif (arg[2] == "0") then
+      play_click()
+      clear_last4keys(states_db)
+      set_state(states_db, "a0")              
+      set_busy(states_db)
+      clear_skippable(states_db)
+      users_db_set_column(users_db, "time_left_today", 0)
+      say('Se eliminó el saldo de todos los usuarios por hoy.')
+      clear_busy(states_db)
+      clear_skippable(states_db)
+      set_state(states_db, "iddle")
+      set_logged_user(states_db, 0)
+      os.execute('killall -q lua')
+
+    -- selección inválida
+    else 
+      set_busy(states_db)
+      play_click()
+      set_state(states_db, "iddle")
+      clear_last4keys(states_db)
+      set_skippable(states_db)
+      say('Elección inválida. Vuelva a comenzar.')
+      clear_busy(states_db)
+      clear_skippable(states_db)
+      set_logged_user(states_db, 0)
     end
-    say('Se agregó 60 minutos a cada usuario.')
-    play_applause()
-    set_logged_user(states_db, 0)
-    set_logged_admin(states_db, 0)
-    set_state(states_db, "iddle")              -- sets statesmachine:
-    clear_busy(states_db)
+    arg[2]= "nil"  -- preventing other executions
     clear_last4keys(states_db)
-    -- os.execute('killall -q lua')
   end
 
-  -- a > a1
-  -- clear_last4keys(states_db)
-  if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "1") then
-    clear_last4keys(states_db)
-    set_busy(states_db)
-    set_skippable(states_db)
-    set_state(states_db, "a1")              -- sets statesmachine:
-    play_click()
-    play('Elija un usuario para agregar una hora adicional.')
-    sleep(1)   -- waits before enabling a bit
-    clear_busy(states_db)
-    clear_skippable(states_db)
-    os.execute('killall -q lua')
-  end
-
-    -- a1 > # > iddle
+  --state "a1"
+  -- a1 > # > iddle
   -- "agregar 60 minutos a un usuario"
   if (get_state(states_db) == "a1" and arg[1] == "key") then
     clear_last4keys(states_db)
@@ -392,40 +435,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
     -- os.execute('killall -q lua')
   end
 
-  -- a > a6
-  -- clear_last4keys(states_db)
-  if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "6") then
-    play_click()
-    -- lastkey = arg[2]
-    -- logged_user = get_logged_user(states_db)
-    set_state(states_db, "a6")              -- sets statesmachine:
-    set_busy(states_db)
-    set_skippable(states_db)
-    clear_last4keys(states_db)
-    os.execute('aplay /tmp/zi/a6_1.wav')
-    clear_busy(states_db)
-    clear_skippable(states_db)
-    os.execute('killall -q lua')
-  end
-
-  -- a > a0
-  -- bloquear a todos hasta mañana
-  -- clear_last4keys(states_db)
-  if (get_state(states_db) == "a" and arg[1] == "key" and arg[2] == "0") then
-    play_click()
-    clear_last4keys(states_db)
-    set_state(states_db, "a0")              -- sets statesmachine:
-    set_busy(states_db)
-    clear_skippable(states_db)
-    users_db_set_column(users_db, "time_left_today", 0)
-    say('Se eliminó el saldo de todos los usuarios por hoy.')
-    clear_busy(states_db)
-    clear_skippable(states_db)
-    set_state(states_db, "iddle")
-    set_logged_user(states_db, 0)
-    os.execute('killall -q lua')
-  end
-
+  
 
 
   -- a6 > # > iddle
