@@ -395,7 +395,7 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
       clear_skippable(states_db)
       users_db_set_column(users_db, "time_left_today", 0)
       say('Se eliminó el saldo de todos los usuarios por hoy.')
-      sleep(1)
+      -- sleep(1)
       play_applause()
       clear_busy(states_db)
       clear_skippable(states_db)
