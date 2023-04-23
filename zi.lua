@@ -365,11 +365,9 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
       set_state(states_db, "a1")              -- sets statesmachine:
       play_click()
       play('Elija un usuario para agregar una hora adicional.')
-      sleep(1)   -- waits before enabling a bit
+      sleep(1)   -- waits a bit before enabling th
       clear_busy(states_db)
       clear_skippable(states_db)
-      os.execute('killall -q lua')
-
     -- a > a6 // 
     elseif (arg[2] == "6") then
       play_click()
