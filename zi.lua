@@ -406,7 +406,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
       clear_skippable(states_db)
       set_logged_user(states_db, 0)
     end
-    arg[2]= "nil"  -- preventing other executions
+    arg[1]= "nil"  -- preventing other executions
   end
 
   -- ADMIN LEVEL 2 MENUS
@@ -450,7 +450,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'80\'><speed level=\'130\'>"
         os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
         play("Número de usuario inválido...")
       end  
-      arg[2]= "nil"  -- preventing other executions
+      arg[1]= "nil"  -- preventing other executions
     end
   -- END ADMIN LEVEL 2 MENUS
 -- END ADMIN MENUS
