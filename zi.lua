@@ -269,8 +269,6 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
       clear_skippable(states_db)
     end
 
-
-    -- USER MENU:
     -- if user password
     -- states: iddle > u
     if logged_user ~= 0 then
@@ -415,52 +413,49 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
     clear_last4keys(states_db)
   end
 
-  --state "a1"
-  -- a1 > # > iddle
-  -- "agregar 60 minutos a un usuario"
-  if (get_state(states_db) == "a1" and arg[1] == "key") then
-    clear_last4keys(states_db)
-    set_busy(states_db)
-    play_click()
-    usuario_nro = arg[2]
-    print("aquí viene el comando en duda")
-    users_db_set_value(users_db, usuario_nro, "time_left_today", users_db_get_value(users_db, usuario_nro, "time_left_today") + 60)
-    print("parece que se ejecutó")
-    os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
-    '"'..vol_pitch..'Se agregó 60 minutos al usuario '..usuario_nro..'." && '..
-    'aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav  &&'..
-    'mpg123 /etc/zi/sounds/aplausos.mp3')
-    clear_busy(states_db)
-    set_state(states_db, "iddle")
-    -- os.execute('killall -q lua')
-  end
-
-  
-
-
-  -- a6 > # > iddle
-  -- "bloquear un usuario"
-  if (get_state(states_db) == "a6" and arg[1] == "key") then
-    clear_last4keys(states_db)
-    play_click()
-    set_busy(states_db)
-    usuario_nro = arg[2]
-    -- os.execute("mpg123 /etc/zi/sounds/success.mp3")
-    if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6") then
-      users_db_set_value(users_db, usuario_nro, "time_left_today", 0)
-      os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
-      '"'..vol_pitch..'Se puso a cero los minutos de hoy para usuario número '..usuario_nro..' ." '..
-      '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav'..
-      '&& mpg123 '..path..'zi/sounds/success.mp3')
-      users_db_set_value(users_db, usuario_nro, "time_left_today", 0)
+  -- ADMIN LEVEL 2 MENUS
+    --state "a1"
+    -- a1 > # > iddle  //  "agregar 60 minutos a un usuario"
+    if (get_state(states_db) == "a1" and arg[1] == "key") then
+      clear_last4keys(states_db)
       set_busy(states_db)
+      play_click()
+      usuario_nro = arg[2]
+      print("aquí viene el comando en duda")
+      users_db_set_value(users_db, usuario_nro, "time_left_today", users_db_get_value(users_db, usuario_nro, "time_left_today") + 60)
+      print("parece que se ejecutó")
+      os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
+      '"'..vol_pitch..'Se agregó 60 minutos al usuario '..usuario_nro..'." && '..
+      'aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav  &&'..
+      'mpg123 /etc/zi/sounds/aplausos.mp3')
+      clear_busy(states_db)
       set_state(states_db, "iddle")
-    else   -- case user not existant
-      os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
-      play("Número de usuario inválido...")
-    end  
-    -- os.execute('killall -q lua')
-  end
+      arg[2]= "nil"  -- preventing other executions
+    end
+
+    -- a6 > # > iddle  //  "bloquear un usuario"
+    if (get_state(states_db) == "a6" and arg[1] == "key") then
+      clear_last4keys(states_db)
+      play_click()
+      set_busy(states_db)
+      usuario_nro = arg[2]
+      -- os.execute("mpg123 /etc/zi/sounds/success.mp3")
+      if (usuario_nro == "1" or usuario_nro == "2" or usuario_nro == "3" or usuario_nro == "4" or usuario_nro == "5" or usuario_nro == "6") then
+        users_db_set_value(users_db, usuario_nro, "time_left_today", 0)
+        os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
+        '"'..vol_pitch..'Se puso a cero los minutos de hoy para usuario número '..usuario_nro..' ." '..
+        '&& aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav'..
+        '&& mpg123 '..path..'zi/sounds/success.mp3')
+        users_db_set_value(users_db, usuario_nro, "time_left_today", 0)
+        set_busy(states_db)
+        set_state(states_db, "iddle")
+      else   -- case user not existant
+        os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
+        play("Número de usuario inválido...")
+      end  
+      arg[2]= "nil"  -- preventing other executions
+    end
+  -- END ADMIN LEVEL 2 MENUS
 -- END ADMIN MENUS
 
 -- CRON EACHMINUTE:  user table actions
