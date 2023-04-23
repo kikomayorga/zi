@@ -375,7 +375,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
       set_busy(states_db)
       set_skippable(states_db)
       clear_last4keys(states_db)
-      play("Elige el número de usuario a ser bloqueado.")
+      say("Elige el número de usuario a ser bloqueado.")
       -- os.execute('aplay /tmp/zi/a6_1.wav')
       clear_busy(states_db)
       clear_skippable(states_db)
