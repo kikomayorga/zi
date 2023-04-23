@@ -411,8 +411,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
     '"'..vol_pitch..'Se agregó 60 minutos al usuario '..usuario_nro..'." && '..
     'aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav  &&'..
     'mpg123 /etc/zi/sounds/aplausos.mp3')
-    -- os.execute("sleep 3")
-    -- os.execute("mpg123 "..path.."zi/sounds/alarma.mp3")
+    users_db_set_value(users_db, usuario_nro, "time_left_today", users_db_get_value(users_db, usuario_nro, "time_left_today") + 60)
     clear_busy(states_db)
     set_state(states_db, "iddle")
     -- os.execute('killall -q lua')
