@@ -105,18 +105,18 @@ function set_busy(db_file)
 return 1
 end
 
-function set_skippable(db_file)
-  os.execute("echo 1 > /tmp/zi/skippableflag")
-  t = table.load(db_file)
-  t["skippableflag"] = 1
-  table.save(t,db_file)
-return 1
-end
-
 function clear_busy(db_file)
   os.execute("echo 0 > /tmp/zi/busyflag")
   t = table.load(db_file)
   t["busyflag"] = 0
+  table.save(t,db_file)
+return 1
+end
+
+function set_skippable(db_file)
+  os.execute("echo 1 > /tmp/zi/skippableflag")
+  t = table.load(db_file)
+  t["skippableflag"] = 1
   table.save(t,db_file)
 return 1
 end
@@ -128,6 +128,10 @@ function clear_skippable(db_file)
   table.save(t,db_file)
 return 1
 end
+
+
+
+
 
 function clear_last4keys(db_file)
   os.execute("echo 0000 > /tmp/zi/last4keys")

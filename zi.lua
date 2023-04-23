@@ -43,7 +43,7 @@
   path = "/etc/"
   -- debugging in windows
   -- path = "/home/qeakous/Documents/"
--- EMD PATHS
+-- END PATHS
 
 -- SAFEDNS CONSTANTS
   safedns_rule_offset = "cfg038c89"
@@ -207,22 +207,26 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
 -- KEYPAD ROUTINES
   -- iddle and any key
   if (get_state(states_db) == "iddle" and arg[1] == "key") then
-    set_busy(states_db)
     play_click()
+    set_busy(states_db)
     logged_user = 0
+    set_logged_user(states_db, 0)
     logged_admin = 0
+    set_logged_admin(states_db, 0)
     lastkey = arg[2]
+    -- set lastkey in tmp/zi/states_table.db?
     last4keys = arg[3]
     set_last4keys(states_db, last4keys)
+    
       
       -- test for admin passwords
     for i=1, 6 do 
       if last4keys == admins_db_get_value(admins_db, i, "password")
       then 
-        clear_last4keys(states_db)
-        logged_admin = i 
-        set_logged_admin(states_db, i)
         play_success()
+        logged_admin = i 
+        set_logged_admin(states_db, logged_admin)
+        clear_last4keys(states_db)
         os.execute("aplay /tmp/zi/a_1.wav")  -- "Bienvenido Administrador"
         clear_busy(states_db)
       end
@@ -251,14 +255,14 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
       clear_busy(states_db)
     end
 
+    -- ADMIN MENU
     -- if admin password
     -- states: iddle > a
-    if logged_admin ~= 0 then
-      set_logged_admin(states_db, logged_admin)
+    if get_logged_admin(states_db) ~= 0 then
       set_state(states_db, "a")
+      clear_last4keys(states_db)
       set_busy(states_db)   -- filters triggerhappy
       set_skippable(states_db)
-      clear_last4keys(states_db)
       os.execute(
       'aplay /tmp/zi/a_2.wav '..' && aplay /tmp/zi/a_3.wav '..
       ' && aplay /tmp/zi/a_4.wav '..' && aplay /tmp/zi/a_5.wav '..
@@ -272,6 +276,8 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
     -- if user password
     -- states: iddle > u
     if logged_user ~= 0 then
+      set_state(states_db, "user_menu")  
+      set_logged_user(states_db, logged_user)  
       clear_last4keys(states_db)
       running = users_db_get_value(users_db, logged_user, "running")
       if running == 0 then
@@ -289,8 +295,7 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
         ' && aplay /tmp/zi/u_5.wav')
         -- uci set safedns.cfg038c89.token='1922033194'
       end  
-      set_state(states_db, "user_menu")  
-      set_logged_user(states_db, logged_user)   
+ 
     end
 
     clear_busy(states_db)
