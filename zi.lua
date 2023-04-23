@@ -165,7 +165,7 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
         set_vehicle_taken(vehicles_db, vehicleID, 1)
         set_device_db_row(devices_db, get_last_device_added(states_db)+1, get_last_MAC_connected(states_db) , vehicleID)
         set_last_device_added(get_last_device_added(states_db) + 1)
-        delay(5)
+        sleep(3)
         say("Elija el uso del dispositivo:"..
         "Para asignar permanentemente un dispositivo marca 2."..
         "Para marcar el dispositivo como compartido marca 3"..
@@ -395,6 +395,8 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'110\'><speed level=\'130\'>"
       clear_skippable(states_db)
       users_db_set_column(users_db, "time_left_today", 0)
       say('Se eliminó el saldo de todos los usuarios por hoy.')
+      sleep(1)
+      play_applause()
       clear_busy(states_db)
       clear_skippable(states_db)
       set_state(states_db, "iddle")
