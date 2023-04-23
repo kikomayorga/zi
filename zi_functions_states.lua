@@ -130,9 +130,6 @@ return 1
 end
 
 
-
-
-
 function clear_last4keys(db_file)
   os.execute("echo 0000 > /tmp/zi/last4keys")
   t = table.load(db_file)

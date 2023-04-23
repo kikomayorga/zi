@@ -415,13 +415,13 @@ vol_pitch = "<volume level=\'30\'><pitch level=\'110\'><speed level=\'100\'>"
     -- a1 > # > iddle  //  "agregar 60 minutos a un usuario"
     if (get_state(states_db) == "a1" and arg[1] == "key") then
       clear_last4keys(states_db)
+      set_logged_admin(states_db, 0)
       set_busy(states_db)
+      clear_skippable(states_db)
       play_click()
       usuario_nro = tonumber(arg[2])
-      print("aquí viene el comando en duda")
       local tlt = users_db_get_value(users_db, usuario_nro, "time_left_today")
       users_db_set_value(users_db, usuario_nro, "time_left_today", tlt + 60)
-      print("parece que se ejecutó")
       os.execute('pico2wave -w /tmp/zi/buffer.wav -l es-ES '..
       '"'..vol_pitch..'Se agregó 60 minutos al usuario '..usuario_nro..'." && '..
       'aplay -q -f U8 -r8000 -D plughw:0,0 /tmp/zi/buffer.wav  &&'..
