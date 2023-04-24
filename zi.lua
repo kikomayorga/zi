@@ -215,6 +215,8 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
   if (get_state(states_db) == "iddle" and arg[1] == "key") then
     -- setting up call
     set_busy(states_db)
+    -- this is a test
+    set_skippable(states_db)
     lastkey = arg[2]
     -- set lastkey in tmp/zi/states_table.db as well?
     last4keys = arg[3]
