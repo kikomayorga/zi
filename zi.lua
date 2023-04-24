@@ -296,7 +296,10 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
  
     end
 
+    -- outro calls
     clear_busy(states_db)
+    arg[1] = "nil"
+    arg[2] = "nil"
   end
 -- END KEYPAD ROUTINES
 
