@@ -379,6 +379,8 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
       arg[2]= "nil"  -- preventing other executions
       clear_last4keys(states_db)
       set_busy(states_db)
+      set_logged_user(states_db, 0)
+      set_logged_admin(states_db, 0)
       set_skippable(states_db)
       set_state(states_db, "a1")              -- sets statesmachine:
       play_click()
@@ -392,12 +394,15 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
       set_busy(states_db)
       set_skippable(states_db)
       clear_last4keys(states_db)
+      set_logged_user(states_db, 0)
+      set_logged_admin(states_db, 0)
       set_state(states_db, "a6")
       play_click()
       say("Elige el número de usuario a ser bloqueado.")
       -- os.execute('aplay /tmp/zi/a6_1.wav')
       clear_busy(states_db)
       clear_skippable(states_db)
+      
 
     -- a > a0
     -- a > 0 // bloquear a todos hasta mañana
@@ -405,6 +410,8 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
       arg[2]= "nil"  -- preventing other executions
       play_click()
       clear_last4keys(states_db)
+      set_logged_user(states_db, 0)
+      set_logged_admin(states_db, 0)
       set_state(states_db, "a0")              
       set_busy(states_db)
       clear_skippable(states_db)
@@ -414,8 +421,6 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
       play_applause()
 
       set_state(states_db, "iddle")
-      set_logged_user(states_db, 0)
-      set_logged_admin(states_db, 0)
       clear_busy(states_db)
       clear_skippable(states_db)
       clear_last4keys(states_db)
