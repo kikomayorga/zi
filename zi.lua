@@ -392,8 +392,8 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
     -- a > 0 // bloquear a todos hasta mañana
     elseif (arg[2] == "0") then
       set_state(states_db, "iddle")
-      play_click()          
-      users_db_set_column(users_db, "time_left_today", 0)
+      play_click()    
+      users_db_set_column(users_db, "time_left_today", 0, 0, 0, 0, 0, 0)      
       say('Se eliminó el saldo de todos los usuarios por hoy.')
       -- sleep(1)
       play_applause()
