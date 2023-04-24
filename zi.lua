@@ -361,18 +361,18 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
     if (arg[2] == "7") then
       arg[2]= "nil"  -- preventing other executions
       clear_last4keys(states_db)
+      set_busy(states_db)
+      clear_skippable(states_db)
+      set_state(states_db, "iddle")              -- sets statesmachine:
+      set_logged_user(states_db, 0)
+      set_logged_admin(states_db, 0)
       play_click()
       for i=1, 6, 1 do
         users_db_set_value(users_db, i, "time_left_today", users_db_get_value(users_db, i, "time_left_today") + 60)
       end
       say('Se agregó 60 minutos a cada usuario.')
       play_applause()
-      set_logged_user(states_db, 0)
-      set_logged_admin(states_db, 0)
       clear_busy(states_db)
-      clear_skippable(states_db)
-      clear_last4keys(states_db)
-      set_state(states_db, "iddle")              -- sets statesmachine:
 
     -- a > a1  
     elseif (arg[2] == "1") then
