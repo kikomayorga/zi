@@ -43,7 +43,6 @@
   path = "/etc/"
   -- debugging in windows
   -- path = "/home/qeakous/Documents/"
--- END PATHS
 
 -- SAFEDNS CONSTANTS
   safedns_rule_offset = "cfg038c89"
