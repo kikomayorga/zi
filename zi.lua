@@ -307,12 +307,11 @@
     clear_last4keys(states_db)
     clear_skippable(states_db)
     -- TO DO : BUILD INTRO_CALLS?
-    logged_user = get_logged_user(states_db)
-    lastkey = arg[2]
+    logged_user = get_logged_user(states_db) 
     play_click()
 
     -- TOGGLED
-    if lastkey == "1" then
+    if arg[2] == "1" then  -- key_nr
       set_busy(states_db)
       os.execute("killall -q aplay")
       users_db_set_value(users_db, logged_user, "running", 1)
@@ -327,7 +326,7 @@
       clear_last4keys(states_db)
     end
 
-    if lastkey == "0" then
+    if arg[2] == "0" then  -- key_nr
       set_busy(states_db)
       os.execute("killall -q aplay")
       users_db_set_value(users_db, logged_user, "running", 0)
