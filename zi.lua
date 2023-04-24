@@ -356,7 +356,6 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
   -- state "a"
   if (get_state(states_db) == "a" and arg[1] == "key") then
     os.execute("killall -q aplay")
-    arg[2]= "nil"  -- preventing other executions
     -- common intro calls
     clear_last4keys(states_db)
     set_busy(states_db)
@@ -409,6 +408,7 @@ vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
     -- outtro calls
     clear_busy(states_db)
     clear_skippable(states_db)
+    arg[2]= "nil"  -- preventing other executions with same keystroke
   end
 
   -- ADMIN LEVEL 2 MENUS
