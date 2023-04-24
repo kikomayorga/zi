@@ -38,18 +38,20 @@
   -- TODO: lua zi.lua hostapd dis-connect macaddresse
 -- END TODOs
 
--- PATHS
+-- PATHS AND CONSTANTS
+
   -- debugging in router
   path = "/etc/"
   -- debugging in windows
   -- path = "/home/qeakous/Documents/"
 
--- SAFEDNS CONSTANTS
+  -- SAFEDNS CONSTANTS
+  vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
   safedns_rule_offset = "cfg038c89"
   safedns_policy_0 = "1922033194"
   safedns_policy_1 = "176489346"
   safedns_policy_2 = "1388236232"
--- END SAFEDNS CONSTANTS
+-- END PATHS
 
 -- FUNCTION FILES
   dofile(""..path.."zi/tables/tablesaveload.lua") -- for persistance
@@ -93,10 +95,7 @@
   phrases_i1 = lines_from(""..path.."zi/phrases/phrases_i1.txt")  -- inicialización
 -- END PHRASES FILES 
 
-vol_pitch = "<volume level=\'60\'><pitch level=\'70\'><speed level=\'130\'>"
-
-
--- COMAND CALLS
+-- COMAND LINE CALLS AND TEST ROUTINES
   if (arg[1] == "users" and arg[2] == "reset") then users_db_reset(users_db) end
   if (arg[1] == "admins" and arg[2] == "reset") then admins_db_reset(admins_db) end
   if (arg[1] == "devices" and arg[2] == "reset") then devices_db_reset(devices_db) end
